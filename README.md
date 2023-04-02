@@ -1,7 +1,6 @@
 # SpaceComix
 
-Sito e-commerce di manga e fumetti scritto in Tomcat con database MySQL. Non sono stati utilizzati Maven o simili.
-
+Sito e-commerce di manga e fumetti scritto in Tomcat con database MySQL.
 ## Funzionalità del sito
 
 ### Funzionalità lato guest
