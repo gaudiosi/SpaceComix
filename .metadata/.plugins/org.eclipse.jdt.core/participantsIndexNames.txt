@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+C:\Users\gabry\OneDrive\Documenti\GitHub\TSW\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2797656638.index
+\StorageSession\src
+C:\Users\gabry\OneDrive\Documenti\GitHub\TSW\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2475041912.index
+\SpaceComix\src
