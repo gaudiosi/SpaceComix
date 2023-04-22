@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+C:\Users\gabry\OneDrive\Documenti\GitHub\TSW\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1297700964.index
+3919140228.index
+2474499194.index
+3688494650.index
+2600287289.index
