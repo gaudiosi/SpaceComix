@@ -1,3 +1,4 @@
+drop schema if exists SpaceComix;
 create schema SpaceComix;
 use SpaceComix;
 
@@ -17,10 +18,11 @@ id int auto_increment,
 quantita int not NULL,
 iva int not NULL,
 prezzo int not NULL,
-titolo varchar(20) not NULL,
-descrizione varchar(30) not NULL,
+titolo varchar(20) not NULL unique,
+descrizione text not NULL,
 sconto int not NULL,
-immagine blob,
+immagine longblob,
+image_alt varchar(40),
 primary key(id)
 );
 
@@ -105,7 +107,7 @@ on update cascade
 
 create table composizione(
 idOrdine int,
-idPrdotto int,
+idProdotto int,
 prezzo_vendita int,
 iva int,
 primary key(idOrdine, idProdotto),
