@@ -15,9 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.model.ProductModel;
 import it.unisa.model.ProductModelDM;
-import it.unisa.model.ProductModelDS;
-import it.unisa.model.Carrello;
-import it.unisa.model.ProductBean;
+import it.unisa.model.ProductDAO;
+
 /**
  * Servlet implementation class ControllerProdotti
  */
@@ -31,7 +30,7 @@ public class ControllerProdotti extends HttpServlet {
 
 	static {
 		if (isDataSource) {
-			model = new ProductModelDS();
+			model = new ProductDAO();
 		} else {
 			model = new ProductModelDM();
 		}

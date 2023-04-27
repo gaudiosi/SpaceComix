@@ -28,10 +28,26 @@
 
       <h2><strong></strong></h2>
       <a href="product"> List</a>
+
+      <%
+            if(products!= null && products.size()!= 0) {
+            Iterator<?> it = products.iterator();
+            while (it.hasNext()) {
+                ProductBean bean = (ProductBean) it.next();
+
+
+      %>
       <div>
+           <div>
+               <a href="product?action=delete&id=<%=bean.getID()%>"></a>
+               <div>
+
+               </div>
+           </div>
 
       </div>
 
+<%}}%>
 
 </body>
 </html>

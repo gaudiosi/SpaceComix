@@ -1,5 +1,7 @@
 package it.unisa.model;
 
+import jdk.jfr.Category;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +14,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class ProductModelDS implements ProductModel {
+public class ProductDAO implements ProductModel {
 
     private static DataSource ds;
 
@@ -21,7 +23,7 @@ public class ProductModelDS implements ProductModel {
             Context initCtx = new InitialContext();
             Context envCtx = (Context) initCtx.lookup("java:comp/env");
 
-            ds = (DataSource) envCtx.lookup("jdbc/storage");
+            ds = (DataSource) envCtx.lookup("jdbc/SpaceComix");
 
         } catch (NamingException e) {
             System.out.println("Error:" + e.getMessage());
@@ -35,19 +37,28 @@ public class ProductModelDS implements ProductModel {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement2 = null;
 
-        String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
-                + " (titolo, descrizione, prezzo, quantita) VALUES (?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + ProductDAO.TABLE_NAME
+                + " (quantita, iva, prezzo, titolo, descrizione, sconto) VALUES (?, ?, ?, ?, ?, ?)";
+        String insert2SQL = "INSERT INTO Appartenenza (idCategoria,idProdotto) VALUES (?,?)"; //d
 
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(insertSQL);
-            preparedStatement.setString(1, product.getTitolo());
-            preparedStatement.setString(2, product.getDescrizione());
+            preparedStatement.setInt(1, product.getQuantita());
+            preparedStatement.setInt(2, product.getIva());
             preparedStatement.setInt(3, product.getPrezzo());
-            preparedStatement.setInt(4, product.getQuantita());
+            preparedStatement.setString(4, product.getTitolo());
+            preparedStatement.setString(5,product.getDescrizione());
+            preparedStatement.setInt(3, product.getSconto());
+
 
             preparedStatement.executeUpdate();
+
+            //salvare le categorie del prodotto
+
+
 
             connection.commit();
         } finally {
@@ -68,7 +79,9 @@ public class ProductModelDS implements ProductModel {
 
         ProductBean bean = new ProductBean();
 
-        String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME + " WHERE id = ?";
+        String selectSQL = "SELECT * FROM " + ProductDAO.TABLE_NAME +
+                " AS P LEFT JOIN Appartenenza AS A ON P.id = A.idProdotto" +
+                " LEFT JOIN Categoria AS C ON A.idCategoria=C.nome WHERE P.id = ?";
 
         try {
             connection = ds.getConnection();
@@ -79,10 +92,28 @@ public class ProductModelDS implements ProductModel {
 
             while (rs.next()) {
                 bean.setID(rs.getInt("id"));
+                bean.setQuantita(rs.getInt("quantita"));
+                bean.setIva(rs.getInt("iva"));
+                bean.setPrezzo(rs.getInt("prezzo"));
                 bean.setTitolo(rs.getString("titolo"));
                 bean.setDescrizione(rs.getString("descrizione"));
-                bean.setPrezzo(rs.getInt("prezzo"));
-                bean.setQuantita(rs.getInt("quantita"));
+                bean.setSconto(rs.getInt("sconto"));
+                bean.setImage_alt(rs.getString("image_alt"));
+
+                if(rs.getString("C.name") != null)
+                {
+                    while(rs.getInt("id")== bean.getID()) {
+
+
+                        CategoriaBean c = new CategoriaBean();
+                        c.setNome(rs.getString("C.name"));
+                        c.setDescrizione(rs.getString("C.descrizione"));
+                        bean.addCategoria(c);
+
+                        rs.next();
+                    }
+
+                }
             }
 
         } finally {
@@ -104,7 +135,7 @@ public class ProductModelDS implements ProductModel {
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM " + ProductModelDS.TABLE_NAME + " WHERE id = ?";
+        String deleteSQL = "DELETE FROM " + ProductDAO.TABLE_NAME + " WHERE id = ?";
 
         try {
             connection = ds.getConnection();
@@ -132,7 +163,9 @@ public class ProductModelDS implements ProductModel {
 
         Collection<ProductBean> products = new LinkedList<ProductBean>();
 
-        String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME;
+        String selectSQL = "SELECT * FROM " + ProductDAO.TABLE_NAME +
+                " AS P LEFT JOIN Appartenenza AS A ON P.id = A.idProdotto" +
+                " LEFT JOIN Categoria AS C ON A.idCategoria=C.nome";
 
         if (order != null && !order.equals("")) {
             selectSQL += " ORDER BY " + order;
@@ -144,16 +177,36 @@ public class ProductModelDS implements ProductModel {
 
             ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()) {
+            do {
                 ProductBean bean = new ProductBean();
 
                 bean.setID(rs.getInt("id"));
+                bean.setQuantita(rs.getInt("quantita"));
+                bean.setIva(rs.getInt("iva"));
+                bean.setPrezzo(rs.getInt("prezzo"));
                 bean.setTitolo(rs.getString("titolo"));
                 bean.setDescrizione(rs.getString("descrizione"));
-                bean.setPrezzo(rs.getInt("prezzo"));
-                bean.setQuantita(rs.getInt("quantita"));
+                bean.setSconto(rs.getInt("sconto"));
+                bean.setImage_alt(rs.getString("image_alt"));
+
+
+                if(rs.getString("C.name") != null)
+                {
+                    while(rs.getInt("id")== bean.getID()) {
+
+
+                        CategoriaBean c = new CategoriaBean();
+                        c.setNome(rs.getString("C.name"));
+                        c.setDescrizione(rs.getString("C.descrizione"));
+                        bean.addCategoria(c);
+
+                        rs.next();
+                    }
+
+                }
+
                 products.add(bean);
-            }
+            } while (rs.next());
 
         } finally {
             try {
