@@ -110,6 +110,7 @@ idOrdine int,
 idProdotto int,
 prezzo_vendita int,
 iva int,
+quantita int,
 primary key(idOrdine, idProdotto),
 foreign key (idProdotto) references Prodotto(id)
 on delete no action

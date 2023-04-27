@@ -12,7 +12,7 @@
   </resource-ref>
   <servlet>
     <servlet-name>ControllerProdotti</servlet-name>
-    <servlet-class>it.unisa.control.ControllerProdotti</servlet-class>
+    <servlet-class>it.SpaceComix.control.ControllerProdotti</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ControllerProdotti</servlet-name>

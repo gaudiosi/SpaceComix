@@ -1,4 +1,4 @@
-package it.unisa.model;
+package it.SpaceComix.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class ProductBean implements Serializable {
         int contenuto = 0;
         for (CategoriaBean cat : generi)
         {
-            if (cat==categoria)
+            if (cat.equals(categoria))
             {
                 contenuto = 1;
                 break;

@@ -1,4 +1,4 @@
-package it.unisa.model;
+package it.SpaceComix.model;
 
 import java.util.Objects;
 
@@ -20,13 +20,14 @@ public class CategoriaBean {
         return descrizione;
     }
 
-    public void setDescrizione(String descrizone) {
+    public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
 
     public CategoriaBean()
     {
-
+        nome= "";
+        descrizione= "";
     }
 
     public CategoriaBean(String nome, String descrizone) {

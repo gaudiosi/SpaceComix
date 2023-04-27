@@ -1,6 +1,4 @@
-package it.unisa.model;
-
-import jdk.jfr.Category;
+package it.SpaceComix.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class ProductDAO implements ProductModel {
+public class ProductDAO implements DAO<ProductBean> {
 
     private static DataSource ds;
 

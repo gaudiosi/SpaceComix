@@ -1,4 +1,4 @@
-package it.unisa.model;
+package it.SpaceComix.model;
 
 import java.util.ArrayList;
 import java.util.List;

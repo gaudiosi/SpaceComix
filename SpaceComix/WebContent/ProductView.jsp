@@ -17,7 +17,7 @@
 <!DOCTYPE html>
 <html>
 
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.unisa.model.ProductBean,it.unisa.model.Carrello"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProductBean,it.SpaceComix.model.Carrello"%>
 
 <head>
 <meta charset="UTF-8">

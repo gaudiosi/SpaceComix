@@ -1,4 +1,4 @@
-package it.unisa.model;
+package it.SpaceComix.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 
-public class ProductModelDM implements ProductModel {
+public class ProductModelDM implements DAO<ProductBean> {
 
     private static final String TABLE_NAME = "prodotto";
 
