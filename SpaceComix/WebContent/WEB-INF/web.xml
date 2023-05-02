@@ -14,8 +14,16 @@
     <servlet-name>ControllerProdotti</servlet-name>
     <servlet-class>it.SpaceComix.control.ControllerProdotti</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>LoginController</servlet-name>
+    <servlet-class>it.SpaceComix.control.LoginController</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ControllerProdotti</servlet-name>
     <url-pattern>/product</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginController</servlet-name>
+    <url-pattern>/login</url-pattern>
   </servlet-mapping>
 </web-app>

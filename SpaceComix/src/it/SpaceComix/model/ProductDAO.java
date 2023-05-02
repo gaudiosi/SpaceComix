@@ -49,7 +49,7 @@ public class ProductDAO implements DAO<ProductBean> {
             preparedStatement.setInt(3, product.getPrezzo());
             preparedStatement.setString(4, product.getTitolo());
             preparedStatement.setString(5,product.getDescrizione());
-            preparedStatement.setInt(3, product.getSconto());
+            preparedStatement.setInt(6, product.getSconto());
 
 
             preparedStatement.executeUpdate();
@@ -179,7 +179,7 @@ public class ProductDAO implements DAO<ProductBean> {
 
             boolean currentnext = rs.next();
 
-            while (currentnext) {       //FinchÃ© esiste una riga corrente crea un nuovo prodotto
+            while (currentnext) {       //Finché esiste una riga corrente crea un nuovo prodotto
 
 
                 ProductBean bean = new ProductBean();
@@ -226,5 +226,11 @@ public class ProductDAO implements DAO<ProductBean> {
         }
         return products;
     }
+
+	@Override
+	public ProductBean doRetrieveByKey(String code, String code1) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

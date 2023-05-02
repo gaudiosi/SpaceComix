@@ -9,6 +9,8 @@ public interface DAO<T> {
     public boolean doDelete(int code) throws SQLException;
 
     public T doRetrieveByKey(int code) throws SQLException;
+    
+    public T doRetrieveByKey(String username, String password) throws SQLException;
 
     public Collection<T> doRetrieveAll(String order) throws SQLException;
 }

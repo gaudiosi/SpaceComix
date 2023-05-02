@@ -16,7 +16,7 @@
 				<li><a href="index.jsp">Home</a></li>
 				<li><a href="catalog.jsp">Catalogo</a></li>
 				<li><a href="cart.jsp">Carrello</a></li>
-				<li><a href="login.jsp">Login</a></li>
+				<li><a href="Login.jsp">Login</a></li>
 				<li><a href="register.jsp">Registrazione</a></li>
 			</ul>
 		</nav>
