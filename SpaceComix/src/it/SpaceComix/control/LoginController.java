@@ -56,7 +56,7 @@ public class LoginController extends HttpServlet {
 	            response.sendRedirect(request.getContextPath() + "/home");
 	        } else {
 	            request.setAttribute("error", "Invalid username or password");
-	            request.getRequestDispatcher("login.jsp").forward(request, response);
+				response.sendRedirect("Login.jsp");
 	        }
 	    }
 	}
