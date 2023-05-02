@@ -65,7 +65,7 @@ public class ControllerProdotti extends HttpServlet {
 					cart.addProdotto((ProductBean) model.doRetrieveByKey(id));
 				} else if (action.equalsIgnoreCase("deleteC")) {
 					int id = Integer.parseInt(request.getParameter("id"));
-					cart.removeProduct((ProductBean) model.doRetrieveByKey(id));
+					cart.removeProdotto((ProductBean) model.doRetrieveByKey(id));
 				} else if (action.equalsIgnoreCase("read")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					request.removeAttribute("product");
