@@ -1,12 +1,30 @@
 package it.SpaceComix.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Carrello {
 
     private ArrayList <ProdottoCarrello> prodotti;
 
     public Carrello() { prodotti = new ArrayList<ProdottoCarrello>();}
+
+
+    public void updateProdotto(ProductBean prodotto, int quantita)
+    {
+        if (quantita>0)
+        {
+            for(ProdottoCarrello temp: prodotti)
+            {
+                if(temp.getProdotto().equals(prodotto))
+                {
+                    temp.setQuantita(quantita);
+                }
+            }
+
+        }
+
+    }
 
 
 
@@ -25,7 +43,7 @@ public class Carrello {
             {
                 if( temp1.getProdotto().getID()==prodotto.getID())
                 {
-                    temp.setQuantita(temp.getQuantita()+1);
+                    temp1.setQuantita(temp1.getQuantita()+1);
                     break;
                 }
             }
@@ -33,7 +51,7 @@ public class Carrello {
 
     }
 
-    public void decreaseProduct(ProductBean prodotto)
+    public void decreaseProdotto(ProductBean prodotto)
     {
         ProdottoCarrello temp = new ProdottoCarrello(prodotto);
 
@@ -50,10 +68,8 @@ public class Carrello {
 
 
 
-
-
     //se esiste il prodotto lo rimuove dal carrello
-    public void removeProduct(ProductBean prodotto)
+    public void removeProdotto(ProductBean prodotto)
     {
         ProdottoCarrello temp = new ProdottoCarrello(prodotto);
         if(prodotti.contains(temp))
