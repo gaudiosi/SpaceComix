@@ -144,4 +144,10 @@ public class ProductModelDM implements DAO<ProductBean> {
         return products;
     }
 
+	@Override
+	public ProductBean doRetrieveByKey(String username, String password) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
