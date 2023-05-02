@@ -1,4 +1,4 @@
-package it.SpaceComix.control;
+ package it.SpaceComix.control;
 
 import it.SpaceComix.model.Carrello;
 import it.SpaceComix.model.ProductBean;
@@ -62,10 +62,10 @@ public class ControllerProdotti extends HttpServlet {
 			if (action != null) {
 				if (action.equalsIgnoreCase("addC")) {
 					int id = Integer.parseInt(request.getParameter("id"));
-					cart.addProduct(model.doRetrieveByKey(id));
+					cart.addProdotto((ProductBean) model.doRetrieveByKey(id));
 				} else if (action.equalsIgnoreCase("deleteC")) {
 					int id = Integer.parseInt(request.getParameter("id"));
-					cart.deleteProduct(model.doRetrieveByKey(id));
+					cart.removeProduct((ProductBean) model.doRetrieveByKey(id));
 				} else if (action.equalsIgnoreCase("read")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					request.removeAttribute("product");

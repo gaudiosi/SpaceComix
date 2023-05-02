@@ -88,7 +88,7 @@ public class ProductDAO implements DAO<ProductBean> {
 
             ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()) {
+            if (rs.next()) {
                 bean.setID(rs.getInt("id"));
                 bean.setQuantita(rs.getInt("quantita"));
                 bean.setIva(rs.getInt("iva"));
@@ -98,21 +98,23 @@ public class ProductDAO implements DAO<ProductBean> {
                 bean.setSconto(rs.getInt("sconto"));
                 bean.setImage_alt(rs.getString("image_alt"));
 
+
                 if(rs.getString("C.name") != null)
                 {
-                    while(rs.getInt("id")== bean.getID()) {
-
+                    do {
 
                         CategoriaBean c = new CategoriaBean();
                         c.setNome(rs.getString("C.name"));
                         c.setDescrizione(rs.getString("C.descrizione"));
                         bean.addCategoria(c);
 
-                        rs.next();
-                    }
+                    } while (rs.next());
 
                 }
+
+
             }
+
 
         } finally {
             try {
@@ -175,7 +177,11 @@ public class ProductDAO implements DAO<ProductBean> {
 
             ResultSet rs = preparedStatement.executeQuery();
 
-            do {
+            boolean currentnext = rs.next();
+
+            while (currentnext) {       //Finché esiste una riga corrente crea un nuovo prodotto
+
+
                 ProductBean bean = new ProductBean();
 
                 bean.setID(rs.getInt("id"));
@@ -190,21 +196,24 @@ public class ProductDAO implements DAO<ProductBean> {
 
                 if(rs.getString("C.name") != null)
                 {
-                    while(rs.getInt("id")== bean.getID()) {
-
+                    do {  //Crea una nuova categoria
 
                         CategoriaBean c = new CategoriaBean();
                         c.setNome(rs.getString("C.name"));
                         c.setDescrizione(rs.getString("C.descrizione"));
                         bean.addCategoria(c);
 
-                        rs.next();
-                    }
 
+                    } while(currentnext = rs.next() && currentnext && rs.getInt("id")== bean.getID());
+                      //Finché la nuova riga corrente ha lo stesso prodotto
+                }
+                else
+                {
+                    currentnext = rs.next();;
                 }
 
                 products.add(bean);
-            } while (rs.next());
+            }
 
         } finally {
             try {

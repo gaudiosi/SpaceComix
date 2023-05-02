@@ -83,7 +83,7 @@ create table Appartenenza(
 idCategoria varchar(16),
 idProdotto int,
 primary key (idCategoria, idProdotto),
-foreign key (idCategoria) references categoria(nome)
+foreign key (idCategoria) references Categoria(nome)
 on delete cascade
 on update cascade,
 foreign key (idProdotto) references Prodotto(id)
@@ -91,7 +91,7 @@ on delete cascade
 on update cascade
 );
 
-create table recensione(
+create table Recensione(
 testo varchar(50) not NULL,
 stelle int not NULL,
 idUtente int,
@@ -105,7 +105,7 @@ on delete cascade
 on update cascade
 );
 
-create table composizione(
+create table Composizione(
 idOrdine int,
 idProdotto int,
 prezzo_vendita int,
