@@ -1,0 +1,46 @@
+@charset "ISO-8859-1";
+body {
+  background-color: #19272E;
+  color: #F7F0F0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1 {
+  color: #34AAC4;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"], input[type="password"] {
+  padding: 5px;
+  border-radius: 25px;
+  border: none;
+  margin-bottom: 10px;
+}
+
+input[type="submit"], input[type="reset"] {
+  background-color: #308F9B;
+  color: #F7F0F0;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+input[type="submit"]:hover {
+  background-color: #114B73;
+}
+
+.error {
+  color: #FF0000;
+}
