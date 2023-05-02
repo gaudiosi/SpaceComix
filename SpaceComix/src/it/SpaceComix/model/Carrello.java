@@ -1,7 +1,6 @@
 package it.SpaceComix.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Carrello {
 
@@ -24,7 +23,7 @@ public class Carrello {
         {
             for(ProdottoCarrello temp1 : prodotti)
             {
-                if( temp.getProdotto().getID()==prodotto.getID())
+                if( temp1.getProdotto().getID()==prodotto.getID())
                 {
                     temp.setQuantita(temp.getQuantita()+1);
                     break;

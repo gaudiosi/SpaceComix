@@ -85,7 +85,7 @@ public class ProductBean implements Serializable {
         return titolo;
     }
 
-    public void setTitolo(String name) {
+    public void setTitolo(String titolo) {
         this.titolo = titolo;
     }
 

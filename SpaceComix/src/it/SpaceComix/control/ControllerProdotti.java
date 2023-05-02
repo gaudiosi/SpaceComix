@@ -1,4 +1,4 @@
- package it.SpaceComix.control;
+package it.SpaceComix.control;
 
 import it.SpaceComix.model.Carrello;
 import it.SpaceComix.model.ProductBean;
@@ -26,7 +26,7 @@ public class ControllerProdotti extends HttpServlet {
 
 	static boolean isDataSource = true;
 
-	static DAO model;
+	static DAO<ProductBean> model;
 
 	static {
 		if (isDataSource) {
