@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Pagina di Login</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Login Page</h1>
@@ -14,6 +15,7 @@
         <label for="password">Password:	</label>
         <input type="password" id="password" name="password" required><br>
         <input type="submit" value="Login">
+        <input type="reset" value="Reset"/>
   	</form>
   	<% String error = (String) request.getAttribute("error");
        if (error != null) {
