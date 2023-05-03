@@ -41,7 +41,7 @@ public class Carrello {
         {
             for(ProdottoCarrello temp1 : prodotti)
             {
-                if( temp1.getProdotto().getID()==prodotto.getID())
+                if(temp1.getProdotto().getID()==prodotto.getID())
                 {
                     temp1.setQuantita(temp1.getQuantita()+1);
                     break;
