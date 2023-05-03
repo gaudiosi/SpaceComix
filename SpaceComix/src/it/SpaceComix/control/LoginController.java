@@ -47,7 +47,7 @@ public class LoginController extends HttpServlet {
 	        UserBean user = null;
 			try {
 				user = userDao.doRetrieveByKey(email, password);
-			} catch (SQLException e){e.printStackTrace();}
+			} catch (SQLException e){}
 
 	        if (user.getId() != 0) {
 	            HttpSession session = request.getSession();
@@ -58,7 +58,7 @@ public class LoginController extends HttpServlet {
 	        } else {
 	        	String error = "Invalid email or password. Please try again.";
 	        	HttpSession session = request.getSession();
-	        	session.setAttribute("error", error);
+	        	session.setAttribute("error1", error);
 	        	response.sendRedirect("Login.jsp");
 	        }
 	    }

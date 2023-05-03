@@ -48,22 +48,14 @@ public class UserDAO implements DAO<UserBean> {
 	            preparedStatement.setString(4,user.getNome());
 	            preparedStatement.setString(5, user.getCognome());
 
-
 	            preparedStatement.executeUpdate();
-
-	            //salvare le categorie del prodotto
-
-
 
 	            connection.commit();
 	        } finally {
-	            try {
 	                if (preparedStatement != null)
 	                    preparedStatement.close();
-	            } finally {
 	                if (connection != null)
 	                    connection.close();
-	            }
 	        }
 	    }
 	    
