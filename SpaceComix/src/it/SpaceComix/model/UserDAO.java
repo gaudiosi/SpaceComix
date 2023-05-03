@@ -36,7 +36,7 @@ public class UserDAO implements DAO<UserBean> {
 	        Connection connection = null;
 	        PreparedStatement preparedStatement = null;
 
-	        String insertSQL = "INSERT INTO " + UserDAO.TABLE_NAME
+	        String insertSQL = "INSERT INTO " + TABLE_NAME
 	                + " (username, pass, email, nome, cognome) VALUES (?, ?, ?, ?, ?)";
 
 	        try {
@@ -114,7 +114,7 @@ public class UserDAO implements DAO<UserBean> {
 
 		        int result = 0;
 
-		        String deleteSQL = "DELETE FROM " + UserDAO.TABLE_NAME + " WHERE id = ?";
+		        String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 
 		        try {
 		            connection = ds.getConnection();
@@ -142,7 +142,7 @@ public class UserDAO implements DAO<UserBean> {
 
 		        Collection<UserBean> users = new LinkedList<UserBean>();
 
-		        String selectSQL = "SELECT * FROM " + UserDAO.TABLE_NAME;
+		        String selectSQL = "SELECT * FROM " + TABLE_NAME;
 
 		        if (order != null && !order.equals("")) {
 		            selectSQL += " ORDER BY " + order;
@@ -191,7 +191,7 @@ public class UserDAO implements DAO<UserBean> {
 
 	        UserBean bean = new UserBean();
 
-	        String selectSQL = "SELECT * FROM cliente C WHERE C.id = ?";
+	        String selectSQL = "SELECT * FROM"+ TABLE_NAME +"C WHERE C.id = ?";
 
 	        try {
 	            connection = ds.getConnection();
