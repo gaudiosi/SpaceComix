@@ -186,8 +186,41 @@ public class UserDAO implements DAO<UserBean> {
 
 		@Override
 		public UserBean doRetrieveByKey(int code) throws SQLException {
-			// TODO Auto-generated method stub
-			return null;
-		}
+			Connection connection = null;
+	        PreparedStatement preparedStatement = null;
+
+	        UserBean bean = new UserBean();
+
+	        String selectSQL = "SELECT * FROM cliente C WHERE C.id = ?";
+
+	        try {
+	            connection = ds.getConnection();
+	            preparedStatement = connection.prepareStatement(selectSQL);
+	            preparedStatement.setInt(1, code);
+	            
+	            ResultSet rs = preparedStatement.executeQuery();
+	            
+
+	            if (rs.next()) {
+	            	bean.setId(Integer.parseInt(rs.getString("id")));
+	            	bean.setUsername(rs.getString("username"));
+	            	bean.setPassword(rs.getString("pass"));
+	            	bean.setEmail(rs.getString("email"));
+	            	bean.setRuolo(rs.getString("ruolo"));
+	            	bean.setNome(rs.getString("nome"));
+	            	bean.setCognome(rs.getString("cognome"));	
+	            }
+	            
+	        } finally {
+	            try {
+	                if (preparedStatement != null)
+	                    preparedStatement.close();
+	            } finally {
+	                if (connection != null)
+	                    connection.close();
+	            }
+	        }
+	        return bean;
+	    }
 
 	}

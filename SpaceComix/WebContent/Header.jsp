@@ -16,8 +16,17 @@
 				<li><a href="index.jsp">Home</a></li>
 				<li><a href="catalog.jsp">Catalogo</a></li>
 				<li><a href="cart.jsp">Carrello</a></li>
-				<li><a href="Login.jsp">Login</a></li>
-				<li><a href="register.jsp">Registrazione</a></li>
+				<%String name = (String) session.getAttribute("user");
+			       if (name != null) {
+			           out.print("<a href=\"profilo.jsp\">" + name + "</a></li>");
+			           out.print("<form action=\"Logout\" method=\"get\" > " +
+			        		     "<input type=\"submit\" value=\"Logout\"/>" +
+			           "</form> ");
+			       } else {
+			    	   out.print("<li><a href=\"Login.jsp\">Login</a></li>" +
+			   				"<li><a href=\"register.jsp\">Registrazione</a></li>");
+			       }
+			    %>
 			</ul>
 		</nav>
 	</header>
