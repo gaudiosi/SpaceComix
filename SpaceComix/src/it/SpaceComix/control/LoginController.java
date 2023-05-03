@@ -40,23 +40,25 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	        String username = request.getParameter("username");
+	        String email = request.getParameter("email");
 	        String password = request.getParameter("password");
 
 	        UserDAO userDao = new UserDAO();
 	        UserBean user = null;
 			try {
-				user =  userDao.doRetrieveByKey(username, password);
-			} catch (SQLException e){}
+				user = userDao.doRetrieveByKey(email, password);
+			} catch (SQLException e){e.printStackTrace();}
 
-	        if (user != null) {
+	        if (user.getId() != 0) {
 	            HttpSession session = request.getSession();
-	            session.setAttribute("user", user);
-	            session.setAttribute("role", user.getRuolo().equals("admin"));
-	            response.sendRedirect(request.getContextPath() + "/home");
+	            session.setAttribute("user", user.getUsername());
+	            session.setAttribute("role", user.getRuolo());
+	            response.sendRedirect("home.jsp");
 	        } else {
-	            request.setAttribute("error", "Invalid username or password");
-				response.sendRedirect("Login.jsp");
+	        	String error = "Invalid email or password. Please try again.";
+	        	HttpSession session = request.getSession();
+	        	session.setAttribute("error", error);
+	        	response.sendRedirect("Login.jsp");
 	        }
 	    }
 	}

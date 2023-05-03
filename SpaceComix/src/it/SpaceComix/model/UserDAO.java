@@ -68,25 +68,25 @@ public class UserDAO implements DAO<UserBean> {
 	    }
 	    
 	    @Override
-	    public synchronized UserBean doRetrieveByKey(String username, String password) throws SQLException {
+	    public synchronized UserBean doRetrieveByKey(String email, String password) throws SQLException {
 	        Connection connection = null;
 	        PreparedStatement preparedStatement = null;
 
 	        UserBean bean = new UserBean();
 
-	        String selectSQL = "SELECT * FROM " + UserDAO.TABLE_NAME + "AS C WHERE C.username = ? AND C.pass=?";
+	        String selectSQL = "SELECT * FROM cliente C WHERE C.email = ? AND C.pass = ?";
 
 	        try {
 	            connection = ds.getConnection();
 	            preparedStatement = connection.prepareStatement(selectSQL);
-	            preparedStatement.setString(1, username);
+	            preparedStatement.setString(1, email);
 	            preparedStatement.setString(2, password);
 	            
-
 	            ResultSet rs = preparedStatement.executeQuery();
+	            
 
 	            if (rs.next()) {
-	            	bean.setId(rs.getInt("id"));
+	            	bean.setId(Integer.parseInt(rs.getString("id")));
 	            	bean.setUsername(rs.getString("username"));
 	            	bean.setPassword(rs.getString("pass"));
 	            	bean.setEmail(rs.getString("email"));
@@ -94,6 +94,7 @@ public class UserDAO implements DAO<UserBean> {
 	            	bean.setNome(rs.getString("nome"));
 	            	bean.setCognome(rs.getString("cognome"));	
 	            }
+	            
 	        } finally {
 	            try {
 	                if (preparedStatement != null)

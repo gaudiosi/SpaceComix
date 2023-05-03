@@ -138,5 +138,11 @@ public class UserBean{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "UserBean [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", ruolo=" + ruolo + ", nome=" + nome + ", cognome=" + cognome + "]";
+	}
     
 }
