@@ -7,7 +7,7 @@ id int auto_increment,
 username varchar(16) not NULL,
 pass varchar(100) not NULL,
 email varchar(50) not NULL unique,
-ruolo varchar(12) not NULL,
+ruolo varchar(12) not NULL default "guest" check(ruolo in ("admin", "guest")),
 nome varchar(20) not NULL,
 cognome varchar(20) not NULL,
 primary key(id)
