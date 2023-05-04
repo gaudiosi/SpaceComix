@@ -29,6 +29,6 @@
            session.setAttribute("error1", null);
        }
     %>
-    <a href="home.jsp"> Ritorna alla pagina principale</a>
+    <a href="home.jsp" class="bottone"> Ritorna alla pagina principale</a>
 </body>
 </html>

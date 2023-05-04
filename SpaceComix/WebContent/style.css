@@ -33,12 +33,28 @@ input[type="submit"], input[type="reset"] {
   border-radius: 15px;
   padding: 10px;
   cursor: pointer;
-  margin-right: 10px;
   margin-left: 10px;
 }
 
 input[type="submit"]:hover {
   background-color: #114B73;
+}
+
+a:empty:link, a:empty:visited {
+  background-color: #308F9B;
+  color: #F7F0F0;
+  padding: 7px 17px;
+  border-radius: 15px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 10px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:empty:hover, a:empty:active {
+  background-color:  #34AAC4;
 }
 
 .error {

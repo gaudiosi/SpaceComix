@@ -1,5 +1,6 @@
 @charset "ISO-8859-1";
 body {
+	    background-color: #19272E;
         margin: 0;
         padding: 0;
         height: 100%;
@@ -7,8 +8,7 @@ body {
 
 
       .navbar {
-        background-color: #333;
-        color: #fff;
+        color: #ffffff;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -17,23 +17,24 @@ body {
 
 
       .logo img {
-		width: 100px;
+		width: 10%;
 	  }
 	  
-	  a:link, a:visited {
- 		background-color: #f44336;
-  		color: white;
+	  a:not(.logo-img):link, a:not(.logo-img):visited {
+ 		background-color: #308F9B;
+  		color: #F7F0F0;
   		padding: 7px 17px;
+  		border-radius: 15px;
   		font-size: 16px;
   		text-align: center;
   		cursor: pointer;
-        margin-left: 10px;
+  		margin-left: 10px;
   		text-decoration: none;
   		display: inline-block;
 	  }
 
-	  a:hover, a:active {
-  		background-color:  #f84850;
+	  a:not(.logo-img):hover, a:not(.logo-img):active {
+  		background-color:  #308F9B;
 	  }
 
 

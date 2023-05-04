@@ -23,5 +23,6 @@
            session.setAttribute("error", null);
        }
     %>
+    <a href="home.jsp" class="bottone"> Home </a>
 </body>
 </html>

@@ -3,12 +3,11 @@
 <html>
   <head>
     <meta charset="ISO-8859-1">
-    <title>NAVBAR AND FOOTER</title>
     <link rel="stylesheet" href="HeaderAndFooterStyle.css">
   </head>
   <body>
     <nav class="navbar">
-	<a href = "home.jsp"><img src="Logo.png" alt="Logo del sito" class="logo"></a>
+	<a href = "home.jsp" class = "logo-img"><img src="Logo.png" alt="Logo del sito" class="logo"></a>
       <div>
         <button onclick="novita.jsp" class="navbar-button">Novità</button>
         <button onclick="faq.jsp" class="navbar-button">FAQ</button>
@@ -21,7 +20,7 @@
 			           			 "</form> ");
 			       } else {
 			    	   out.print("<a href=\"Login.jsp\"> Login </a>" +
-			   				"<a href=\"register.jsp\" Register </a>");
+			   				"<a href=\"register.jsp\"> Register </a>");
 			       }
 			    %>
       </div>
