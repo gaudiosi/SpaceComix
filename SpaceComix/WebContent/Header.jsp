@@ -9,9 +9,9 @@
     <nav class="navbar">
 	<a href = "home.jsp" class = "logo-img"><img src="Logo.png" alt="Logo del sito" class="logo"></a>
       <div>
-        <button onclick="novita.jsp" class="navbar-button">Novità</button>
-        <button onclick="faq.jsp" class="navbar-button">FAQ</button>
-		<button onclick="carrello.jsp" class="navbar-button">Carrello</button>
+        <a href="ProductView.jsp" class="navbar-button">Novità</a>
+        <a href="faq.jsp" class="navbar-button">FAQ</a>
+		<a href="carrello.jsp" class="navbar-button">Carrello</a>
 		<%String name = (String) session.getAttribute("user");
 			       if (name != null) {
 			           out.print("<a href=\"profilo.jsp\">" + name + "</a>");
@@ -19,8 +19,8 @@
 			        		     "<input type=\"submit\" value=\"Logout\"/>" + 
 			           			 "</form> ");
 			       } else {
-			    	   out.print("<a href=\"Login.jsp\"> Login </a>" +
-			   				"<a href=\"register.jsp\"> Register </a>");
+			    	   out.print("<a href=\"Login.jsp\">Login</a>" +
+			   				"<a href=\"register.jsp\">Register</a>");
 			       }
 			    %>
       </div>

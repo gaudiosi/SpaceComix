@@ -6,13 +6,13 @@ body {
       }
 
 
-      .navbar {
-     	background-color: #333333;
+      nav {
+     	background-color: #555555;
         color: #ffffff;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         padding: 20px;
+        justify-content: space-evenly;
       }
 
 
@@ -29,10 +29,10 @@ body {
   		font-size: 16px;
   		text-align: center;
   		cursor: pointer;
-  		margin-left: 10px;
   		text-decoration: none;
   		width: 50px;
   		display: inline-block;
+  		margin-left: 5px;
 	  }
 
 	  a:not(.logo-img):hover, a:not(.logo-img):active {
@@ -41,7 +41,7 @@ body {
 
 
       .footer {
-        background-color: #333333;
+        background-color: #555555;
         color: #ffffff;
         padding: 10px;
         text-align: center;
