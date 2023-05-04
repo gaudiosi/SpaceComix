@@ -28,10 +28,10 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>LoginController</servlet-name>
-    <url-pattern>/Login</url-pattern>
+    <url-pattern>/login</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>SigninController</servlet-name>
-    <url-pattern>/Signin</url-pattern>
+    <url-pattern>/signin</url-pattern>
   </servlet-mapping>
 </web-app>
