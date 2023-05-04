@@ -30,6 +30,7 @@ body {
   		cursor: pointer;
   		margin-left: 10px;
   		text-decoration: none;
+  		width: 50px;
   		display: inline-block;
 	  }
 
