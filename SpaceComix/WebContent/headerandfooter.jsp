@@ -50,24 +50,25 @@
         left: 0;
         width: 100%;
       }
+
     </style>
   </head>
   <body>
     <nav class="navbar">
-	<img src="../logo.png" alt="Logo del sito" class="logo">
+	<img src="Logo.png" alt="Logo del sito" class="logo">
       <div>
-        <button onclick="../novita.jsp" class="navbar-button">Novit√†</button>
+        <button onclick="../novita.jsp" class="navbar-button">Novit‡</button>
         <button onclick="../faq.jsp" class="navbar-button">FAQ</button>
 		<button onclick="../carrello.jsp" class="navbar-button">Carrello</button>
 		<%String name = (String) session.getAttribute("user");
 			       if (name != null) {
-			           out.print("<button onclick=\"profilo.jsp\" class=\"navbar-button\">" + Profilo + "</button>");
+			           out.print("<button onclick=\"profilo.jsp\" class=\"navbar-button\">" + "Profilo" + "</button>");
 			           out.print("<form action=\"Logout\" method=\"get\" > " +
 			        		     "<input type=\"submit\" value=\"Logout\"/>" +
 			           "</form> ");
 			       } else {
-			    	   out.print("<button onclick=\"Login.jsp\" class=\"navbar-button\">" + Login + "</button>" +
-			   				"<button onclick=\"register.jsp\" class=\"navbar-button\">" + Register + "</button>");
+			    	   out.print("<button onclick=\"Login.jsp\" class=\"navbar-button\">" + "Login" + "</button>" +
+			   				"<button onclick=\"register.jsp\" class=\"navbar-button\">" + "Register" + "</button>");
 			       }
 			    %>
       </div>
