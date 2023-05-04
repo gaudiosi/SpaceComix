@@ -15,13 +15,13 @@
 		<button onclick="carrello.jsp" class="navbar-button">Carrello</button>
 		<%String name = (String) session.getAttribute("user");
 			       if (name != null) {
-			           out.print("<button onclick=\"profilo.jsp\" class=\"navbar-button\">" + name + "</button>");
+			           out.print("<a href=\"profilo.jsp\">" + name + "</a>");
 			           out.print("<form action=\"Logout\" method=\"get\" > " +
 			        		     "<input type=\"submit\" value=\"Logout\"/>" + 
 			           			 "</form> ");
 			       } else {
-			    	   out.print("<button onclick=\"Login.jsp\" class=\"navbar-button\">" + "Login" + "</button>" +
-			   				"<button onclick=\"register.jsp\" class=\"navbar-button\">" + "Register" + "</button>");
+			    	   out.print("<a href=\"Login.jsp\"> Login </a>" +
+			   				"<a href=\"register.jsp\" Register </a>");
 			       }
 			    %>
       </div>
