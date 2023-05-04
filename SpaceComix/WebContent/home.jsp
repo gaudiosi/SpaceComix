@@ -6,6 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>SpaceComix</title>
 <%@include file="Header.jsp" %>
+<%@include file="Footer.jsp" %>
 </head>
 <body>
 

@@ -1,0 +1,44 @@
+@charset "ISO-8859-1";
+body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+
+      .navbar {
+        background-color: #333;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+      }
+
+
+      .logo img {
+		width: 100px;
+	  }
+
+
+      .navbar-button {
+        background-color: #fff;
+        color: #333;
+        border: none;
+        padding: 7px 17px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+
+
+      .footer {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }

@@ -1,34 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	<header>
-		<div class="logo">
-			<a href="home.jsp"><img src="Logo.png" alt="SpaceComix Logo"></a>
-		</div>
-		<nav>
-			<ul>
-				<li><a href="index.jsp">Home</a></li>
-				<li><a href="catalog.jsp">Catalogo</a></li>
-				<li><a href="cart.jsp">Carrello</a></li>
-				<%String name = (String) session.getAttribute("user");
+  <head>
+    <meta charset="ISO-8859-1">
+    <title>NAVBAR AND FOOTER</title>
+    <link rel="stylesheet" href="HeaderAndFooterStyle.css">
+  </head>
+  <body>
+    <nav class="navbar">
+	<a href = "home.jsp"><img src="Logo.png" alt="Logo del sito" class="logo"></a>
+      <div>
+        <button onclick="novita.jsp" class="navbar-button">Novità</button>
+        <button onclick="faq.jsp" class="navbar-button">FAQ</button>
+		<button onclick="carrello.jsp" class="navbar-button">Carrello</button>
+		<%String name = (String) session.getAttribute("user");
 			       if (name != null) {
-			           out.print("<a href=\"profilo.jsp\">" + name + "</a></li>");
+			           out.print("<button onclick=\"profilo.jsp\" class=\"navbar-button\">" + name + "</button>");
 			           out.print("<form action=\"Logout\" method=\"get\" > " +
-			        		     "<input type=\"submit\" value=\"Logout\"/>" +
-			           "</form> ");
+			        		     "<input type=\"submit\" value=\"Logout\"/>" + 
+			           			 "</form> ");
 			       } else {
-			    	   out.print("<li><a href=\"Login.jsp\">Login</a></li>" +
-			   				"<li><a href=\"register.jsp\">Registrazione</a></li>");
+			    	   out.print("<button onclick=\"Login.jsp\" class=\"navbar-button\">" + "Login" + "</button>" +
+			   				"<button onclick=\"register.jsp\" class=\"navbar-button\">" + "Register" + "</button>");
 			       }
 			    %>
-			</ul>
-		</nav>
-	</header>
-</body>
+      </div>
+      </nav>
+  </body>
 </html>
