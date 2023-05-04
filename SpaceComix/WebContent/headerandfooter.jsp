@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <html>
   <head>
-    <title>Navbar Example</title>
+    <meta charset="ISO-8859-1">
+    <title>NAVBAR AND FOOTER</title>
     <style>
 	
       body {
@@ -52,11 +54,11 @@
   </head>
   <body>
     <nav class="navbar">
-	<img src="../logo.svc" alt="Logo del sito" class="logo">
+	<img src="../logo.png" alt="Logo del sito" class="logo">
       <div>
-        <button onclick="sito.html" class="navbar-button">Novità</button>
-        <button onclick="sito.html" class="navbar-button">FAQ</button>
-		<button onclick="sito.html" class="navbar-button">Carrello</button>
+        <button onclick="../novita.jsp" class="navbar-button">Novità</button>
+        <button onclick="../faq.jsp" class="navbar-button">FAQ</button>
+		<button onclick="../carrello.jsp" class="navbar-button">Carrello</button>
 		<%String name = (String) session.getAttribute("user");
 			       if (name != null) {
 			           out.print("<button onclick=\"profilo.jsp\" class=\"navbar-button\">" + Profilo + "</button>");
