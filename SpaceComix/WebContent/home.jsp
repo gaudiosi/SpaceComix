@@ -8,7 +8,7 @@
 <%@include file="Header.jsp" %>
 <%@include file="Footer.jsp" %>
 </head>
-<body>
+<body style="background-color:white">
 
 </body>
 </html>
