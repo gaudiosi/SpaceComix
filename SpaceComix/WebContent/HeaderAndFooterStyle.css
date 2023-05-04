@@ -38,6 +38,24 @@ body {
 	  a:not(.logo-img):hover, a:not(.logo-img):active {
   		background-color:  #34AAC4;
 	  }
+	  
+	  input[type="submit"], input[type="reset"] {
+  		width: 80px;
+ 		height: 30px;
+  		font-size: 16px;
+  		background-color: #308F9B;
+  		color: #F7F0F0;
+  		border: none;
+  		border-radius: 15px;
+  		padding: 10px;
+  		cursor: pointer;
+  		line-height: 10px;
+  		vertical-align: middle;
+	  }
+
+	  input[type="submit"]:hover, input[type="reset"]:hover{
+  		background-color: #34AAC4;
+	  }
 
 
       .footer {
