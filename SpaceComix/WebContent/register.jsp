@@ -12,8 +12,11 @@
     <form action="Signin" method="post">
         <label for="email">Email:	</label>
         <input type="email" id="email" name="email" required><br>
-        <label for="password">Password:	</label>
-        <input type="password" id="password" name="password" required><br>
+        <div class = "password-container" >
+        	<label for="password">Password:	</label>
+        	<input type="password" id="password" name="password" required><br>
+        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility()">V</button><br>" +
+ 		</div>
         <label for="text">Username:	</label>
         <input type="text" id="username" name="username" required><br>
         <label for="text">Nome:	</label>
@@ -30,5 +33,15 @@
        }
     %>
     <a href="home.jsp" class="bottone"> Home</a>
+<script>
+function togglePasswordVisibility() {
+    var passwordField = document.getElementById("password");
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+    } else {
+        passwordField.type = "password";
+    }
+}
+</script>
 </body>
 </html>

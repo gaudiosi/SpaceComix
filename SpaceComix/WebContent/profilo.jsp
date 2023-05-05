@@ -6,7 +6,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<% 	UserBean user = (UserBean) session.getAttribute("user");
-	out.print("<title>" + user.getUsername() + "</title>"); %>
+	out.print("<title>" + user.getUsername() + "\'s Profile</title>"); %>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
