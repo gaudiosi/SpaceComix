@@ -43,28 +43,28 @@ public class UpdateProfile extends HttpServlet {
 		HttpSession session = request.getSession();
 		UserBean user = new UserBean();
         user.setEmail(request.getParameter("email"));
-        user.setPassword(request.getParameter("password"));
+        user.setPassword(request.getParameter("password1"));
+        String conferma = (request.getParameter("password2"));
         user.setUsername(request.getParameter("username"));
         user.setNome(request.getParameter("nome"));
         user.setCognome(request.getParameter("cognome"));
         UserBean user1 =(UserBean) session.getAttribute("user");
         user.setId(user1.getId());
         
-        UserDAO userDao = new UserDAO();
-		try {
-			userDao.doUpdate(user);
-		} catch (SQLException e){}
-		try {
-			user = userDao.doRetrieveByKey(request.getParameter("email"), request.getParameter("password"));
-		} catch (SQLException e){}
-		if(user.getId() != 0) {
-            session.setAttribute("user", user);
-            response.sendRedirect("profilo.jsp");
-		}	else	{
-			String error = "Invalid paramiter. Please try again.";
-        	session.setAttribute("error", error);
-        	response.sendRedirect("profilo.jsp");
-		}
+        if((user.getPassword()).equals(conferma)) {
+        	UserDAO userDao = new UserDAO();
+        	try {
+        		userDao.doUpdate(user);
+        		user = userDao.doRetrieveByKey(request.getParameter("email"), request.getParameter("password"));
+        	} catch (SQLException e){}
+        	if(user.getId() != 0) {
+        		session.setAttribute("user", user);
+        		response.sendRedirect("profilo.jsp");
+        	}
+        }
+       	String error = "Invalid paramiter. Please try again.";
+       	session.setAttribute("error", error);
+       	response.sendRedirect("profilo.jsp");
 		
     }
 }

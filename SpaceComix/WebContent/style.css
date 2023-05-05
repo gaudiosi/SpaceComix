@@ -38,6 +38,7 @@ input[type="submit"], input[type="reset"] {
   cursor: pointer;
   line-height: 10px;
   vertical-align: middle;
+  transform: translate(90%, 0%);
 }
 
 input[type="submit"]:hover, input[type="reset"]:hover{
@@ -63,9 +64,21 @@ a:hover, a:active {
   background-color:  #34AAC4;
 }
 
+.campi1 {
+	position: relative;
+	display: inline-block;
+}
+
+.campi2 {
+	position: relative;
+	display: inline-block;
+}
+
 .password-container {
   position: relative;
   display: inline-block;
+  margin: 0 auto;
+  transform: translate(50%, 0%);
 }
 
 .toggle-password {

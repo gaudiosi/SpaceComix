@@ -43,27 +43,30 @@ public class SigninController extends HttpServlet {
 
 		UserBean user = new UserBean();
         user.setEmail(request.getParameter("email"));
-        user.setPassword(request.getParameter("password"));
+        user.setPassword(request.getParameter("password1"));
+        String conferma = (request.getParameter("password2"));
         user.setUsername(request.getParameter("username"));
         user.setNome(request.getParameter("nome"));
         user.setCognome(request.getParameter("cognome"));
         
-        UserDAO userDao = new UserDAO();
-		try {
-			userDao.doSave(user);
-		} catch (SQLException e){}
-		try {
-			user = userDao.doRetrieveByKey(request.getParameter("email"), request.getParameter("password"));
-		} catch (SQLException e){}
-		if(user.getId() != 0) {
-			HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            response.sendRedirect("home.jsp");
-		}	else	{
-			String error = "Invalid paramiter. Please try again.";
-        	HttpSession session = request.getSession();
-        	session.setAttribute("error", error);
-        	response.sendRedirect("register.jsp");
+        if((user.getPassword()).equals(conferma)) {
+        	UserDAO userDao = new UserDAO();
+			try {
+				userDao.doSave(user);
+			} catch (SQLException e){}
+			try {
+				user = userDao.doRetrieveByKey(request.getParameter("email"), request.getParameter("password"));
+			} catch (SQLException e){}
+			if(user.getId() != 0) {
+				HttpSession session = request.getSession();
+            	session.setAttribute("user", user);
+            	response.sendRedirect("home.jsp");
+            }
 		}
+		String error = "Invalid paramiter. Please try again.";
+        HttpSession session = request.getSession();
+        session.setAttribute("error", error);
+        response.sendRedirect("register.jsp");
+	
     }
 }

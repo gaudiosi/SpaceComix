@@ -10,20 +10,35 @@
 <body>
 	<h1>Register Page</h1>
     <form action="Signin" method="post">
-        <label for="email">Email:	</label>
-        <input type="email" id="email" name="email" required><br>
+    	<div class ="campi1">
+    		<label for="text">Nome:	</label>
+        	<input type="text" id="nome" name="nome" required>
+        </div>
+        <div class ="campi1">
+        	<label for="text">Cognome:	</label>
+        	<input type="text" id="cognome" name="cognome" required>
+        </div>
+        <br>
+        <div class ="campi2">
+        	<label for="text">Username:	</label>
+        	<input type="text" id="username" name="username" required>
+        </div>
+        <div class ="campi2">
+        	<label for="email">Email:	</label>
+        	<input type="email" id="email" name="email" required><br>
+        </div>
+        <br>
         <div class = "password-container" >
         	<label for="password">Password:	</label>
-        	<input type="password" id="password" name="password" required>
-        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility()">V</button>
+        	<input type="password" id="password1" name="password1" required>
+        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility1()">V</button>
+ 		</div>
+ 		<div class = "password-container" >
+        	<label for="password">Conferma Password:	</label>
+        	<input type="password" id="password2" name="password2" required>
+        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility2()">V</button>
  		</div>
  		<br>
-        <label for="text">Username:	</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="text">Nome:	</label>
-        <input type="text" id="nome" name="nome" required><br>
-        <label for="text">Cognome:	</label>
-        <input type="text" id="cognome" name="cognome" required><br>
         <input type="submit" value="Register">
         <input type="reset" value="Reset"/>
   	</form>
@@ -35,8 +50,16 @@
     %>
     <a href="home.jsp" class="bottone"> Home</a>
 <script>
-function togglePasswordVisibility() {
-    var passwordField = document.getElementById("password");
+function togglePasswordVisibility1() {
+    var passwordField = document.getElementById("password1");
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+    } else {
+        passwordField.type = "password";
+    }
+}
+function togglePasswordVisibility2() {
+    var passwordField = document.getElementById("password2");
     if (passwordField.type === "password") {
         passwordField.type = "text";
     } else {
