@@ -26,6 +26,11 @@ input[type="text"], input[type="password"], input[type="email"] {
   margin-bottom: 10px;
 }
 
+.center {
+    text-align: center;
+    margin: auto;
+}
+
 input[type="submit"], input[type="reset"] {
   width: 80px;
   height: 30px;
@@ -38,7 +43,6 @@ input[type="submit"], input[type="reset"] {
   cursor: pointer;
   line-height: 10px;
   vertical-align: middle;
-  transform: translate(90%, 0%);
 }
 
 input[type="submit"]:hover, input[type="reset"]:hover{
@@ -57,7 +61,6 @@ a:link, a:visited {
   text-decoration: none;
   width: 50px;
   display: inline-block;
-  vertical-align: middle;
 }
 
 a:hover, a:active {
@@ -77,8 +80,6 @@ a:hover, a:active {
 .password-container {
   position: relative;
   display: inline-block;
-  margin: 0 auto;
-  transform: translate(50%, 0%);
 }
 
 .toggle-password {

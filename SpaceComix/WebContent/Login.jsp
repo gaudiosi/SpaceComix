@@ -18,8 +18,10 @@
         	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility()">V</button>
  		</div>
  		<br>
-        <input type="submit" value="Login">
-        <input type="reset" value="Reset"/>
+        <div class="center">
+    		<input type="submit" value="Login">
+    		<input type="reset" value="Reset"/>
+		</div>
   	</form>
   	<% String error = (String) session.getAttribute("error");
        if (error != null) {
