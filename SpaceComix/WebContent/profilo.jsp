@@ -36,10 +36,8 @@
  		        	"<button type=\"button\" class = \"toggle-password\" onclick=\"togglePasswordVisibility()\">V</button>" +
  		        "</div>" +
  		       	"<br>" +
- 		        "<div class = \"bottoni\">" +
  		        	"<input type=\"submit\" value=\"Update\">" +
  		        	"<input type=\"reset\" value=\"Reset\"/>" +
- 		        "</div>" +
  		  	"</form>");
     } %>
     <% String error = (String) session.getAttribute("error");
@@ -48,9 +46,8 @@
            session.setAttribute("error", null);
        }
     %>
-    <div class ="bottoni">
-    	<a href="home.jsp" class="bottone"> Home </a>
-    </div>
+    <a href="home.jsp" class="bottone"> Home </a>
+
     
 <script>
 function togglePasswordVisibility1() {
