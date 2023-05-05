@@ -14,9 +14,10 @@
         <input type="email" id="email" name="email" required><br>
         <div class = "password-container" >
         	<label for="password">Password:	</label>
-        	<input type="password" id="password" name="password" required><br>
-        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility()">V</button><br>" +
+        	<input type="password" id="password" name="password" required>
+        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility()">V</button>
  		</div>
+ 		<br>
         <input type="submit" value="Login">
         <input type="reset" value="Reset"/>
   	</form>

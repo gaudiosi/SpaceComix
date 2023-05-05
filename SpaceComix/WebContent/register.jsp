@@ -14,9 +14,10 @@
         <input type="email" id="email" name="email" required><br>
         <div class = "password-container" >
         	<label for="password">Password:	</label>
-        	<input type="password" id="password" name="password" required><br>
-        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility()">V</button><br>" +
+        	<input type="password" id="password" name="password" required>
+        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility()">V</button>
  		</div>
+ 		<br>
         <label for="text">Username:	</label>
         <input type="text" id="username" name="username" required><br>
         <label for="text">Nome:	</label>
@@ -28,8 +29,8 @@
   	</form>
   	<% String error = (String) session.getAttribute("error1");
        if (error != null) {
-           out.print("<p style=\"color:red\">" + error + "</p>");
-           session.setAttribute("error1", null);
+    	   out.print("<p class = \"error\">" + error + "</p>");
+    	   session.setAttribute("error", null);
        }
     %>
     <a href="home.jsp" class="bottone"> Home</a>
