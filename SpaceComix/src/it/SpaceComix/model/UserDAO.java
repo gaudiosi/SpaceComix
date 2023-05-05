@@ -214,5 +214,33 @@ public class UserDAO implements DAO<UserBean> {
 	        }
 	        return bean;
 	    }
+		
+		public synchronized void doUpdate(UserBean user) throws SQLException {
 
-	}
+	        Connection connection = null;
+	        PreparedStatement preparedStatement = null;
+
+	        String updateSQL = "UPDATE " + TABLE_NAME
+	                + " SET username = ?, pass = ?, email = ?, nome = ?, cognome = ? WHERE id = ?";
+
+	        try {
+	            connection = ds.getConnection();
+	            preparedStatement = connection.prepareStatement(updateSQL);
+	            preparedStatement.setString(1, user.getUsername());
+	            preparedStatement.setString(2, user.getPassword());
+	            preparedStatement.setString(3, user.getEmail());
+	            preparedStatement.setString(4,user.getNome());
+	            preparedStatement.setString(5, user.getCognome());
+	            preparedStatement.setInt(6, user.getId());
+
+	            preparedStatement.executeUpdate();
+
+	            connection.commit();
+	        } finally {
+	                if (preparedStatement != null)
+	                    preparedStatement.close();
+	                if (connection != null)
+	                    connection.close();
+	        }
+	    }
+}

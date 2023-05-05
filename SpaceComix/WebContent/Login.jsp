@@ -19,7 +19,7 @@
   	</form>
   	<% String error = (String) session.getAttribute("error");
        if (error != null) {
-           out.print("<p style=\"color:red\">" + error + "</p>");
+    	   out.print("<p class = \"error\">" + error + "</p>");
            session.setAttribute("error", null);
        }
     %>

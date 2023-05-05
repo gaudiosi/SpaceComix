@@ -63,6 +63,19 @@ a:hover, a:active {
   background-color:  #34AAC4;
 }
 
+.password-container {
+  position: relative;
+  display: inline-block;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+}
+
 .error {
   color: #FF0000;
 }
