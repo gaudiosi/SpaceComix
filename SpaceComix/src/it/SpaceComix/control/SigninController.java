@@ -57,10 +57,8 @@ public class SigninController extends HttpServlet {
 		} catch (SQLException e){}
 		if(user.getId() != 0) {
 			HttpSession session = request.getSession();
-			session.setAttribute("userid", user.getId());
-			session.setAttribute("user", user.getUsername());
-			session.setAttribute("role", user.getRuolo());
-			response.sendRedirect("home.jsp");
+            session.setAttribute("user", user);
+            response.sendRedirect("home.jsp");
 		}	else	{
 			String error = "Invalid paramiter. Please try again.";
         	HttpSession session = request.getSession();

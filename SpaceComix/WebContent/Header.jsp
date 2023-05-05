@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="it.SpaceComix.model.UserBean" %>
 <html>
   <head>
     <meta charset="ISO-8859-1">
@@ -12,9 +13,9 @@
         <a href="novita.jsp" class="navbar-button">Novità</a>
         <a href="faq.jsp" class="navbar-button">FAQ</a>
 		<a href="carrello.jsp" class="navbar-button">Carrello</a>
-		<%String name = (String) session.getAttribute("user");
-			       if (name != null) {
-			           out.print("<a href=\"profilo.jsp\">" + name + "</a>");
+		<%UserBean user = (UserBean) session.getAttribute("user");
+			       if (user != null) {
+			           out.print("<a href=\"profilo.jsp\">" + user.getUsername() + "</a>");
 			           out.print("<form action=\"Logout\" method=\"get\" > " +
 			        		     "<input type=\"submit\" value=\"Logout\"/>" + 
 			           			 "</form> ");
