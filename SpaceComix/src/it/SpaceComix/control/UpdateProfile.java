@@ -14,16 +14,16 @@ import it.SpaceComix.model.UserBean;
 import it.SpaceComix.model.UserDAO;
 
 /**
- * Servlet implementation class SigninController
+ * Servlet implementation class UpdateProfile
  */
-@WebServlet("/Signin")
-public class SigninController extends HttpServlet {
+@WebServlet("/UpdateProfile")
+public class UpdateProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SigninController() {
+    public UpdateProfile() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,14 +33,14 @@ public class SigninController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request, response);
-	}
+		doPost(request, response);	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
 		UserBean user = new UserBean();
         user.setEmail(request.getParameter("email"));
         user.setPassword(request.getParameter("password1"));
@@ -48,25 +48,24 @@ public class SigninController extends HttpServlet {
         user.setUsername(request.getParameter("username"));
         user.setNome(request.getParameter("nome"));
         user.setCognome(request.getParameter("cognome"));
+        UserBean user1 =(UserBean) session.getAttribute("user");
+        user.setId(user1.getId());
         
         if((user.getPassword()).equals(conferma)) {
         	UserDAO userDao = new UserDAO();
-			try {
-				userDao.doSave(user);
-			} catch (SQLException e){}
-			try {
-				user = userDao.doRetrieveByKey(request.getParameter("email"), request.getParameter("password"));
-			} catch (SQLException e){}
-			if(user.getId() != 0) {
-				HttpSession session = request.getSession();
-            	session.setAttribute("user", user);
-            	response.sendRedirect("home.jsp");
-            }
-		}
-		String error = "Invalid paramiter. Please try again.";
-        HttpSession session = request.getSession();
-        session.setAttribute("error", error);
-        response.sendRedirect("register.jsp");
-	
+        	try {
+        		userDao.doUpdate(user);
+        		user = userDao.doRetrieveByKey(request.getParameter("email"), request.getParameter("password"));
+        	} catch (SQLException e){}
+        	if(user.getId() != 0) {
+        		session.setAttribute("user", user);
+        		response.sendRedirect("profilo.jsp");
+        	}
+        }
+       	String error = "Invalid paramiter. Please try again.";
+       	session.setAttribute("error", error);
+       	response.sendRedirect("profilo.jsp");
+		
     }
 }
+

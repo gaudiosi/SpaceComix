@@ -27,18 +27,66 @@ input[type="text"], input[type="password"], input[type="email"] {
 }
 
 input[type="submit"], input[type="reset"] {
+  width: 80px;
+  height: 30px;
+  font-size: 16px;
   background-color: #308F9B;
   color: #F7F0F0;
   border: none;
   border-radius: 15px;
   padding: 10px;
   cursor: pointer;
-  margin-right: 10px;
-  margin-left: 10px;
+  line-height: 10px;
+  vertical-align: middle;
+  transform: translate(90%, 0%);
 }
 
-input[type="submit"]:hover {
-  background-color: #114B73;
+input[type="submit"]:hover, input[type="reset"]:hover{
+  background-color: #34AAC4;
+}
+
+a:link, a:visited {
+  background-color: #308F9B;
+  color: #F7F0F0;
+  padding: 7px 17px;
+  border-radius: 15px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 10px;
+  text-decoration: none;
+  width: 50px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+a:hover, a:active {
+  background-color:  #34AAC4;
+}
+
+.campi1 {
+	position: relative;
+	display: inline-block;
+}
+
+.campi2 {
+	position: relative;
+	display: inline-block;
+}
+
+.password-container {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  transform: translate(50%, 0%);
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  background-color: transparent;
+  border: none;
 }
 
 .error {
