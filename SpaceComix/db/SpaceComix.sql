@@ -17,12 +17,15 @@ create table Prodotto(
 id int auto_increment,
 quantita int not NULL,
 iva int not NULL,
-prezzo int not NULL,
-titolo varchar(20) not NULL unique,
+prezzo decimal(6,2) not NULL,
+titolo varchar(40) not NULL,
 descrizione text not NULL,
+autore varchar(50) default NULL,
+editore varchar(50) not NULL,
+isbn char(17) not NULL unique check(REGEXP_LIKE(isbn, '^978-[0-9]{1,5}-[0-9]{1,7}-[0-9]{1,6}-[0-9]{1}$')),
 sconto int not NULL,
-immagine longblob,
-image_alt varchar(40),
+immagine varchar(100),
+image_alt varchar(200) not NULL,
 primary key(id)
 );
 
