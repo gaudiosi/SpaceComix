@@ -8,9 +8,9 @@
   </head>
   <body>
     <nav class="navbar">
-	<a href = "home.jsp" class = "logo-img"><img src="Logo.png" alt="Logo del sito" class="logo"></a>
+	<a href = "index.jsp" class = "logo-img"><img src="Immagini/Logo.png" alt="Logo del sito" class="logo"></a>
       <div>
-        <a href="novita.jsp" class="navbar-button">Novità</a>
+        <a href="Catalogo.jsp" class="navbar-button">Novità</a>
         <a href="faq.jsp" class="navbar-button">FAQ</a>
 		<a href="carrello.jsp" class="navbar-button">Carrello</a>
 		<%UserBean user = (UserBean) session.getAttribute("user");

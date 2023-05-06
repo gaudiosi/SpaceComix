@@ -18,10 +18,16 @@ public class ProductBean implements Serializable {
     String titolo;
 
     String descrizione;
+    
+    String autore;
+    
+    String editore;
+    
+    String isbn;
 
     int sconto;
 
-    byte[] image;
+    String image;
 
     String image_alt;
 
@@ -59,9 +65,13 @@ public class ProductBean implements Serializable {
 
     }
 
-    public int getID() { return id; }
+    public int getID() {
+    	return id; 
+    }
 
-    public void setID(int code) {this.id = code;}
+    public void setID(int code) {
+    	this.id = code;
+    }
 
     public int getIva() {
         return iva;
@@ -112,11 +122,11 @@ public class ProductBean implements Serializable {
         this.quantita = quantita;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -128,7 +138,31 @@ public class ProductBean implements Serializable {
         this.image_alt = image_alt;
     }
 
-    @Override
+    public String getAutore() {
+		return autore;
+	}
+
+	public void setAutore(String autore) {
+		this.autore = autore;
+	}
+
+	public String getEditore() {
+		return editore;
+	}
+
+	public void setEditore(String editore) {
+		this.editore = editore;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	@Override
     public String toString() {
         return titolo + " (" + id + "), " + prezzo + " " + quantita + ". " + descrizione;
     }

@@ -99,13 +99,13 @@ public class ProductDAO implements DAO<ProductBean> {
                 bean.setImage_alt(rs.getString("image_alt"));
 
 
-                if(rs.getString("C.name") != null)
+                if(rs.getString("Categoria.name") != null)
                 {
                     do {
 
                         CategoriaBean c = new CategoriaBean();
-                        c.setNome(rs.getString("C.name"));
-                        c.setDescrizione(rs.getString("C.descrizione"));
+                        c.setNome(rs.getString("Categoria.name"));
+                        c.setDescrizione(rs.getString("Categoria.descrizione"));
                         bean.addCategoria(c);
 
                     } while (rs.next());
@@ -191,15 +191,16 @@ public class ProductDAO implements DAO<ProductBean> {
                 bean.setTitolo(rs.getString("titolo"));
                 bean.setDescrizione(rs.getString("descrizione"));
                 bean.setSconto(rs.getInt("sconto"));
+                bean.setImage(rs.getString("immagine"));
                 bean.setImage_alt(rs.getString("image_alt"));
 
 
-                if(rs.getString("C.name") != null)
+                if(rs.getString("C.nome") != null)
                 {
                     do {  //Crea una nuova categoria
 
                         CategoriaBean c = new CategoriaBean();
-                        c.setNome(rs.getString("C.name"));
+                        c.setNome(rs.getString("C.nome"));
                         c.setDescrizione(rs.getString("C.descrizione"));
                         bean.addCategoria(c);
 
