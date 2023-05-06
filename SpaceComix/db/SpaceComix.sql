@@ -17,7 +17,7 @@ create table Prodotto(
 id int auto_increment,
 quantita int not NULL,
 iva int not NULL,
-prezzo int not NULL,
+prezzo decimal(6,2) not NULL,
 titolo varchar(20) not NULL,
 descrizione text not NULL,
 autore varchar(50) default NULL,
