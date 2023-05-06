@@ -99,12 +99,12 @@ public class ProductDAO implements DAO<ProductBean> {
                 bean.setImage_alt(rs.getString("image_alt"));
 
 
-                if(rs.getString("Categoria.name") != null)
+                if(rs.getString("C.nome") != null)
                 {
                     do {
 
                         CategoriaBean c = new CategoriaBean();
-                        c.setNome(rs.getString("Categoria.name"));
+                        c.setNome(rs.getString("Categoria.nome"));
                         c.setDescrizione(rs.getString("Categoria.descrizione"));
                         bean.addCategoria(c);
 
