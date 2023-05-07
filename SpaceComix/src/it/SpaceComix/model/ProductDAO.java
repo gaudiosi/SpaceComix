@@ -46,7 +46,7 @@ public class ProductDAO implements DAO<ProductBean> {
             preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setInt(1, product.getQuantita());
             preparedStatement.setInt(2, product.getIva());
-            preparedStatement.setInt(3, product.getPrezzo());
+            preparedStatement.setFloat(3, product.getPrezzo());
             preparedStatement.setString(4, product.getTitolo());
             preparedStatement.setString(5,product.getDescrizione());
             preparedStatement.setInt(6, product.getSconto());
@@ -187,7 +187,7 @@ public class ProductDAO implements DAO<ProductBean> {
                 bean.setID(rs.getInt("id"));
                 bean.setQuantita(rs.getInt("quantita"));
                 bean.setIva(rs.getInt("iva"));
-                bean.setPrezzo(rs.getInt("prezzo"));
+                bean.setPrezzo(rs.getFloat("prezzo"));
                 bean.setTitolo(rs.getString("titolo"));
                 bean.setDescrizione(rs.getString("descrizione"));
                 bean.setSconto(rs.getInt("sconto"));

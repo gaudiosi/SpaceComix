@@ -13,7 +13,7 @@ public class ProductBean implements Serializable {
 
     int iva;
 
-    int prezzo;
+    float prezzo;
 
     String titolo;
 
@@ -107,11 +107,11 @@ public class ProductBean implements Serializable {
         this.descrizione = description;
     }
 
-    public int getPrezzo() {
+    public float getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(int prezzo) {
+    public void setPrezzo(float prezzo) {
         this.prezzo = prezzo;
     }
 

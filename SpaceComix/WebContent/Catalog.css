@@ -1,0 +1,77 @@
+@charset "ISO-8859-1";
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f7f0f0;
+	color: #19272e;
+}
+
+/* Intestazione */
+h1 {
+	font-size: 32px;
+	color: #34aac4;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+/* Lista prodotti */
+.product-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 20px;
+}
+
+/* Prodotti */
+.product {
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+	flex-basis: calc(33.33% - 20px);
+	margin-bottom: 30px;
+	overflow: hidden;
+	transition: box-shadow 0.2s ease-in-out;
+}
+
+.product:hover {
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Immagine prodotto */
+.product-image {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 200px;
+	overflow: hidden;
+}
+
+.product-image img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+}
+
+/* Dettagli prodotto */
+.product-details {
+	padding: 20px;
+}
+
+.product-title {
+	font-size: 24px;
+	font-weight: bold;
+	color: #114b73;
+	margin-bottom: 10px;
+}
+
+.product-description {
+	font-size: 16px;
+	line-height: 1.5;
+	color: #19272e;
+	margin-bottom: 20px;
+}
+
+.product-price {
+	font-size: 24px;
+	font-weight: bold;
+	color: #34aac4;
+}

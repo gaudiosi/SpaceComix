@@ -25,7 +25,7 @@ public class ProductModelDM implements DAO<ProductBean> {
             preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setString(1, product.getTitolo());
             preparedStatement.setString(2, product.getDescrizione());
-            preparedStatement.setInt(3, product.getPrezzo());
+            preparedStatement.setFloat(3, product.getPrezzo());
             preparedStatement.setInt(4, product.getQuantita());
 
             preparedStatement.executeUpdate();
