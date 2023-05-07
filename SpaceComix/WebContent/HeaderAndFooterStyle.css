@@ -23,7 +23,7 @@ body {
 		max-width: 450px;
 	  }
 	  
-	  a:not(.logo-img):link, a:not(.logo-img):visited {
+	  a.navbar-button:link, a.navbar-button:visited {
  		background-color: #308F9B;
   		color: #F7F0F0;
   		padding: 7px 17px;
@@ -37,7 +37,7 @@ body {
   		margin-left: 5px;
 	  }
 
-	  a:not(.logo-img):hover, a:not(.logo-img):active {
+	  a.navbar-button:hover, a.navbar-button:active {
   		background-color:  #34AAC4;
 	  }
 	  

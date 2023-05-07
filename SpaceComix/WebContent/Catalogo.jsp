@@ -9,10 +9,11 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Il nostro catalogo prodotti</title>
+	<%@include file="Header.jsp" %>
+	<%@include file="Footer.jsp" %>
 	<link rel="stylesheet" href="Catalog.css">
 </head>
 <body>
-	<h1>Il nostro catalogo prodotti</h1>
 	
 	<div class="product-list">
 		<%
@@ -23,7 +24,8 @@
 			// Itera attraverso la lista di prodotti e genera i div per ciascun prodotto
 			for (ProductBean prodotto : listaProdotti) {
 		%>
-			<div class="product">
+		<a href="Prodotto.jsp?id=<%= prodotto.getID() %>" class="product" style="background-color:#FFFFFF">
+			<div>
 				<div class="product-image">
 					<img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>">
 				</div>
@@ -37,6 +39,7 @@
 					</div>
 				</div>
 			</div>
+		</a>
 		<%
 			}
 		%>
