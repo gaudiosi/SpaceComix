@@ -31,8 +31,7 @@
         Carrello cart = (Carrello) request.getSession().getAttribute("cart");
         double totale=0;
         double spedizione=2;
-        //prova
-        //prova
+
         if(cart!=null && !cart.getProducts().isEmpty())
         {
             ArrayList<ProdottoCarrello> prodotti = cart.getProducts();
