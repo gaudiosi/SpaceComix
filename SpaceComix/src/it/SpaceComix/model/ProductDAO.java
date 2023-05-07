@@ -179,7 +179,7 @@ public class ProductDAO implements DAO<ProductBean> {
 
             boolean currentnext = rs.next();
 
-            while (currentnext) {       //Finché esiste una riga corrente crea un nuovo prodotto
+            while (currentnext) {       //Finchï¿½ esiste una riga corrente crea un nuovo prodotto
 
 
                 ProductBean bean = new ProductBean();
@@ -233,5 +233,10 @@ public class ProductDAO implements DAO<ProductBean> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+    /*public synchronized Collection<ProductBean> doRetrieveByCategory()
+    {
+
+    }*/
 
 }
+

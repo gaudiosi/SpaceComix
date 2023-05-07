@@ -1,0 +1,136 @@
+body {
+    font-family: "Inter", sans-serif;
+}
+.container-0{
+    overflow: hidden;  /* se c'è qualche parte di un elemento che non entra nel container, quella parte viene resa invisibile*/
+    background-color: #ffffff;
+    color: #374151;
+}
+
+.container-1{
+    width: 100%;  /*100% di quella del genitore*/
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    margin-left: auto;
+    margin-right: auto; /* margin auto sia a sinistra che a desta: centrati orizzontalmente rispetto al padre*/
+
+}
+
+
+.container-2{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+
+
+}
+
+@media (min-width: 768px) {
+   .container-2{
+    width: 80%;
+
+}
+    img {
+        width: 50%;
+        width:450px;
+    }
+
+    .container-nome-voto-autore {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        padding-left: 2.5rem;
+        margin-top: 0;
+        flex-basis: 50%;
+    }
+
+
+
+}
+@media (max-width: 768px) {
+    .container-2 {
+        flex-wrap: wrap;
+
+
+    }
+    img {
+        width: 80%; /*remove*/
+    }
+}
+
+img {
+    object-fit: cover;   /* Se l'immagine deve occupare un aspect ratio diverso, non viene allargata o schiacciata (come di default), ma ritagliata*/
+    object-position: center; /* centrato rispetto alla sua stessa content box verticalmente e orizzontalmente */
+
+    border-radius: 0.25rem;
+    border-width: 1px;
+    border-color: #E5E7EB;
+}
+
+
+.container-nome-voto-autore {
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.autore {
+    color: #6B7280;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    letter-spacing: 0.1em;
+}
+
+.nome {
+    margin-bottom: 0.25rem;
+    color: #111827;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 500;
+
+}
+
+.voto {  //container di stelle
+    display: flex;
+    margin-bottom: 1rem;
+
+}
+
+.stelle {
+    display: flex;
+    align-items: center;
+}
+
+svg.stella {
+    color: #EF4444;
+    width: 1rem;
+    height: 1rem;
+}
+
+
+#numrecensioni {
+    margin-left: 0.75rem;
+    color: #4B5563;
+}
+
+.descrizione {
+    line-height: 1.625;
+}
+
+.my-horizontal-line {
+    border: none;
+    border-top: 2px solid #E5E7EB;
+    margin: 1.25rem 0;
+    padding: 0;
+}
+
+
+.prezzo-carrello-wish {
+  display: flex;
+}
+.prezzo {
+    color: #111827;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 500;
+}

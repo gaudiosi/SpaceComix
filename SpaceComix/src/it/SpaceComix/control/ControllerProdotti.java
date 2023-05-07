@@ -104,7 +104,7 @@ public class ControllerProdotti extends HttpServlet {
 			System.out.println("Error:" + e.getMessage());
 		}
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Prodotto.jsp");
 		dispatcher.forward(request, response);
 	}
 
