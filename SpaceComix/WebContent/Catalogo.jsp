@@ -27,7 +27,7 @@
 		<div class="product" style="background-color:#FFFFFF">
 			<a href="Prodotto.jsp?id=<%= prodotto.getID() %>" style="text-decoration:none">
 				<div class="product-image">
-					<img src="<%= prodotto.getImage()%>" alt="<%= prodotto.getImage_alt() %>">
+					<img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>">
 				</div>
 				<div class="product-details">
 					<div class="product-title"><p><%= prodotto.getTitolo() %></p></div>
