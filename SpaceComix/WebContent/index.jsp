@@ -7,7 +7,8 @@
 	<title>SpaceComix</title>
 	<%@include file="Header.jsp" %>
 	<%@include file="Footer.jsp" %>
+	<link rel="stylesheet" href="index.css">
 </head>
-<body style="background-color:white">
+<body>
 </body>
 </html>
