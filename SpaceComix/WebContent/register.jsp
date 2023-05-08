@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head lang="it">
 	<meta charset="ISO-8859-1">
 	<title>SignIn Page</title>
 	<link rel="stylesheet" href="style.css">
