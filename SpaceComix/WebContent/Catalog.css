@@ -19,8 +19,9 @@ h1 {
 .product-list {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: center;
 	padding: 20px;
+
 }
 
 /* Prodotti */
@@ -32,7 +33,8 @@ h1 {
 	overflow: hidden;
 	transition: box-shadow 0.2s ease-in-out;
 	flex-basis: calc(50% - 20px);
-	max-width: 300px;
+	max-width: 350px;
+	margin: 5px;
 }
 
 @media screen and (min-width: 768px) {
