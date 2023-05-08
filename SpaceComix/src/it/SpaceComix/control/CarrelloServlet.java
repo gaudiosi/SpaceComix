@@ -9,13 +9,14 @@ import it.SpaceComix.model.ProductDAO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/cart")
-public class CarrelloServlet {
+@WebServlet("/carrello")
+public class CarrelloServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,7 +40,7 @@ public class CarrelloServlet {
 
 
         }
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("WEB-INF/views/site/cart.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/carrello.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -61,7 +62,7 @@ public class CarrelloServlet {
                  {
                      int id = Integer.parseInt(request.getParameter("id"));
                      cart.addProdotto((ProductBean) model.doRetrieveByKey(id));
-                     //response.sendRedirect("Products");
+                     response.sendRedirect( request.getServletContext().getContextPath() + "/Prodotto?id="+ request.getParameter("id"));
                      return;
 
                  }
@@ -69,8 +70,8 @@ public class CarrelloServlet {
                  {
                      int id = Integer.parseInt(request.getParameter("id"));
                      cart.removeProdotto((ProductBean) model.doRetrieveByKey(id));
-                     //response.sendRedirect("Products");
-                     return;
+                     response.sendRedirect( request.getServletContext().getContextPath() + "/carrello");
+
                  }
                  else if (action.equals("decrease"))
                  {
@@ -85,6 +86,8 @@ public class CarrelloServlet {
                      int id = Integer.parseInt(request.getParameter("id"));
                      int quantity = Integer.parseInt(request.getParameter("quantity"));
                      cart.updateProdotto((ProductBean) model.doRetrieveByKey(id),quantity);
+                     response.sendRedirect( request.getServletContext().getContextPath() + "/carrello");
+
 
                  }
                  else {

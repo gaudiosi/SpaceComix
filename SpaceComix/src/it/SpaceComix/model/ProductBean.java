@@ -2,6 +2,7 @@ package it.SpaceComix.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ProductBean implements Serializable {
 
@@ -62,6 +63,28 @@ public class ProductBean implements Serializable {
         titolo = "";
         descrizione = "";
         generi = new ArrayList<CategoriaBean>();
+        quantita = -1;
+
+        iva = -1;
+
+        prezzo = -1;
+
+        titolo = "";
+
+        descrizione = "";
+
+        autore= "";
+
+        editore = "";
+
+        isbn="";
+
+        sconto=-1;
+
+        image="";
+
+        image_alt="";
+
 
     }
 
@@ -167,5 +190,16 @@ public class ProductBean implements Serializable {
         return titolo + " (" + id + "), " + prezzo + " " + quantita + ". " + descrizione;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductBean that = (ProductBean) o;
+        return id == that.id && quantita == that.quantita && iva == that.iva && Float.compare(that.prezzo, prezzo) == 0 && sconto == that.sconto && titolo.equals(that.titolo) && descrizione.equals(that.descrizione) && autore.equals(that.autore) && editore.equals(that.editore) && isbn.equals(that.isbn) && image.equals(that.image) && image_alt.equals(that.image_alt) && generi.equals(that.generi);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, quantita, iva, prezzo, titolo, descrizione, autore, editore, isbn, sconto, image, image_alt, generi);
+    }
 }

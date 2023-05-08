@@ -28,7 +28,7 @@ public class ProductDAO implements DAO<ProductBean> {
         }
     }
 
-    private static final String TABLE_NAME = "prodotto";
+    private static final String TABLE_NAME = "Prodotto";
 
     @Override
     public synchronized void doSave(ProductBean product) throws SQLException {
@@ -95,7 +95,9 @@ public class ProductDAO implements DAO<ProductBean> {
                 bean.setPrezzo(rs.getInt("prezzo"));
                 bean.setTitolo(rs.getString("titolo"));
                 bean.setDescrizione(rs.getString("descrizione"));
+                bean.setAutore(rs.getString("autore"));
                 bean.setSconto(rs.getInt("sconto"));
+                bean.setImage(rs.getString("immagine"));
                 bean.setImage_alt(rs.getString("image_alt"));
 
 

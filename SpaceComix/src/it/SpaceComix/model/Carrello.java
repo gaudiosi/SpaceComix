@@ -12,13 +12,14 @@ public class Carrello {
 
     public void updateProdotto(ProductBean prodotto, int quantita)
     {
+        ProdottoCarrello temp = new ProdottoCarrello(prodotto);
         if (quantita>0)
         {
-            for(ProdottoCarrello temp: prodotti)
+            for(ProdottoCarrello temp1: prodotti)
             {
-                if(temp.getProdotto().equals(prodotto))
+                if(temp1.equals(temp))
                 {
-                    temp.setQuantita(quantita);
+                    temp1.setQuantita(quantita);
                 }
             }
 

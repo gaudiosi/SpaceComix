@@ -2,14 +2,20 @@
     pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProductBean,it.SpaceComix.model.Carrello"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProductBean,it.SpaceComix.model.ProductBean"%>
 
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <link href="Prodotto.css" rel="stylesheet" type="text/css">
+    <%
+        ProductBean prodotto =(ProductBean) request.getAttribute("prodotto");
+
+
+    %>
+
 </head>
 
 <body>
@@ -17,18 +23,18 @@
 
 
       <%
-
-
-
+          if(prodotto!=null)
+          {
 
       %>
       <section class="container-0">
           <div class="container-1">
               <div class="container-2">
-                  <img alt="Impossibile caricare l'immagine" class="" src="Immagini/Naruto.jpg">
+                  <img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>">
                   <div class="container-nome-voto-autore">
-                      <h2 class="autore">Masashi Kishimoto</h2>
-                      <h1 class="nome">Naruto Volume 1</h1>
+                      <h2 class="autore"><%=prodotto.getAutore()%></h2>
+                      <h1 class="nome"><%=prodotto.getTitolo()%></h1>
+                      <% /*IF Prodotto.getRecensioni().size()!=0 Mostra le stelle*/%>
                       <div class="voto">
                           <span class="stelle">
                                <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="stella" viewBox="0 0 24 24">
@@ -49,20 +55,27 @@
                               <span id="numrecensioni">4 Reviews</span>
                           </span>
                       </div>
-                      <p class="descrizione">Dal settimanale “Shonen Jump” (Shueisha) ecco “Naruto”, incentrato sulle avventure di un ragazzino, Uzumaki Naruto, che vuole diventare un famoso ninja e lasciare un segno nella storia.
-
-                          Gli ostacoli sul suo cammino sono però molti, come le prove che dovrà sostenere e i rivali che dovrà affrontare…
-
-                          Testi e disegni del giovane e talentuoso Masashi Kishimoto, che si è affermato proprio con questo manga grazie a storie che mescolano azione e umorismo, disegnate con un tratto dinamico e sicuro.</p>
+                      <%%>
+                      <p class="descrizione"><%=prodotto.getDescrizione()%></p>
                       <hr class="my-horizontal-line">
                       <div class="prezzo-carrello-wish">
-                          <span class="prezzo">€58.00</span>
-                          <button class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Carrello</button>
+                          <span class="prezzo"><%= String.format("%.2f",prodotto.getPrezzo())%>€</span>
+                          <form action="<%=request.getContextPath()%>/carrello" method="post">
+                              <input type="hidden" name="action" value="add">
+                              <input type="hidden" name="id" value="<%=prodotto.getID()%>">
+                              <button type="submit" class="">Aggiungi al carrello</button>
+                              <svg aria-hidden="true" class="carrello" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg>
+
+                          </form>
                       </div>
                   </div>
               </div>
           </div>
       </section>
+
+<%
+    }
+%>
 
 
 

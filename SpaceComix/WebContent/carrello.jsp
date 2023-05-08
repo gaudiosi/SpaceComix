@@ -4,12 +4,13 @@
          pageEncoding="UTF-8"%>
 
 
-
+<!DOCTYPE html>
 
 <head>
     <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProdottoCarrello,it.SpaceComix.model.Carrello"%>
 
 
+    <title></title>
 
     <link href="carrello.css" rel="stylesheet" type="text/css">
 
@@ -34,34 +35,62 @@
 
         if(cart!=null && !cart.getProducts().isEmpty())
         {
-            ArrayList<ProdottoCarrello> prodotti = cart.getProducts();
-            for(ProdottoCarrello prodotto: prodotti )
-            {
-                totale+=prodotto.getProdotto().getPrezzo();
-
-
     %>
     <h1 class="title">Carrello</h1>
     <div class="main-container">
         <div class="rounded-container">
+            <%
+                    ArrayList<ProdottoCarrello> prodotti = cart.getProducts();
+                    for(ProdottoCarrello prodotto: prodotti )
+                    {
+                        totale+=prodotto.getProdotto().getPrezzo()* prodotto.getQuantita();
+
+
+            %>
             <div class="card-container">
                 <img src=<%=prodotto.getProdotto().getImage()%> alt="<%=prodotto.getProdotto().getImage_alt()%>" class="card-image" />
                 <div class="product-container">
                     <div class="product-details">
-                        <h2 class="product-details"><%=String.format("%.2f",prodotto.getProdotto().getTitolo())%>></h2>
-                        <p class="product-info"><%=String.format("%.2f",prodotto.getProdotto().getDescrizione())%>></p>
+                        <h2 class="product-details"><%=prodotto.getProdotto().getTitolo()%></h2>
+                        <p class="product-info"><%=prodotto.getProdotto().getDescrizione()%></p>
                     </div>
                     <div class="flex-container">
                         <div class="button-group">
-                            <span class="minus-btn">-</span>
-                            <input type="number" class="input-number" value="<%=prodotto.getQuantita()%>" min="1" max="<%=prodotto.getProdotto().getQuantita()%>">
-                            <span class="plus-btn">+</span>
+                            <form action="<%=request.getContextPath()%>/carrello" method="post"></form>
+                            <input type="hidden" name="id" value="<%= prodotto.getProdotto().getID() %>">
+
+                            <span class="minus-btn" onclick="updateQuantity(-1)">-</span>
+                            <input type="number" class="input-number" name="quantity" value="<%=prodotto.getQuantita()%>" min="1" max="<%=prodotto.getProdotto().getQuantita()%>" onchange="this.form.submit()">
+                            <span class="plus-btn" onclick="updateQuantity(1)">+</span>
+
+                            <script>
+                                function updateQuantity(change) {
+                                    var quantityInput = document.querySelector('input[name="quantity"]');
+                                    var currentQuantity = parseInt(quantityInput.value);
+                                    var newQuantity = currentQuantity + change;
+                                    if (newQuantity >= parseInt(quantityInput.min) && newQuantity <= parseInt(quantityInput.max)) {
+                                        quantityInput.value = newQuantity;
+                                        quantityInput.onchange();
+                                    }
+                                }
+                            </script>
+
+
                         </div>
                         <div class="price-container">
                             <p class="price"><%= String.format("%.2f",prodotto.getProdotto().getPrezzo())%></p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svg">
+                            <svg onclick="submitForm()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
+                            <form id="myForm" action="<%=request.getContextPath()%>/carrello" method="post">
+                                <input type="hidden" name="action" value="remove">
+                                <input type="hidden" name="id" value="<%=prodotto.getProdotto().getID()%>">
+                            </form>
+                            <script>
+                                function submitForm() {
+                                    document.getElementById("myForm").submit();
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -75,11 +104,11 @@
         <div class="total-container">
             <div class="subtotal-container">
                 <p class="color-1">Prodotti</p>
-                <p class="color-1"><%=totale%>€/p>
+                <p class="color-1"><%=totale%>€</p>
             </div>
             <div class="subtotal-container">
                 <p class="color-1">Spedizione</p>
-                <p class="color-1"><%=spedizione%></p>
+                <p class="color-1"><%=spedizione%>€</p>
             </div>
             <hr/>
             <div class="giustifica">
@@ -90,8 +119,6 @@
                 </div>
             </div>
             <button class="check-out">Check Out</button>
-
-
 
         </div>
 
@@ -112,11 +139,9 @@
     </div>
 
 
-
             <%
                 }
             %>
-
 
 </div>
 
