@@ -15,13 +15,13 @@
 		<a href="carrello.jsp" class="navbar-button">Carrello</a>
 		<%UserBean user = (UserBean) session.getAttribute("user");
 			       if (user != null) {
-			           out.print("<a href=\"profilo.jsp\">" + user.getUsername() + "</a>");
-			           out.print("<form action=\"Logout\" method=\"get\" > " +
-			        		     "<input type=\"submit\" value=\"Logout\"/>" + 
+			           out.print("<a href=\"profilo.jsp\" class=\"navbar-button\">" + user.getUsername() + "</a>");
+			           out.print("<form action=\"Logout\" method=\"get\"> " +
+			        		     "<input type=\"submit\" value=\"Logout\">" + 
 			           			 "</form> ");
 			       } else {
-			    	   out.print("<a href=\"Login.jsp\">Login</a>" +
-			   				"<a href=\"register.jsp\">Register</a>");
+			    	   out.print("<a href=\"Login.jsp\" class=\"navbar-button\">Login</a>" +
+			   				"<a href=\"register.jsp\" class=\"navbar-button\">Register</a>");
 			       }
 			    %>
       </div>

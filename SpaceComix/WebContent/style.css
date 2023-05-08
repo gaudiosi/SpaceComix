@@ -1,70 +1,102 @@
 @charset "ISO-8859-1";
+
+/* Regole generali per il body */
 body {
-  background-color: #19272E;
-  color: #F7F0F0;
+  background-color: #F7F0F0;
   font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
+/* Stili per l'header e il titolo della pagina */
 h1 {
-  color: #34AAC4;
+  color: #114B73;
+  text-align: center;
+  margin-top: 2rem;
 }
 
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.login form {
+  max-width: 200px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+/* Stili per le etichette e gli input del form */
 label {
+  color: #114B73;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
-  padding: 5px;
-  border-radius: 25px;
+input[type="email"],input[type="text"], input[type="password"] {
+  padding: 0.5rem;
+  border-radius: 3px;
   border: none;
-  margin-bottom: 10px;
-}
-
-.center {
-    text-align: center;
-    margin: auto;
+  background-color: #f5f5f5;
+  margin-bottom: 1rem;
 }
 
 input[type="submit"], input[type="reset"] {
-  width: 80px;
-  height: 30px;
-  font-size: 16px;
+  padding: 0.5rem 1rem;
   background-color: #308F9B;
-  color: #F7F0F0;
+  color: #fff;
   border: none;
-  border-radius: 15px;
-  padding: 10px;
+  border-radius: 3px;
   cursor: pointer;
-  line-height: 10px;
-  vertical-align: middle;
 }
 
-input[type="submit"]:hover, input[type="reset"]:hover{
+input[type="submit"]:hover, input[type="reset"]:hover {
   background-color: #34AAC4;
 }
 
-a:link, a:visited {
-  background-color: #308F9B;
-  color: #F7F0F0;
-  padding: 7px 17px;
-  border-radius: 15px;
-  font-size: 16px;
-  text-align: center;
-  cursor: pointer;
-  margin-left: 10px;
-  text-decoration: none;
-  width: 50px;
+/* Stili per il pulsante per mostrare/nascondere la password */
+.password-container {
+  position: relative;
   display: inline-block;
 }
 
-a:hover, a:active {
-  background-color:  #34AAC4;
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  border: none;
+  background-color: transparent;
+  color: #114B73;
+  cursor: pointer;
+}
+
+/* Stili per il messaggio di errore */
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Stili per il link alla pagina Home */
+a.bottone {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: #fff;
+  background-color: #114B73;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.bottone:hover {
+  background-color: #34AAC4;
 }
 
 .campi1 {
@@ -77,19 +109,7 @@ a:hover, a:active {
 	display: inline-block;
 }
 
-.password-container {
-  position: relative;
-  display: inline-block;
-}
-
-.toggle-password {
-  position: absolute;
-  top: 50%;
-  right: 5px;
-  background-color: transparent;
-  border: none;
-}
-
-.error {
-  color: #FF0000;
+.campi3 {
+	position: relative;
+	display: inline-block;
 }

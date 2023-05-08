@@ -3,9 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>SignIn Page</title>
-<link rel="stylesheet" href="style.css">
+	<meta charset="ISO-8859-1">
+	<title>SignIn Page</title>
+	<link rel="stylesheet" href="style.css">
+	<%@include file="Header.jsp" %>
+	<%@include file="Footer.jsp" %>
 </head>
 <body>
 	<h1>Register Page</h1>
@@ -48,7 +50,7 @@
     	   session.setAttribute("error", null);
        }
     %>
-    <a href="home.jsp" class="bottone"> Home</a>
+    <a href="index.jsp" class="bottone"> Home</a>
 <script>
 function togglePasswordVisibility1() {
     var passwordField = document.getElementById("password1");
