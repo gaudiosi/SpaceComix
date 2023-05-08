@@ -31,7 +31,7 @@
            session.setAttribute("error", null);
        }
     %>
-    <a href="index.jsp" class="bottone"> Home </a>
+    
 <script>
 function togglePasswordVisibility() {
     var passwordField = document.getElementById("password");
