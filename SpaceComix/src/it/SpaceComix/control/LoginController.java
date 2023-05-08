@@ -52,7 +52,7 @@ public class LoginController extends HttpServlet {
 	        if (user.getId() != 0) {
 	            HttpSession session = request.getSession();
 	            session.setAttribute("user", user);
-	            response.sendRedirect("home.jsp");
+	            response.sendRedirect("index.jsp");
 	        } else {
 	        	String error = "Invalid email or password. Please try again.";
 	        	HttpSession session = request.getSession();

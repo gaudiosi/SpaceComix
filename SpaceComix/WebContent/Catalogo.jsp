@@ -5,7 +5,7 @@
 <%@ page import="it.SpaceComix.model.ProductDAO" %>
 <%@ page import="java.util.*" import = "java.text.DecimalFormat" %>
 <!DOCTYPE html>
-<html>
+<html lang ="it">
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Il nostro catalogo prodotti</title>
@@ -24,22 +24,22 @@
 			// Itera attraverso la lista di prodotti e genera i div per ciascun prodotto
 			for (ProductBean prodotto : listaProdotti) {
 		%>
-		<a href="Prodotto.jsp?id=<%= prodotto.getID() %>" class="product" style="background-color:#FFFFFF">
-			<div>
+		<div class="product" style="background-color:#FFFFFF">
+			<a href="Prodotto.jsp?id=<%= prodotto.getID() %>" style="text-decoration:none">
 				<div class="product-image">
 					<img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>">
 				</div>
 				<div class="product-details">
-					<div class="product-title"><%= prodotto.getTitolo() %></div>
-					<div class="product-description"><%= prodotto.getDescrizione()%></div>
+					<div class="product-title"><p><%= prodotto.getTitolo() %></p></div>
+					<div class="product-description"><p><%= prodotto.getDescrizione()%></p></div>
 					<div class="product-price">
-						<% DecimalFormat formato = new DecimalFormat("0.00");
+						<p><% DecimalFormat formato = new DecimalFormat("0.00");
 						   String numeroFormattato = formato.format(prodotto.getPrezzo());%>
-						<%= numeroFormattato + (char) 128 %>
+						<%= numeroFormattato + (char) 128 %></p>
 					</div>
 				</div>
-			</div>
-		</a>
+			</a>
+		</div>
 		<%
 			}
 		%>

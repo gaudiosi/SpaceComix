@@ -60,7 +60,7 @@ public class SigninController extends HttpServlet {
 			if(user.getId() != 0) {
 				HttpSession session = request.getSession();
             	session.setAttribute("user", user);
-            	response.sendRedirect("home.jsp");
+            	response.sendRedirect("index.jsp");
             }
 		}
 		String error = "Invalid paramiter. Please try again.";

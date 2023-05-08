@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-<meta charset="ISO-8859-1">
-<title>Pagina di Login</title>
-<link rel="stylesheet" href="style.css">
+	<meta charset="ISO-8859-1">
+	<title>Pagina di Login</title>
+	<link rel="stylesheet" href="style.css">
+	<%@include file="Header.jsp" %>
+	<%@include file="Footer.jsp" %>
 </head>
 <body>
     <h1>Login Page</h1>
-    <form action="Login" method="post">
+    <form action="Login" method="post" class ="login">
         <label for="email">Email:	</label>
         <input type="email" id="email" name="email" required><br>
         <div class = "password-container" >
@@ -29,7 +31,7 @@
            session.setAttribute("error", null);
        }
     %>
-    <a href="home.jsp" class="bottone"> Home </a>
+    
 <script>
 function togglePasswordVisibility() {
     var passwordField = document.getElementById("password");

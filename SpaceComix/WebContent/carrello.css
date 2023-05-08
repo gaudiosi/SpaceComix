@@ -114,22 +114,20 @@ body {
     }
     .flex-container {
         display: block;
-        margin-top: 0;
         margin-left: 1.5rem;
         margin-top: 1.5rem;
     }
     .custom-class {
         display: block;
-        margin-top: 0;
         margin-left: 1.5rem;
         margin-top: 1.5rem;
     }
 }
-
+/*
 .product-container {
 
 }
-
+*/
 .product-details {
     margin-top: 1.25rem;
 }
