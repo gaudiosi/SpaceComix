@@ -32,7 +32,7 @@ h1 {
 	overflow: hidden;
 	transition: box-shadow 0.2s ease-in-out;
 	flex-basis: calc(50% - 20px);
-	max-width: 500px;
+	max-width: 300px;
 }
 
 @media screen and (min-width: 768px) {

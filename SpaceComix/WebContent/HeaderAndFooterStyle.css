@@ -1,15 +1,8 @@
 @charset "ISO-8859-1";
 
-:root {
-  --primary-color: #114B73;
-  --secondary-color: #308F9B;
-  --tertiary-color: #34AAC4;
-  --background-color: #F7F0F0;
-}
-
 /* Regole generali per il body */
 body {
-  background-color: var(--background-color);
+  background-color: #F7F0F0;
   font-family: Arial, sans-serif;
   margin: 0;
 }
@@ -19,7 +12,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--primary-color);
+  background-color: #114B73;
   padding: 1rem;
 }
 
@@ -29,10 +22,10 @@ body {
 }
 
 .navbar-button {
-  background-color: var(--secondary-color);
+  background-color: #308F9B;
   color: #fff;
   padding: 7px 17px;
-  border-radius: 15px;
+  border-radius: 3px;
   font-size: 16px;
   text-align: center;
   cursor: pointer;
@@ -41,7 +34,7 @@ body {
 }
 
 .navbar-button:hover {
-  background-color: var(--tertiary-color);
+  background-color: #34AAC4;
 }
 
 .navbar div {
@@ -61,7 +54,7 @@ body {
 }
 
 .navbar input[type="submit"] {
-  background-color: var(--secondary-color);
+  background-color: #308F9B;
   color: #fff;
   border: none;
   border-radius: 3px;
@@ -70,7 +63,7 @@ body {
 }
 
 .navbar input[type="submit"]:hover {
-  background-color: var(--tertiary-color);
+  background-color: #34AAC4;
 }
 
 /* Stili per il messaggio di errore */
@@ -86,14 +79,14 @@ body {
   text-align: center;
   margin-top: 1rem;
   color: #fff;
-  background-color: var(--primary-color);
+  background-color: #308F9B;
   padding: 0.5rem 1rem;
   border-radius: 3px;
   text-decoration: none;
 }
 
 .bottone:hover {
-  background-color: var(--tertiary-color);
+  background-color: #34AAC4;
 }
 
 @media only screen and (max-width: 768px) {
@@ -109,7 +102,7 @@ body {
 }
 
 .footer {
-	background-color: var(--primary-color);
+	background-color: #114B73;
 	color: #ffffff;
 	padding: 10px;
 	text-align: center;

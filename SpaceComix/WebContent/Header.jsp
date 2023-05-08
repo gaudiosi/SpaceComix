@@ -25,6 +25,6 @@
 			       }
 			    %>
       </div>
-      </nav>
+    </nav>
   </body>
 </html>
