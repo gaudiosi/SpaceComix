@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="it.SpaceComix.model.UserBean" %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
 	<meta charset="ISO-8859-1">
 	<% 	UserBean user = (UserBean) session.getAttribute("user");

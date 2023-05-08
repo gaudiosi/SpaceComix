@@ -4,6 +4,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
+	<title>Footer</title>
 	<link rel="stylesheet" href="HeaderAndFooterStyle.css">
 </head>
 <body>

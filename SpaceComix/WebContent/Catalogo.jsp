@@ -5,7 +5,7 @@
 <%@ page import="it.SpaceComix.model.ProductDAO" %>
 <%@ page import="java.util.*" import = "java.text.DecimalFormat" %>
 <!DOCTYPE html>
-<html>
+<html lang ="it">
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Il nostro catalogo prodotti</title>
