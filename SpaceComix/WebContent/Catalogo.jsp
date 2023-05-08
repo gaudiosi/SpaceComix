@@ -25,7 +25,7 @@
 			for (ProductBean prodotto : listaProdotti) {
 		%>
 		<div class="product" style="background-color:#FFFFFF">
-			<a href="Prodotto.jsp?id=<%= prodotto.getID() %>" style="text-decoration:none">
+			<a href="Prodotto?id=<%= prodotto.getID() %>" style="text-decoration:none">
 				<div class="product-image">
 					<img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>">
 				</div>
