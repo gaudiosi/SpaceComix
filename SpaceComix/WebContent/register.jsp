@@ -33,12 +33,12 @@
         <div class = "password-container" >
         	<label for="password">Password:	</label>
         	<input type="password" id="password1" name="password1" required>
-        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility1()">V</button>
+        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility('password1')">V</button>
  		</div>
  		<div class = "password-container" >
         	<label for="password">Conferma Password:	</label>
         	<input type="password" id="password2" name="password2" required>
-        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility2()">V</button>
+        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility('password2')">V</button>
  		</div>
  		<br>
         <input type="submit" value="Register">
@@ -52,16 +52,8 @@
     %>
     <a href="index.jsp" class="bottone"> Home</a>
 <script>
-function togglePasswordVisibility1() {
-    var passwordField = document.getElementById("password1");
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-    } else {
-        passwordField.type = "password";
-    }
-}
-function togglePasswordVisibility2() {
-    var passwordField = document.getElementById("password2");
+function togglePasswordVisibility(pass) {
+    var passwordField = document.getElementById(pass);
     if (passwordField.type === "password") {
         passwordField.type = "text";
     } else {
