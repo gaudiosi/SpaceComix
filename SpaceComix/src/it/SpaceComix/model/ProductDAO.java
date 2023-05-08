@@ -77,7 +77,7 @@ public class ProductDAO implements DAO<ProductBean> {
 
         ProductBean bean = new ProductBean();
 
-        String selectSQL = "SELECT * FROM " + ProductDAO.TABLE_NAME +
+        String selectSQL = "SELECT * FROM " + TABLE_NAME +
                 " AS P LEFT JOIN Appartenenza AS A ON P.id = A.idProdotto" +
                 " LEFT JOIN Categoria AS C ON A.idCategoria=C.nome WHERE P.id = ?";
 
