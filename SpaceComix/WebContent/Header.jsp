@@ -10,7 +10,7 @@
   </head>
   <body>
     <nav class="navbar" id="myNavbar">
-	<a href = "index.jsp" class = "logo-img"><img src="Immagini/Logo.png" alt="Logo del sito" class="logo" id="myLogo"></a>
+	<a href = "index.jsp" class = "logo-img"><img src="Immagini/Logo.png" alt="Logo del sito" class="logo" id="Visible"></a>
       <div>
         <a href="Catalogo.jsp" class="navbar-button">Novità</a>
         <a href="faq.jsp" class="navbar-button">FAQ</a>

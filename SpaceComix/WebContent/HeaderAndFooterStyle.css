@@ -95,7 +95,7 @@ body {
     align-items: flex-start;
   }
   
-  .navbar a:not(id="myLogo"){
+  .navbar a{
   display: none;
   }
   
@@ -104,6 +104,9 @@ body {
     display: block;
   }
   
+  #Visible {
+  display: block !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -132,3 +135,5 @@ body {
 	left: 0;
 	width: 100%
 }
+
+  
