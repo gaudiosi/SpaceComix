@@ -33,9 +33,7 @@
 					<div class="product-title"><p><%= prodotto.getTitolo() %></p></div>
 					<div class="product-description"><p><%= prodotto.getDescrizione()%></p></div>
 					<div class="product-price">
-						<p><% DecimalFormat formato = new DecimalFormat("0.00");
-						   String numeroFormattato = formato.format(prodotto.getPrezzo());%>
-						<%= numeroFormattato + (char) 128 %></p>
+						<p><%= String.format("%.2f",prodotto.getPrezzo()) + (char) 128%></p>
 					</div>
 				</div>
 			</a>

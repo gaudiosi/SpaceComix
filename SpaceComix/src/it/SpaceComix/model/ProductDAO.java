@@ -92,7 +92,7 @@ public class ProductDAO implements DAO<ProductBean> {
                 bean.setID(rs.getInt("id"));
                 bean.setQuantita(rs.getInt("quantita"));
                 bean.setIva(rs.getInt("iva"));
-                bean.setPrezzo(rs.getInt("prezzo"));
+                bean.setPrezzo(rs.getFloat("prezzo"));
                 bean.setTitolo(rs.getString("titolo"));
                 bean.setDescrizione(rs.getString("descrizione"));
                 bean.setAutore(rs.getString("autore"));

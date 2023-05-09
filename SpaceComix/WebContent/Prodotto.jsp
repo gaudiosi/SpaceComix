@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="it">
 
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProductBean,it.SpaceComix.model.ProductBean"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProductDAO,it.SpaceComix.model.ProductBean"%>
 
 <head>
     <meta charset="UTF-8">
