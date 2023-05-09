@@ -95,17 +95,13 @@ body {
     align-items: flex-start;
   }
   
-  .navbar a{
+  .navbar a:not(id="visible"){
   display: none;
   }
   
   .navbar a.icon {
     float: right;
     display: block;
-  }
-  
-  #Visible {
-  display: block !important;
   }
 }
 
