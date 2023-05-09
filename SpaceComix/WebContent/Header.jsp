@@ -10,7 +10,7 @@
   </head>
   <body>
     <nav class="navbar" id="myNavbar">
-	<a href = "index.jsp" class = "logo-img"><img src="Immagini/Logo.png" alt="Logo del sito" class="logo" id="visible"></a>
+	<a href = "index.jsp" class = "logo-img"><img src="Immagini/Logo.png" alt="Logo del sito" class="logo"></a>
       <div>
         <a href="Catalogo.jsp" class="navbar-button">Novità</a>
         <a href="faq.jsp" class="navbar-button">FAQ</a>
@@ -18,7 +18,7 @@
 		<%UserBean user = (UserBean) session.getAttribute("user");
 			       if (user != null) {
 			           out.print("<a href=\"profilo.jsp\" class=\"navbar-button\">" + user.getUsername() + "</a>");
-			           out.print("<form action=\"Logout\" method=\"get\"> " +
+			           out.print("<form action=\"Logout\" method=\"get\" class=\"navbar-button\"> " +
 			        		     "<input type=\"submit\" value=\"Logout\">" + 
 			           			 "</form> ");
 			       } else {

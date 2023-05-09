@@ -9,6 +9,8 @@
 <head>
     <meta charset="UTF-8">
     <link href="Prodotto.css" rel="stylesheet" type="text/css">
+    
+    
     <%
         ProductBean prodotto =(ProductBean) request.getAttribute("prodotto");
 
