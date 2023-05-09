@@ -8,14 +8,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
     <link href="Prodotto.css" rel="stylesheet" type="text/css">
     <%
         ProductBean prodotto =(ProductBean) request.getAttribute("prodotto");
 
 
     %>
-
+    <title><%=(String)prodotto.getTitolo()%></title>
 </head>
 
 <body>
