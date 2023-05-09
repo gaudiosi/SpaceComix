@@ -49,7 +49,7 @@
 
             %>
             <div class="card-container">
-                <img src="Immagini/<%=prodotto.getProdotto().getImage()%>" alt="<%=prodotto.getProdotto().getImage_alt()%>" class="card-image" />
+                <img src="<%=prodotto.getProdotto().getImage()%>" alt="<%=prodotto.getProdotto().getImage_alt()%>" class="card-image" />
                 <div class="product-container">
                     <div class="product-details">
                         <h2 class="product-details"><%=prodotto.getProdotto().getTitolo()%></h2>

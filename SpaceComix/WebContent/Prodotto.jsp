@@ -29,7 +29,7 @@
       <section class="container-0">
           <div class="container-1">
               <div class="container-2">
-                  <img src="Immagini/<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>">
+                  <img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>">
                   <div class="container-nome-voto-autore">
                       <h2 class="autore"><%=prodotto.getAutore()%></h2>
                       <h1 class="nome"><%=prodotto.getTitolo()%></h1>
