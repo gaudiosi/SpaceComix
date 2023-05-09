@@ -95,7 +95,7 @@ body {
     align-items: flex-start;
   }
   
-  .navbar a:not(#myLogo){
+  .navbar a:not(id="myLogo"){
   display: none;
   }
   
