@@ -15,6 +15,14 @@
 
 </head>
 <body>
+
+
+ <form>
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="shonen">
+  <label for="vehicle1"> shonen</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="shojo">
+  <label for="vehicle2"> shojo</label><br>
+</form>
 	
 	<div class="product-list">
 		<%
