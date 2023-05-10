@@ -108,17 +108,17 @@
         <div class="total-container">
             <div class="subtotal-container">
                 <p class="color-1">Prodotti</p>
-                <p class="color-1"><%=totale%>€</p>
+                <p class="color-1"><%=String.format("%.2f",totale)%>€</p>
             </div>
             <div class="subtotal-container">
                 <p class="color-1">Spedizione</p>
-                <p class="color-1"><%=spedizione%>€</p>
+                <p class="color-1"><%=String.format("%.2f",spedizione)%>€</p>
             </div>
             <hr/>
             <div class="giustifica">
                 <p class="my-text-lg">Totale</p>
                 <div>
-                        <p class="final-price-amount"><%=totale+spedizione%>€ </p>
+                        <p class="final-price-amount"><%=String.format("%.2f",totale+spedizione)%>€ </p>
                         <p class="color-1">Include IVA</p>
                 </div>
             </div>
