@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="it.SpaceComix.model.UserBean" %>
 <html lang="it">
   <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <title>Header</title>
     <link rel="stylesheet" href="HeaderAndFooterStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,7 +12,7 @@
     <nav class="navbar" id="myNavbar">
 	<a href = "index.jsp" class = "logo-img"><img src="Immagini/Logo.png" alt="Logo del sito" class="logo"></a>
       <div>
-        <a href="Catalogo.jsp" class="navbar-button">Novità</a>
+        <a href="Catalogo.jsp" class="navbar-button">NovitÃ </a>
         <a href="faq.jsp" class="navbar-button">FAQ</a>
 		<a href="carrello.jsp" class="navbar-button">Carrello</a>
 		<%UserBean user = (UserBean) session.getAttribute("user");

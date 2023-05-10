@@ -15,6 +15,9 @@
 
     <link href="carrello.css" rel="stylesheet" type="text/css">
 
+    <%@include file="Header.jsp" %>
+    <%@include file="Footer.jsp" %>
+
     <meta charset="UTF-8">
     <style>
         input[type="number"]::-webkit-inner-spin-button,
@@ -49,7 +52,7 @@
 
             %>
             <div class="card-container">
-                <img src="<%=prodotto.getProdotto().getImage()%>" alt="<%=prodotto.getProdotto().getImage_alt()%>" class="card-image" />
+                <img src="Immagini/<%=prodotto.getProdotto().getImage()%>" alt="<%=prodotto.getProdotto().getImage_alt()%>" class="card-image" />
                 <div class="product-container">
                     <div class="product-details">
                         <h2 class="product-details"><%=prodotto.getProdotto().getTitolo()%></h2>

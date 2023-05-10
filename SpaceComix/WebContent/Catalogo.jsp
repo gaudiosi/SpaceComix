@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="it.SpaceComix.model.UserBean" %>
 <%@ page import="it.SpaceComix.model.ProductBean" %>
 <%@ page import="it.SpaceComix.model.ProductDAO" %>
@@ -7,11 +7,12 @@
 <!DOCTYPE html>
 <html lang ="it">
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<title>Il nostro catalogo prodotti</title>
 	<%@include file="Header.jsp" %>
 	<%@include file="Footer.jsp" %>
 	<link rel="stylesheet" href="Catalog.css">
+
 </head>
 <body>
 	
@@ -27,7 +28,7 @@
 		<div class="product" style="background-color:#FFFFFF">
 			<a href="Prodotto?id=<%= prodotto.getID() %>" style="text-decoration:none">
 				<div class="product-image">
-					<img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>">
+					<img src="Immagini/<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>">
 				</div>
 				<div class="product-details">
 					<div class="product-title"><p><%= prodotto.getTitolo() %></p></div>

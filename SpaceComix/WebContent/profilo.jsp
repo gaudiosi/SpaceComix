@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="it.SpaceComix.model.UserBean" %>
 <!DOCTYPE html>
 <html lang="it">
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<% 	UserBean user = (UserBean) session.getAttribute("user");%>
 	<title> <%= user.getUsername() + "\'s Profile"%></title>
 	<link rel="stylesheet" href="style.css">

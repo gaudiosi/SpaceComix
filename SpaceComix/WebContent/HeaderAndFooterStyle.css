@@ -1,4 +1,4 @@
-@charset "ISO-8859-1";
+@charset "UTF-8";
 
 /* Regole generali per il body */
 body {
@@ -96,7 +96,7 @@ a.navbar-button {
   }
   
   .navbar a.icon {
-    flex: right;
+   /* flex: right;*/
     display: block !important;
   }
 }

@@ -9,6 +9,8 @@
 <head>
     <meta charset="UTF-8">
     <link href="Prodotto.css" rel="stylesheet" type="text/css">
+    <%@include file="Header.jsp" %>
+    <%@include file="Footer.jsp" %>
     
     
     <%
@@ -31,7 +33,7 @@
       <section class="container-0">
           <div class="container-1">
               <div class="container-2">
-                  <img src="<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>">
+                  <img src="Immagini/<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>">
                   <div class="container-nome-voto-autore">
                       <h2 class="autore"><%=prodotto.getAutore()%></h2>
                       <h1 class="nome"><%=prodotto.getTitolo()%></h1>
@@ -79,6 +81,9 @@
 <%
     }
 %>
+   
+
+
 
 
 
