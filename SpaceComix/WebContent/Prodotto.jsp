@@ -10,7 +10,6 @@
     <meta charset="UTF-8">
     <link href="Prodotto.css" rel="stylesheet" type="text/css">
     <%@include file="Header.jsp" %>
-    <%@include file="Footer.jsp" %>
     
     
     <%
@@ -88,4 +87,5 @@
 
 
 </body>
+<%@include file="Footer.jsp" %>
 </html>

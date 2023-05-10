@@ -7,7 +7,6 @@
 	<title>Pagina di Login</title>
 	<link rel="stylesheet" href="style.css">
 	<%@include file="Header.jsp" %>
-	<%@include file="Footer.jsp" %>
 </head>
 <body>
     <h1>Login Page</h1>
@@ -43,4 +42,5 @@ function togglePasswordVisibility() {
 }
 </script>
 </body>
+<%@include file="Footer.jsp" %>
 </html>

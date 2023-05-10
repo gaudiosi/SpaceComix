@@ -5,10 +5,9 @@
 <html lang="it">
 <head>
 	<meta charset="UTF-8">
-	<% 	UserBean user = (UserBean) session.getAttribute("user");%>
+	<%@include file="Header.jsp" %>
 	<title> <%= user.getUsername() + "\'s Profile"%></title>
 	<link rel="stylesheet" href="style.css">
-	
 </head>
 <body>
 	<% if (user != null) {
@@ -69,4 +68,5 @@ function togglePasswordVisibility2() {
 }
 </script>
 </body>
+<%@include file="Footer.jsp" %>
 </html>

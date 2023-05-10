@@ -10,7 +10,6 @@
 	<meta charset="UTF-8">
 	<title>Il nostro catalogo prodotti</title>
 	<%@include file="Header.jsp" %>
-	<%@include file="Footer.jsp" %>
 	<link rel="stylesheet" href="Catalog.css">
 
 </head>
@@ -34,7 +33,7 @@
 					<div class="product-title"><p><%= prodotto.getTitolo() %></p></div>
 					<div class="product-description"><p><%= prodotto.getDescrizione()%></p></div>
 					<div class="product-price">
-						<p><%= String.format("%.2f",prodotto.getPrezzo()) + (char) 128%></p>
+						<p><%= String.format("%.2f",prodotto.getPrezzo())%>€</p>
 					</div>
 				</div>
 			</a>
@@ -42,6 +41,8 @@
 		<%
 			}
 		%>
+		
 	</div>
 </body>
+<%@include file="Footer.jsp" %>
 </html>

@@ -44,7 +44,7 @@
         <input type="submit" value="Register">
         <input type="reset" value="Reset"/>
   	</form>
-  	<% String error = (String) session.getAttribute("error1");
+  	<% String error = (String) session.getAttribute("error");
        if (error != null) {
     	   out.print("<p class = \"error\">" + error + "</p>");
     	   session.setAttribute("error", null);

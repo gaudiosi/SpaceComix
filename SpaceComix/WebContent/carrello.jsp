@@ -16,7 +16,7 @@
     <link href="carrello.css" rel="stylesheet" type="text/css">
 
     <%@include file="Header.jsp" %>
-    <%@include file="Footer.jsp" %>
+
 
     <meta charset="UTF-8">
     <style>
@@ -152,5 +152,5 @@
 
 
 </body>
-
+<%@include file="Footer.jsp" %>
 </html>

@@ -6,9 +6,9 @@
 	<meta charset="UTF-8">
 	<title>SpaceComix</title>
 	<%@include file="Header.jsp" %>
-	<%@include file="Footer.jsp" %>
 	<link rel="stylesheet" href="index.css">
 </head>
 <body>
 </body>
+<%@include file="Footer.jsp" %>
 </html>
