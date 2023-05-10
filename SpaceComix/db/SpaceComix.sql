@@ -30,8 +30,8 @@ primary key(id)
 );
 
 create table Categoria(
-nome varchar(16),
-descrizione varchar(30) not NULL,
+nome varchar(50),
+descrizione varchar(100) not NULL,
 primary key(nome)
 );
 
@@ -83,7 +83,7 @@ on update cascade
 );
 
 create table Appartenenza(
-idCategoria varchar(16),
+idCategoria varchar(50),
 idProdotto int,
 primary key (idCategoria, idProdotto),
 foreign key (idCategoria) references Categoria(nome)
