@@ -22,7 +22,7 @@ public class OrdineBean implements Serializable {
         idUtente = -1;
         telefono = "";
         dataOrdine = new Date();
-        prodotti = new ArrayList<ProductsOrdineBean>();
+        prodotti = new ArrayList<>();
 
     }
 

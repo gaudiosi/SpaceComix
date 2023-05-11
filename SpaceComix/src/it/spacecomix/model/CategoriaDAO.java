@@ -135,7 +135,7 @@ public class CategoriaDAO implements DAO<CategoriaBean>{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Collection<CategoriaBean> products = new LinkedList<CategoriaBean>();
+        Collection<CategoriaBean> products = new LinkedList<>();
 
         String selectSQL = "SELECT * FROM " + CategoriaDAO.TABLE_NAME;
 

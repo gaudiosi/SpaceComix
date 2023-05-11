@@ -69,10 +69,6 @@ public class ProductBean implements Serializable {
 
         prezzo = -1;
 
-        titolo = "";
-
-        descrizione = "";
-
         autore= "";
 
         editore = "";
