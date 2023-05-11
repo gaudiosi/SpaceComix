@@ -48,7 +48,7 @@ public class LoginController extends HttpServlet {
 				user = userDao.doRetrieveByKey(email, password);
 			} catch (SQLException e){errore = true;}
 
-	        if (errore = false) {
+	        if (errore == false) {
 	            HttpSession session = request.getSession();
 	            session.setAttribute("user", user);
 	            response.sendRedirect("index.jsp");
