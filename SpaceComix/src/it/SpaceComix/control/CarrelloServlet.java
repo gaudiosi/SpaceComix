@@ -31,7 +31,6 @@ public class CarrelloServlet extends HttpServlet {
             throws ServletException, IOException {
 
         Carrello cart = (Carrello)  request.getSession().getAttribute("cart");
-        //request.setAttribute("active","cart");
 
         if(cart== null)
         {

@@ -51,13 +51,14 @@ public class UpdateProfile extends HttpServlet {
         UserBean user1 =(UserBean) session.getAttribute("user");
         user.setId(user1.getId());
         
+        boolean errore = false;
         if((user.getPassword()).equals(conferma)) {
         	UserDAO userDao = new UserDAO();
         	try {
         		userDao.doUpdate(user);
         		user = userDao.doRetrieveByKey(request.getParameter("email"), request.getParameter("password"));
-        	} catch (SQLException e){}
-        	if(user.getId() != 0) {
+        	} catch (SQLException e){errore = true;}
+        	if(errore = false) {
         		session.setAttribute("user", user);
         		response.sendRedirect("profilo.jsp");
         	}

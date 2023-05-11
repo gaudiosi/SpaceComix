@@ -41,13 +41,14 @@ public class LoginController extends HttpServlet {
 	        String email = request.getParameter("email");
 	        String password = request.getParameter("password");
 
+	        boolean errore = false;
 	        UserDAO userDao = new UserDAO();
 	        UserBean user = new UserBean();
 			try {
 				user = userDao.doRetrieveByKey(email, password);
-			} catch (SQLException e){}
+			} catch (SQLException e){errore = true;}
 
-	        if (user.getId() != 0) {
+	        if (errore = false) {
 	            HttpSession session = request.getSession();
 	            session.setAttribute("user", user);
 	            response.sendRedirect("index.jsp");

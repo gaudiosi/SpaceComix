@@ -41,6 +41,7 @@ public class SigninController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		boolean errore = false; 
 		UserBean user = new UserBean();
         user.setEmail(request.getParameter("email"));
         user.setPassword(request.getParameter("password1"));
@@ -53,11 +54,13 @@ public class SigninController extends HttpServlet {
         	UserDAO userDao = new UserDAO();
 			try {
 				userDao.doSave(user);
-			} catch (SQLException e){}
+			} catch (SQLException e){errore = true;}
 			try {
 				user = userDao.doRetrieveByKey(user.getEmail(), user.getPassword());
-			} catch (SQLException e){}
-			if(user.getId() != 0) {
+			} catch (SQLException e) {
+				errore = true;
+			}
+			if(errore == false) {
 				HttpSession session = request.getSession();
             	session.setAttribute("user", user);
             	response.sendRedirect("index.jsp");
