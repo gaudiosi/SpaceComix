@@ -231,12 +231,6 @@ public class ProductDAO implements DAO<ProductBean> {
 
 	@Override
 	public ProductBean doRetrieveByKey(String code, String code1) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
-    /*public synchronized Collection<ProductBean> doRetrieveByCategory()
-    {
-
-    }*/
-
 	}
 }

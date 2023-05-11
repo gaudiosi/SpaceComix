@@ -7,8 +7,14 @@ import java.util.List;
 import java.util.LinkedList;
 
 public class DriverManagerConnectionPool {
+	
+	
 
-    private static List<Connection> freeDbConnections;
+	public DriverManagerConnectionPool() {
+		super();
+	}
+
+	private static List<Connection> freeDbConnections;
 
     static {
         freeDbConnections = new LinkedList<Connection>();
