@@ -106,8 +106,8 @@ public class ProductDAO implements DAO<ProductBean> {
                     do {
 
                         CategoriaBean c = new CategoriaBean();
-                        c.setNome(rs.getString("Categoria.nome"));
-                        c.setDescrizione(rs.getString("Categoria.descrizione"));
+                        c.setNome(rs.getString("C.nome"));
+                        c.setDescrizione(rs.getString("C.descrizione"));
                         bean.addCategoria(c);
 
                     } while (rs.next());

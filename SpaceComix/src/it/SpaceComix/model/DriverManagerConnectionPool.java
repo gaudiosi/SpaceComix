@@ -8,9 +8,7 @@ import java.util.LinkedList;
 
 public class DriverManagerConnectionPool {
 	
-	
-
-	public DriverManagerConnectionPool() {
+	private DriverManagerConnectionPool() {
 		super();
 	}
 

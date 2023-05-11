@@ -29,12 +29,12 @@ public class UserDAO implements DAO<UserBean> {
 	    }
 	    
 	    private static final String TABLE_NAME = "cliente";
-	    private static final String utente = "username";
-	    private static final String pass = "pass";
-	    private static final String mail = "e-mail";
-	    private static final String role = "ruolo";
-	    private static final String nome = "nome";
-	    private static final String cnome = "cognome";
+	    private static final String UTENTE = "username";
+	    private static final String PASS = "pass";
+	    private static final String MAIL = "e-mail";
+	    private static final String ROLE = "ruolo";
+	    private static final String NOME = "nome";
+	    private static final String CNOME = "cognome";
 	    
 	    @Override
 	    public synchronized void doSave(UserBean user) throws SQLException {
@@ -85,12 +85,12 @@ public class UserDAO implements DAO<UserBean> {
 
 	            if (rs.next()) {
 	            	bean.setId(Integer.parseInt(rs.getString("id")));
-	            	bean.setUsername(rs.getString(utente));
-	            	bean.setPassword(rs.getString(pass));
-	            	bean.setEmail(rs.getString(mail));
-	            	bean.setRuolo(rs.getString(role));
-	            	bean.setNome(rs.getString(nome));
-	            	bean.setCognome(rs.getString(cnome));	
+	            	bean.setUsername(rs.getString(UTENTE));
+	            	bean.setPassword(rs.getString(PASS));
+	            	bean.setEmail(rs.getString(MAIL));
+	            	bean.setRuolo(rs.getString(ROLE));
+	            	bean.setNome(rs.getString(NOME));
+	            	bean.setCognome(rs.getString(CNOME));	
 	            }
 	            
 	        } finally {
@@ -163,12 +163,12 @@ public class UserDAO implements DAO<UserBean> {
 		                UserBean bean = new UserBean();
 
 		                bean.setId(rs.getInt("id"));
-		            	bean.setUsername(rs.getString(utente));
-		            	bean.setPassword(rs.getString(pass));
-		            	bean.setEmail(rs.getString(mail));
-		            	bean.setRuolo(rs.getString(role));
-		            	bean.setNome(rs.getString(nome));
-		            	bean.setCognome(rs.getString(cnome));
+		            	bean.setUsername(rs.getString(UTENTE));
+		            	bean.setPassword(rs.getString(PASS));
+		            	bean.setEmail(rs.getString(MAIL));
+		            	bean.setRuolo(rs.getString(ROLE));
+		            	bean.setNome(rs.getString(NOME));
+		            	bean.setCognome(rs.getString(CNOME));
 		               
 		                users.add(bean);
 		            }
@@ -204,12 +204,12 @@ public class UserDAO implements DAO<UserBean> {
 
 	            if (rs.next()) {
 	            	bean.setId(Integer.parseInt(rs.getString("id")));
-	            	bean.setUsername(rs.getString(utente));
-	            	bean.setPassword(rs.getString(pass));
-	            	bean.setEmail(rs.getString(mail));
-	            	bean.setRuolo(rs.getString(role));
-	            	bean.setNome(rs.getString(nome));
-	            	bean.setCognome(rs.getString(cnome));	
+	            	bean.setUsername(rs.getString(UTENTE));
+	            	bean.setPassword(rs.getString(PASS));
+	            	bean.setEmail(rs.getString(MAIL));
+	            	bean.setRuolo(rs.getString(ROLE));
+	            	bean.setNome(rs.getString(NOME));
+	            	bean.setCognome(rs.getString(CNOME));	
 	            }
 	            
 	        } finally {

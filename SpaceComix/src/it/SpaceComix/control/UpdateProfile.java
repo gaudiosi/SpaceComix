@@ -30,7 +30,7 @@ public class UpdateProfile extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);	}
 
 	/**
@@ -55,7 +55,7 @@ public class UpdateProfile extends HttpServlet {
         		userDao.doUpdate(user);
         		user = userDao.doRetrieveByKey(request.getParameter("email"), request.getParameter("password"));
         	} catch (SQLException e){errore = true;}
-        	if(errore == false) {
+        	if(!errore) {
         		session.setAttribute("user", user);
         		response.sendRedirect("profilo.jsp");
         	}

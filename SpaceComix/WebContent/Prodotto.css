@@ -26,6 +26,7 @@ body {
 
     margin-left: auto;
     margin-right: auto;
+    border-radius: 1rem;
 
 
 }
@@ -65,8 +66,8 @@ body {
 img {
     object-fit: cover;   /* Se l'immagine deve occupare un aspect ratio diverso, non viene allargata o schiacciata (come di default), ma ritagliata*/
     object-position: center; /* centrato rispetto alla sua stessa content box verticalmente e orizzontalmente */
-
-    border-radius: 0.25rem;
+	border-top-left-radius: 1rem;
+ 	border-bottom-left-radius: 1rem;
     border-width: 1px;
     border-color: #E5E7EB;
 }
