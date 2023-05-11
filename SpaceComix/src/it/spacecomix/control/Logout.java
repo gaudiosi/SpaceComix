@@ -1,4 +1,4 @@
-package it.SpaceComix.control;
+package it.spacecomix.control;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

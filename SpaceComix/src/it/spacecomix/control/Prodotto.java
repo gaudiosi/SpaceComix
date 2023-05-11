@@ -1,9 +1,8 @@
-package it.SpaceComix.control;
+package it.spacecomix.control;
 
 
-import it.SpaceComix.model.DAO;
-import it.SpaceComix.model.ProductBean;
-import it.SpaceComix.model.ProductDAO;
+import it.spacecomix.model.ProductBean;
+import it.spacecomix.model.ProductDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

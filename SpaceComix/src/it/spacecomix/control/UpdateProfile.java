@@ -1,4 +1,4 @@
-package it.SpaceComix.control;
+package it.spacecomix.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.SpaceComix.model.UserBean;
-import it.SpaceComix.model.UserDAO;
+import it.spacecomix.model.UserBean;
+import it.spacecomix.model.UserDAO;
 
 /**
  * Servlet implementation class UpdateProfile

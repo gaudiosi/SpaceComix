@@ -1,4 +1,4 @@
-package it.SpaceComix.model;
+package it.spacecomix.model;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

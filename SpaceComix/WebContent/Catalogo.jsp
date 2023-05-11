@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="it.SpaceComix.model.UserBean" %>
-<%@ page import="it.SpaceComix.model.ProductBean" %>
-<%@ page import="it.SpaceComix.model.ProductDAO" %>
+<%@ page import="it.spacecomix.model.UserBean" %>
+<%@ page import="it.spacecomix.model.ProductBean" %>
+<%@ page import="it.spacecomix.model.ProductDAO" %>
 <%@ page import="java.util.*" import = "java.text.DecimalFormat" %>
 <!DOCTYPE html>
 <html lang ="it">
