@@ -24,14 +24,12 @@ public class LoginController extends HttpServlet {
      */
     public LoginController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
@@ -44,7 +42,7 @@ public class LoginController extends HttpServlet {
 	        String password = request.getParameter("password");
 
 	        UserDAO userDao = new UserDAO();
-	        UserBean user = null;
+	        UserBean user = new UserBean();
 			try {
 				user = userDao.doRetrieveByKey(email, password);
 			} catch (SQLException e){}

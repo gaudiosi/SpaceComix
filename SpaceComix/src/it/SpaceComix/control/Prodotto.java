@@ -35,7 +35,6 @@ public class Prodotto extends HttpServlet {
             }
             catch (SQLException e)
             {
-                e.printStackTrace();
                 response.sendError(500);
             }
         }
