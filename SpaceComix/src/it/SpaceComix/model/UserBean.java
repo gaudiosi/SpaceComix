@@ -1,4 +1,4 @@
-package it.spacecomix.model;
+package it.SpaceComix.model;
 
 public class UserBean{
 	

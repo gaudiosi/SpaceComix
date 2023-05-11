@@ -1,7 +1,7 @@
-package it.spacecomix.control;
+package it.SpaceComix.control;
 
-import it.spacecomix.model.Carrello;
-import it.spacecomix.model.ProductBean;
+import it.SpaceComix.model.Carrello;
+import it.SpaceComix.model.ProductBean;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import it.spacecomix.model.DAO;
-import it.spacecomix.model.ProductModelDM;
-import it.spacecomix.model.ProductDAO;
+import it.SpaceComix.model.DAO;
+import it.SpaceComix.model.ProductModelDM;
+import it.SpaceComix.model.ProductDAO;
 
 /**
  * Servlet implementation class ControllerProdotti

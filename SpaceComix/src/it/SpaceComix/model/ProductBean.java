@@ -1,4 +1,4 @@
-package it.spacecomix.model;
+package it.SpaceComix.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -68,6 +68,10 @@ public class ProductBean implements Serializable {
         iva = -1;
 
         prezzo = -1;
+
+        titolo = "";
+
+        descrizione = "";
 
         autore= "";
 

@@ -1,4 +1,4 @@
-package it.spacecomix.model;
+package it.SpaceComix.model;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -135,7 +135,7 @@ public class CategoriaDAO implements DAO<CategoriaBean>{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Collection<CategoriaBean> products = new LinkedList<>();
+        Collection<CategoriaBean> products = new LinkedList<CategoriaBean>();
 
         String selectSQL = "SELECT * FROM " + CategoriaDAO.TABLE_NAME;
 

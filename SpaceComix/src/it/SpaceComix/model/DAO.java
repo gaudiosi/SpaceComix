@@ -1,4 +1,4 @@
-package it.spacecomix.model;
+package it.SpaceComix.model;
 
 import java.sql.SQLException;
 import java.util.Collection;

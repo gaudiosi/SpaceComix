@@ -1,4 +1,4 @@
-package it.spacecomix.control;
+package it.SpaceComix.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.spacecomix.model.UserBean;
-import it.spacecomix.model.UserDAO;
+import it.SpaceComix.model.UserBean;
+import it.SpaceComix.model.UserDAO;
 
 @WebServlet("/Signin")
 public class SigninController extends HttpServlet {

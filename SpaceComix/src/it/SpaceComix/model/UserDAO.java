@@ -1,4 +1,4 @@
-package it.spacecomix.model;
+package it.SpaceComix.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -192,7 +192,7 @@ public class UserDAO implements DAO<UserBean> {
 
 	        UserBean bean = new UserBean();
 
-	        String selectSQL = "SELECT * FROM "+ TABLE_NAME +" C WHERE C.id = ?";
+	        String selectSQL = "SELECT * FROM"+ TABLE_NAME +"C WHERE C.id = ?";
 
 	        try {
 	            connection = ds.getConnection();

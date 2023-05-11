@@ -5,7 +5,7 @@
          pageEncoding="UTF-8"%>
 
 <head>
-    <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.spacecomix.model.ProdottoCarrello,it.spacecomix.model.Carrello, it.spacecomix.model.UserBean"%>
+    <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProdottoCarrello,it.SpaceComix.model.Carrello, it.SpaceComix.model.UserBean"%>
 
 
     <title>Carrello</title>
@@ -27,6 +27,7 @@
 
 
 </head>
+
 
 <div class="container">
     <%

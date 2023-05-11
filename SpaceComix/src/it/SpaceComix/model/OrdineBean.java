@@ -1,4 +1,4 @@
-package it.spacecomix.model;
+package it.SpaceComix.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class OrdineBean implements Serializable {
         idUtente = -1;
         telefono = "";
         dataOrdine = new Date();
-        prodotti = new ArrayList<>();
+        prodotti = new ArrayList<ProductsOrdineBean>();
 
     }
 
