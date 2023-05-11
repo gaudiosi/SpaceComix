@@ -39,10 +39,11 @@ public class ProductDAO implements DAO<ProductBean> {
 
         String insertSQL = "INSERT INTO " + ProductDAO.TABLE_NAME
                 + " (quantita, iva, prezzo, titolo, descrizione, sconto) VALUES (?, ?, ?, ?, ?, ?)";
-        String insert2SQL = "INSERT INTO Appartenenza (idCategoria,idProdotto) VALUES (?,?)"; //d
+        String insert2SQL = "INSERT INTO Appartenenza (idCategoria,idProdotto) VALUES (?,?)";
 
         try {
             connection = ds.getConnection();
+            connection.setAutoCommit(false);//Stackoverflow: According to the documentation, connection.setAutoCommit(false) will allow you to group multiple subsequent Statements under the same transaction
             preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setInt(1, product.getQuantita());
             preparedStatement.setInt(2, product.getIva());
@@ -51,22 +52,38 @@ public class ProductDAO implements DAO<ProductBean> {
             preparedStatement.setString(5,product.getDescrizione());
             preparedStatement.setInt(6, product.getSconto());
 
-
             preparedStatement.executeUpdate();
 
-            //salvare le categorie del prodotto
 
+            preparedStatement2 = connection.prepareStatement(insert2SQL);
+            for (CategoriaBean categoria : product.getGeneri())
+            {
+                preparedStatement2.setString(1,categoria.getNome());
+                preparedStatement2.setInt(2, product.getID());
+                preparedStatement2.addBatch();
 
+            }
+            preparedStatement2.executeBatch();
 
             connection.commit();
+
+        } catch (SQLException e) {
+
+            if (connection != null) {
+                connection.rollback();   //Se ci sono eccezioni, annulla tutta la transazione, sia executeUpdate che executeBatch
+            }
+
         } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+                if (preparedStatement2 != null) {
+                    preparedStatement2.close();
+                }
+
             } finally {
                 if (connection != null)
-                    connection.close();
-            }
+                    connection.close();}
         }
     }
 
