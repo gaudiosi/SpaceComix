@@ -171,18 +171,22 @@ public class ProductDAO implements DAO<ProductBean> {
                 " LEFT JOIN Categoria AS C ON A.idCategoria=C.nome";
 
         if (order != null && !order.equals("")) {
-            selectSQL += " ORDER BY " + order;
+            selectSQL += " ORDER BY ?";
         }
 
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);
+            
+            if (order != null && !order.equals("")) {
+            	preparedStatement.setString(1, order);
+            }
 
             ResultSet rs = preparedStatement.executeQuery();
 
             boolean currentnext = rs.next();
 
-            while (currentnext) {       //Finch� esiste una riga corrente crea un nuovo prodotto
+            while (currentnext) {       //Finché esiste una riga corrente crea un nuovo prodotto
 
 
                 ProductBean bean = new ProductBean();
@@ -199,9 +203,6 @@ public class ProductDAO implements DAO<ProductBean> {
 
                 products.add(bean);
                 
-                //if(rs.getString("C.nome") != null)
-                //{
-                   // do {  //Crea una nuova categoria
                 while (currentnext && rs.getInt("id") == bean.getID()) {
                 	
                         CategoriaBean c = new CategoriaBean();
@@ -212,13 +213,7 @@ public class ProductDAO implements DAO<ProductBean> {
                         currentnext = rs.next();
             	}
 
-                    //} while(currentnext = rs.next() && rs.getInt("id")== bean.getID());
-                    //  //Finché la nuova riga corrente ha lo stesso prodotto
-                //}
-                //else
-               // {
                     currentnext = rs.next();
-                //}
 
             }
 
@@ -231,10 +226,8 @@ public class ProductDAO implements DAO<ProductBean> {
                     connection.close();
             }
         }
-        Collection<ProductBean> filteredProducts = new LinkedList<ProductBean>();
-        filteredProducts = products.stream().distinct().collect(Collectors.toList());
         
-        return filteredProducts;
+        return products;
     }
 
 	@Override
