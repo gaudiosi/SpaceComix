@@ -7,11 +7,12 @@
 	<title>SignIn Page</title>
 	<link rel="stylesheet" href="style.css">
 	<%@include file="Header.jsp" %>
-	<%@include file="Footer.jsp" %>
 </head>
 <body>
+<div class="quadrato">
 	<h1>Register Page</h1>
-    <form action="Signin" method="post">
+    <form action="Signin" method="post" class="register">
+    <div class = "ordine">
     	<div class ="campi1">
     		<label for="text">Nome:	</label>
         	<input type="text" id="nome" name="nome" required>
@@ -40,9 +41,13 @@
         	<input type="password" id="password2" name="password2" required>
         	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility('password2')">V</button>
  		</div>
+ 	</div>
  		<br>
-        <input type="submit" value="Register">
-        <input type="reset" value="Reset"/>
+        <div class="button">
+        	<input type="submit" value="Registrati">
+        	<input type="reset" value="Reset">
+        </div>
+    
   	</form>
   	<% String error = (String) session.getAttribute("error");
        if (error != null) {
@@ -50,7 +55,7 @@
     	   session.setAttribute("error", null);
        }
     %>
-
+</div>
 <script>
 function togglePasswordVisibility(pass) {
     var passwordField = document.getElementById(pass);
@@ -62,4 +67,5 @@ function togglePasswordVisibility(pass) {
 }
 </script>
 </body>
+<%@include file="Footer.jsp" %>
 </html>

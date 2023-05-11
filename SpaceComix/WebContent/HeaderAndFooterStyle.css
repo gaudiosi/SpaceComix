@@ -7,6 +7,11 @@ body {
   margin: 0;
 }
 
+.quadrato {
+	min-width: 100vw;
+	min-height: 74.7vh;
+}
+
 /* Stili per il navbar */
 .navbar {
   display: flex;
@@ -73,22 +78,6 @@ a.navbar-button {
   margin-top: 1rem;
 }
 
-/* Stili per il link alla pagina Home */
-.bottone {
-  display: block;
-  text-align: center;
-  margin-top: 1rem;
-  color: #fff;
-  background-color: #308F9B;
-  padding: 0.5rem 1rem;
-  border-radius: 3px;
-  text-decoration: none;
-}
-
-.bottone:hover {
-  background-color: #34AAC4;
-}
-
 @media screen and (max-width: 768px) {
   
   .navbar .navbar-button:not(.logo-img){
@@ -120,8 +109,8 @@ a.navbar-button {
 	color: #ffffff;
 	padding: 10px;
 	text-align: center;
-	position: relative;
-	bottom: 0;
+	position: sticky;
+	bottom: -50px;
 	left: 0;
 	width: 100%
 }

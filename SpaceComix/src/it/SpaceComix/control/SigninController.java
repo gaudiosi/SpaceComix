@@ -49,24 +49,24 @@ public class SigninController extends HttpServlet {
         user.setNome(request.getParameter("nome"));
         user.setCognome(request.getParameter("cognome"));
         
-        if((user.getPassword()).equals(conferma)) {
+        if(conferma.equals(user.getPassword())) {
         	UserDAO userDao = new UserDAO();
 			try {
 				userDao.doSave(user);
 			} catch (SQLException e){}
 			try {
-				user = userDao.doRetrieveByKey(request.getParameter("email"), request.getParameter("password"));
+				user = userDao.doRetrieveByKey(user.getEmail(), user.getPassword());
 			} catch (SQLException e){}
 			if(user.getId() != 0) {
 				HttpSession session = request.getSession();
             	session.setAttribute("user", user);
             	response.sendRedirect("index.jsp");
             }
-		}
+		}else {
 		String error = "Invalid paramiter. Please try again.";
         HttpSession session = request.getSession();
         session.setAttribute("error", error);
         response.sendRedirect("register.jsp");
-	
+		}
     }
 }

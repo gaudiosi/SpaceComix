@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -165,7 +166,7 @@ public class ProductDAO implements DAO<ProductBean> {
 
         Collection<ProductBean> products = new LinkedList<ProductBean>();
 
-        String selectSQL = "SELECT * FROM " + ProductDAO.TABLE_NAME +
+        String selectSQL = "SELECT * FROM " + TABLE_NAME +
                 " AS P LEFT JOIN Appartenenza AS A ON P.id = A.idProdotto" +
                 " LEFT JOIN Categoria AS C ON A.idCategoria=C.nome";
 
@@ -181,7 +182,7 @@ public class ProductDAO implements DAO<ProductBean> {
 
             boolean currentnext = rs.next();
 
-            while (currentnext) {       //Finch� esiste una riga corrente crea un nuovo prodotto
+            while (currentnext) {       //Finch� esiste una riga corrente crea un nuovo prodotto
 
 
                 ProductBean bean = new ProductBean();
@@ -196,26 +197,29 @@ public class ProductDAO implements DAO<ProductBean> {
                 bean.setImage(rs.getString("immagine"));
                 bean.setImage_alt(rs.getString("image_alt"));
 
-
-                if(rs.getString("C.nome") != null)
-                {
-                    do {  //Crea una nuova categoria
-
+                products.add(bean);
+                
+                //if(rs.getString("C.nome") != null)
+                //{
+                   // do {  //Crea una nuova categoria
+                while (currentnext && rs.getInt("id") == bean.getID()) {
+                	
                         CategoriaBean c = new CategoriaBean();
                         c.setNome(rs.getString("C.nome"));
                         c.setDescrizione(rs.getString("C.descrizione"));
                         bean.addCategoria(c);
+                        
+                        currentnext = rs.next();
+            	}
 
+                    //} while(currentnext = rs.next() && rs.getInt("id")== bean.getID());
+                    //  //Finché la nuova riga corrente ha lo stesso prodotto
+                //}
+                //else
+               // {
+                    currentnext = rs.next();
+                //}
 
-                    } while(currentnext = rs.next() && currentnext && rs.getInt("id")== bean.getID());
-                      //Finché la nuova riga corrente ha lo stesso prodotto
-                }
-                else
-                {
-                    currentnext = rs.next();;
-                }
-
-                products.add(bean);
             }
 
         } finally {
@@ -227,18 +231,20 @@ public class ProductDAO implements DAO<ProductBean> {
                     connection.close();
             }
         }
-        return products;
+        Collection<ProductBean> filteredProducts = new LinkedList<ProductBean>();
+        filteredProducts = products.stream().distinct().collect(Collectors.toList());
+        
+        return filteredProducts;
     }
 
 	@Override
 	public ProductBean doRetrieveByKey(String code, String code1) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
-	}
     /*public synchronized Collection<ProductBean> doRetrieveByCategory()
     {
 
     }*/
 
+	}
 }
-

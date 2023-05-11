@@ -8,10 +8,10 @@
 <!DOCTYPE html>
 
 <head>
-    <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProdottoCarrello,it.SpaceComix.model.Carrello"%>
+    <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProdottoCarrello,it.SpaceComix.model.Carrello, it.SpaceComix.model.UserBean"%>
 
 
-    <title></title>
+    <title>Carrello</title>
 
     <link href="carrello.css" rel="stylesheet" type="text/css">
 

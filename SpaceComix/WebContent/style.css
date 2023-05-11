@@ -12,22 +12,31 @@ h1 {
   margin-top: 2rem;
 }
 
-form {
-  max-width: 400px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+form.profile {
+	max-width: 370px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 2rem;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
-.login form {
-  max-width: 200px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 1rem;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+form.register {
+	max-width: 370px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 2rem;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+form.login {
+	max-width: 200px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 2rem;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
 /* Stili per le etichette e gli input del form */
@@ -68,34 +77,11 @@ input[type="submit"]:hover, input[type="reset"]:hover {
   position: absolute;
   top: 50%;
   right: 5px;
-  transform: translateY(-50%);
+  transform: translateY(-30%);
   border: none;
   background-color: transparent;
   color: #114B73;
   cursor: pointer;
-}
-
-/* Stili per il messaggio di errore */
-.error {
-  color: red;
-  text-align: center;
-  margin-top: 1rem;
-}
-
-/* Stili per il link alla pagina Home */
-a.bottone {
-  display: block;
-  text-align: center;
-  margin-top: 1rem;
-  color: #fff;
-  background-color: #114B73;
-  padding: 0.5rem 1rem;
-  border-radius: 3px;
-  text-decoration: none;
-}
-
-.bottone:hover {
-  background-color: #34AAC4;
 }
 
 .campi1 {
@@ -107,8 +93,24 @@ a.bottone {
 	position: relative;
 	display: inline-block;
 }
-
-.campi3 {
-	position: relative;
-	display: inline-block;
+/*
+.ordine {
+	display:flex;
+	justify-content: space-between;
+  	align-items: center;
+  	max-width: 400px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	margin-bottom: 5px;
+  	flex-wrap: wrap;
+}
+*/
+.button {
+	display:flex;
+	justify-content: space-between;
+  	align-items: center;
+  	max-width: 200px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	margin-bottom: 5px;
 }

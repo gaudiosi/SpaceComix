@@ -3,14 +3,16 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<title>Pagina di Login</title>
 	<link rel="stylesheet" href="style.css">
 	<%@include file="Header.jsp" %>
 </head>
 <body>
+	<div class="quadrato">
     <h1>Login Page</h1>
     <form action="Login" method="post" class ="login">
+    <div class = "ordine">
         <label for="email">Email:	</label>
         <input type="email" id="email" name="email" required><br>
         <div class = "password-container" >
@@ -19,18 +21,19 @@
         	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility()">V</button>
  		</div>
  		<br>
-        <div class="center">
-    		<input type="submit" value="Login">
-    		<input type="reset" value="Reset"/>
-		</div>
+ 	</div>
+        <div class="button">
+        	<input type="submit" value="Update">
+        	<input type="reset" value="Reset">
+        </div>
   	</form>
-  	<% String error = (String) session.getAttribute("error");
+    </div>
+    <% String error = (String) session.getAttribute("error");
        if (error != null) {
     	   out.print("<p class = \"error\">" + error + "</p>");
            session.setAttribute("error", null);
        }
     %>
-    
 <script>
 function togglePasswordVisibility() {
     var passwordField = document.getElementById("password");

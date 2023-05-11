@@ -6,11 +6,10 @@
 <%@ page import="java.util.*" import = "java.text.DecimalFormat" %>
 <!DOCTYPE html>
 <html lang ="it">
-<%@include file="Header.jsp" %>
 <head>
 	<meta charset="UTF-8">
 	<title>Il nostro catalogo prodotti</title>
-	
+	<%@include file="Header.jsp" %>
 	<link rel="stylesheet" href="Catalog.css">
 
 </head>
@@ -28,7 +27,8 @@
 		<%
 			// Recupera la lista di prodotti dal database o da un'altra fonte dati
 			ProductDAO dao = new ProductDAO();
-			Collection <ProductBean> listaProdotti = dao.doRetrieveAll("id DESC");
+		  	String order = "id DESC";
+			Collection <ProductBean> listaProdotti = dao.doRetrieveAll(order);
 			
 			// Itera attraverso la lista di prodotti e genera i div per ciascun prodotto
 			for (ProductBean prodotto : listaProdotti) {
