@@ -16,10 +16,10 @@
 <body>
 
 
- <form>
-  <input type="checkbox" id="vehicle1" name="vehicle1" value="shonen">
+<form>
+  <input type="radio" id="vehicle1" name="vehicle" value="shonen" onclick="submitForm()">
   <label for="vehicle1"> shonen</label><br>
-  <input type="checkbox" id="vehicle2" name="vehicle2" value="shojo">
+  <input type="radio" id="vehicle2" name="vehicle" value="shojo" onclick="submitForm()">
   <label for="vehicle2"> shojo</label><br>
 </form>
 	
@@ -27,7 +27,8 @@
 		<%
 			// Recupera la lista di prodotti dal database o da un'altra fonte dati
 			ProductDAO dao = new ProductDAO();
-		  	String order = "id DESC";
+		  	//String order = "id DESC";
+		   String order = "categoria = \"" + request.getParameter("order") +"\"";
 			Collection <ProductBean> listaProdotti = dao.doRetrieveAll(order);
 			
 			// Itera attraverso la lista di prodotti e genera i div per ciascun prodotto
@@ -92,6 +93,26 @@
 	  }
 	});
 	</script>
+	
+	
+	
+<script>
+  function submitForm() {
+    var radioValue = document.querySelector('input[name="vehicle"]:checked').value;
+
+    // Send an AJAX request to the server to update the order
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        // Update the content on the page if needed
+      }
+    };
+    xhttp.open("GET", "Catalogo.jsp?order=" + radioValue, true);
+    xhttp.send();
+    
+    document.getElementById("order").value = radioValue;
+  }
+</script>
 </body>
 <%@include file="Footer.jsp" %>
 </html>
