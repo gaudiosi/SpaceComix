@@ -1,11 +1,14 @@
 body {
     font-family: "Inter", sans-serif;
+    overflow: scroll;
+
 }
 .container {
-    height: 100vh; /* Sets the height to be equal to the viewport height */
+    height: auto; /* Sets the height to be equal to the viewport height */
     /* Sets the background color to a light gray shade */
     padding-top: 5rem;  /* Sets the top padding to 5 rem */
     background-color: #f7f0f0;
+    padding-bottom: 6rem;
 
 
 }

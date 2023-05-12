@@ -5,10 +5,12 @@ body {
   background-color: #F7F0F0;
   font-family: Arial, sans-serif;
   margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .quadrato {
-	min-width: 100vw;
+	min-width: 100vh;
 	min-height: 74.7vh;
 }
 

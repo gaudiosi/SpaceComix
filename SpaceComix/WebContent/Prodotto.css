@@ -8,7 +8,6 @@ body {
 }
 
 .container-1{
-    width: 100%;  /*100% di quella del genitore*/
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     padding-top: 6rem;
@@ -23,7 +22,6 @@ body {
 
     display: flex;
     background-color: #ffffff;
-
     margin-left: auto;
     margin-right: auto;
     border-radius: 1rem;
@@ -55,11 +53,13 @@ body {
 @media (max-width: 768px) {
     .container-2 {
         flex-wrap: wrap;
-
-
+        justify-content: center;
     }
     img {
-        width: 80%; /*remove*/
+        width: 100%; /*remove*/
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+
     }
 }
 
@@ -74,7 +74,7 @@ img {
 
 
 .container-nome-voto-autore {
-    margin-top: 1.5rem;
+    margin: 1.5rem;
     width: 100%;
 }
 

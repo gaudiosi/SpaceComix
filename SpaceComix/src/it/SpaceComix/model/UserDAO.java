@@ -58,10 +58,13 @@ public class UserDAO implements DAO<UserBean> {
 
 	            connection.commit();
 	        } finally {
-	                if (preparedStatement != null)
-	                    preparedStatement.close();
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
 	                if (connection != null)
 	                    connection.close();
+				}
 	        }
 	    }
 	    
