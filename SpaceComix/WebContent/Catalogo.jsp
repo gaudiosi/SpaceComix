@@ -27,12 +27,13 @@
 		<%
 			// Recupera la lista di prodotti dal database o da un'altra fonte dati
 			ProductDAO dao = new ProductDAO();
-		  	//String order = "id DESC";
-		   String order = "categoria = \"" + request.getParameter("order") +"\"";
+		  	String order = "id DESC";
+		    String genere = "shonen";
 			Collection <ProductBean> listaProdotti = dao.doRetrieveAll(order);
 			
 			// Itera attraverso la lista di prodotti e genera i div per ciascun prodotto
 			for (ProductBean prodotto : listaProdotti) {
+				if (prodotto.appartieneAGenere(genere)) {
 		%>
 		
 		<div class="product" style="background-color:#FFFFFF">
@@ -50,7 +51,9 @@
 			</a>
 		</div>
 		<%
+				}
 			}
+				
 		%>
 	</div>
 	<div class="pagination">
@@ -107,10 +110,10 @@
         // Update the content on the page if needed
       }
     };
-    xhttp.open("GET", "Catalogo.jsp?order=" + radioValue, true);
+    xhttp.open("GET", "Catalogo.jsp?genere=" + radioValue, true);
     xhttp.send();
     
-    document.getElementById("order").value = radioValue;
+    document.getElementById("genere").value = radioValue;
   }
 </script>
 </body>

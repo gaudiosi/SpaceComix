@@ -202,4 +202,8 @@ public class ProductBean implements Serializable {
     public int hashCode() {
         return Objects.hash(id, quantita, iva, prezzo, titolo, descrizione, autore, editore, isbn, sconto, image, image_alt, generi);
     }
+    
+    public boolean appartieneAGenere(String genere) {
+        return generi.contains(genere);
+    }
 }
