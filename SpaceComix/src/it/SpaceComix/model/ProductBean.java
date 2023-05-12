@@ -203,7 +203,13 @@ public class ProductBean implements Serializable {
         return Objects.hash(id, quantita, iva, prezzo, titolo, descrizione, autore, editore, isbn, sconto, image, image_alt, generi);
     }
     
-    public boolean appartieneAGenere(String genere) {
-        return generi.contains(genere);
+    public int appartieneAGenere(String genere) {
+        for(CategoriaBean categoria : generi) {
+        	if(categoria.getNome().equals(genere)) {
+        		return 1;
+        	}
+        }
+        return 0;
     }
-}
+        
+    }

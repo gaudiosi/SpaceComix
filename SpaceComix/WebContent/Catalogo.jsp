@@ -26,14 +26,16 @@
 	<div class="product-list">
 		<%
 			// Recupera la lista di prodotti dal database o da un'altra fonte dati
+			int contaitem = 0;
 			ProductDAO dao = new ProductDAO();
 		  	String order = "id DESC";
-		    String genere = "shonen";
+		    String genere = "shojo";
 			Collection <ProductBean> listaProdotti = dao.doRetrieveAll(order);
 			
 			// Itera attraverso la lista di prodotti e genera i div per ciascun prodotto
 			for (ProductBean prodotto : listaProdotti) {
-				if (prodotto.appartieneAGenere(genere)) {
+				if (prodotto.appartieneAGenere(genere) == 0) {
+					contaitem++; //totale item per poi genere dinamicamente abbastanza pagine
 		%>
 		
 		<div class="product" style="background-color:#FFFFFF">
@@ -56,19 +58,30 @@
 				
 		%>
 	</div>
-	<div class="pagination">
+		<%
+	int itemsPerPage = 24;
+	int max = contaitem/itemsPerPage;
+	if (max > 1) {
+		%>
+	<div class="pagination" data-items-per-page="<%= itemsPerPage %>">
 		<a href="#">Precedente</a>
-		<a href="#">1</a>
-		<a href="#">2</a>
-		<a href="#">3</a>
-		<a href="#">4</a>
+		<%
+		for(int i = 1; i <= max; i++)
+		{
+		%>
+		<a href="#"><%= i %></a>
+		<% 
+		}
+		%>
 		<a href="#">Successiva</a>
+		<% 
+		}
+		%>
 	</div>
 	<script>
 	const products = document.querySelectorAll('.product');
-	const itemsPerPage = 24;
 	let currentPage = 1;
-
+	const itemsPerPage = parseInt(document.querySelector('.pagination').getAttribute('data-items-per-page'));
 	function showPage(page) {
 	  const startIndex = (page - 1) * itemsPerPage;
 	  const endIndex = startIndex + itemsPerPage;
@@ -86,9 +99,9 @@
 
 	document.querySelector('.pagination').addEventListener('click', function(event) {
 	  if (event.target.tagName === 'A') {
-		  if(event.target.textContent == "Precedente")
+		  if(event.target.textContent == "Precedente" && currentPage > 1)
 			  currentPage--;
-		  else if(event.target.textContent == "Successiva")
+		  else if(event.target.textContent == "Successiva" && currentPage < max)
 			  currentPage++;
 		  else 
 			  currentPage = parseInt(event.target.textContent);
