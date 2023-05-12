@@ -218,18 +218,27 @@ public class ProductDAO implements DAO<ProductBean> {
                 bean.setImage_alt(rs.getString("image_alt"));
 
                 products.add(bean);
-                
-                while (currentnext && rs.getInt("id") == bean.getID()) {
-                	
+
+                if(rs.getString("C.name") != null)
+                {
+                    while(currentnext && rs.getInt("id")== bean.getID())
+                    {
                         CategoriaBean c = new CategoriaBean();
                         c.setNome(rs.getString("C.nome"));
                         c.setDescrizione(rs.getString("C.descrizione"));
                         bean.addCategoria(c);
-                        
-                        currentnext = rs.next();
-            	}
 
-                    currentnext = rs.next();
+                        currentnext = rs.next();
+                    }
+                    //Finché la nuova riga corrente ha lo stesso prodotto
+                }
+                else
+                {
+                    currentnext = rs.next();;
+                }
+
+
+
 
             }
 

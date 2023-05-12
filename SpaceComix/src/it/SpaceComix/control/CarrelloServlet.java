@@ -60,22 +60,21 @@ public class CarrelloServlet extends HttpServlet {
                  if(action.equals("add"))
                  {
                      int id = Integer.parseInt(request.getParameter("id"));
-                     cart.addProdotto((ProductBean) model.doRetrieveByKey(id));
-                     response.sendRedirect( request.getServletContext().getContextPath() + "/Prodotto?id="+ request.getParameter("id"));
-                     return;
+                     cart.addProdotto(model.doRetrieveByKey(id));
+                     response.sendRedirect(request.getServletContext().getContextPath() + "/Prodotto?id="+ request.getParameter("id"));
 
                  }
                  else if (action.equals("remove"))
                  {
                      int id = Integer.parseInt(request.getParameter("id"));
-                     cart.removeProdotto((ProductBean) model.doRetrieveByKey(id));
+                     cart.removeProdotto(model.doRetrieveByKey(id));
                      response.sendRedirect( request.getServletContext().getContextPath() + "/carrello");
 
                  }
                  else if (action.equals("decrease"))
                  {
                      int id = Integer.parseInt(request.getParameter("id"));
-                     cart.decreaseProdotto((ProductBean) model.doRetrieveByKey(id));
+                     cart.decreaseProdotto(model.doRetrieveByKey(id));
 
 
 
@@ -97,7 +96,8 @@ public class CarrelloServlet extends HttpServlet {
              }
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            response.sendError(500);
+
         }
 
     }
