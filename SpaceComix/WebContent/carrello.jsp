@@ -59,11 +59,12 @@
                     <div class="flex-container">
                         <div class="button-group">
                             <form action="<%=request.getContextPath()%>/carrello" method="post" class = "piuomeno">
-                            <input type="hidden" name="id" value="<%= prodotto.getProdotto().getID() %>">
+                                <input type="hidden" name="id" value="<%= prodotto.getProdotto().getID() %>">
+                                <input type="hidden" name="action" value="update">
 
-                            <span class="minus-btn" onclick="updateQuantity(-1)">-</span>
-                            <input type="number" class="input-number" name="quantity" value="<%=prodotto.getQuantita()%>" min="1" max="<%=prodotto.getProdotto().getQuantita()%>" onchange="this.form.submit()">
-                            <span class="plus-btn" onclick="updateQuantity(1)">+</span>
+                                <span class="minus-btn" onclick="updateQuantity(-1)">-</span>
+                                <input type="number" class="input-number" name="quantity" value="<%=prodotto.getQuantita()%>" min="1" max="<%=prodotto.getProdotto().getQuantita()%>" onchange="this.form.submit()">
+                                <span class="plus-btn" onclick="updateQuantity(1)">+</span>
                             </form>
 
                             <script>

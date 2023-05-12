@@ -10,7 +10,7 @@ body {
 }
 
 .quadrato {
-	min-width: 100vh;
+	min-width: 100vw;
 	min-height: 74.7vh;
 }
 
