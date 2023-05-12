@@ -140,19 +140,12 @@ public class CategoriaDAO implements DAO<CategoriaBean>{
         String selectSQL = "SELECT * FROM " + CategoriaDAO.TABLE_NAME;
 
         if (order != null && !order.equals("")) {
-            selectSQL += " ORDER BY ?";
+            selectSQL += " ORDER BY " + order;
         }
-
 
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);
-
-            if (order != null && !order.equals("")) {
-                preparedStatement.setString(1, order);
-
-            }
-
 
             ResultSet rs = preparedStatement.executeQuery();
 

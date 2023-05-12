@@ -219,26 +219,20 @@ public class ProductDAO implements DAO<ProductBean> {
 
                 products.add(bean);
 
-                if(rs.getString("C.name") != null)
+                if(rs.getString("C.nome") != null)
                 {
-                    while(currentnext && rs.getInt("id")== bean.getID())
-                    {
+                    do {  //Crea una nuova categoria
                         CategoriaBean c = new CategoriaBean();
                         c.setNome(rs.getString("C.nome"));
                         c.setDescrizione(rs.getString("C.descrizione"));
                         bean.addCategoria(c);
-
                         currentnext = rs.next();
-                    }
-                    //Finché la nuova riga corrente ha lo stesso prodotto
+                    } while(currentnext && rs.getInt("id")== bean.getID());
+                    //FinchÃ© la nuova riga corrente ha lo stesso prodotto
                 }
-                else
-                {
-                    currentnext = rs.next();;
+                else {
+                    currentnext = rs.next();
                 }
-
-
-
 
             }
 
