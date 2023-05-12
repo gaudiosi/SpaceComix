@@ -99,9 +99,9 @@
 
 	document.querySelector('.pagination').addEventListener('click', function(event) {
 	  if (event.target.tagName === 'A') {
-		  if(event.target.textContent == "Precedente" && currentPage > 1)
+		  if(event.target.textContent == "Precedente" && currentPage > 0)
 			  currentPage--;
-		  else if(event.target.textContent == "Successiva" && currentPage < max)
+		  else if(event.target.textContent == "Successiva" && currentPage < <%= max %>)
 			  currentPage++;
 		  else 
 			  currentPage = parseInt(event.target.textContent);
@@ -109,7 +109,6 @@
 	  }
 	});
 	</script>
-	
 	
 	
 <script>
