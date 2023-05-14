@@ -29,12 +29,12 @@
 			int contaitem = 0;
 			ProductDAO dao = new ProductDAO();
 		  	String order = "id DESC";
-		    String genere = "shojo";
+		    String genere = request.getParameter("genere");
 			Collection <ProductBean> listaProdotti = dao.doRetrieveAll(order);
 			
 			// Itera attraverso la lista di prodotti e genera i div per ciascun prodotto
 			for (ProductBean prodotto : listaProdotti) {
-				if (prodotto.appartieneAGenere(genere) == 0) {
+				if (prodotto.appartieneAGenere(genere) == 1) {
 					contaitem++; //totale item per poi genere dinamicamente abbastanza pagine
 		%>
 		
@@ -61,6 +61,7 @@
 		<%
 	int itemsPerPage = 24;
 	int max = contaitem/itemsPerPage;
+	if ((contaitem % itemsPerPage) != 0) max++;
 	if (max > 1) {
 		%>
 	<div class="pagination" data-items-per-page="<%= itemsPerPage %>">
@@ -99,9 +100,9 @@
 
 	document.querySelector('.pagination').addEventListener('click', function(event) {
 	  if (event.target.tagName === 'A') {
-		  if(event.target.textContent == "Precedente" && currentPage > 0)
+		  if((event.target.textContent == "Precedente") && (currentPage > 1))
 			  currentPage--;
-		  else if(event.target.textContent == "Successiva" && currentPage < <%= max %>)
+		  else if((event.target.textContent == "Successiva") && (currentPage < <%= max %>))
 			  currentPage++;
 		  else 
 			  currentPage = parseInt(event.target.textContent);
@@ -110,7 +111,7 @@
 	});
 	</script>
 	
-	
+<!--	FUNZIONA QUANDO USEREMO LE AJAX
 <script>
   function submitForm() {
     var radioValue = document.querySelector('input[name="vehicle"]:checked').value;
@@ -128,6 +129,29 @@
     document.getElementById("genere").value = radioValue;
   }
 </script>
+-->
+
+<script>
+  function submitForm() {
+    var radios = document.getElementsByName('vehicle');
+    var selectedValue;
+
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].checked) {
+        selectedValue = radios[i].value;
+        break;
+      }
+    }
+
+    if (selectedValue) {
+      var urlParams = new URLSearchParams(window.location.search);
+      urlParams.set('genere', selectedValue);
+      window.location.search = urlParams.toString();
+    }
+  }
+</script>
+
+
 </body>
 <%@include file="Footer.jsp" %>
 </html>

@@ -9,8 +9,6 @@
 <head>
     <meta charset="UTF-8">
     <link href="Prodotto.css" rel="stylesheet" type="text/css">
-    <%@include file="Header.jsp" %>
-    
     
     <%
         ProductBean prodotto =(ProductBean) request.getAttribute("prodotto");
@@ -18,6 +16,10 @@
 
     %>
     <title><%=(String)prodotto.getTitolo()%></title>
+    
+    
+    <%@include file="Header.jsp" %>
+    
 </head>
 
 <body>
