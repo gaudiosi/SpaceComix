@@ -34,7 +34,8 @@
 			
 			// Itera attraverso la lista di prodotti e genera i div per ciascun prodotto
 			for (ProductBean prodotto : listaProdotti) {
-				if (prodotto.appartieneAGenere(genere) == 1) {
+				
+				if (prodotto.appartieneAGenere(genere) == 1 || genere == null) {
 					contaitem++; //totale item per poi genere dinamicamente abbastanza pagine
 		%>
 		
