@@ -58,7 +58,8 @@ body {
     img {
         width: 100%; /*remove*/
         border-top-right-radius: 1rem;
-        border-bottom-right-radius: 1rem;
+        border-bottom-left-radius: 0rem!important;
+
 
     }
 }
