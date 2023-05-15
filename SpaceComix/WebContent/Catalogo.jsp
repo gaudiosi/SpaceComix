@@ -3,6 +3,8 @@
 <%@ page import="it.SpaceComix.model.UserBean" %>
 <%@ page import="it.SpaceComix.model.ProductBean" %>
 <%@ page import="it.SpaceComix.model.ProductDAO" %>
+<%@ page import="it.SpaceComix.model.CategoriaDAO" %>
+<%@ page import="it.SpaceComix.model.CategoriaBean" %>
 <%@ page import="java.util.*" import = "java.text.DecimalFormat" %>
 <!DOCTYPE html>
 <html lang ="it">
@@ -16,14 +18,19 @@
 <body>
 <div class="quadrato">
 
-
 <form>
-  <input type="checkbox" id="shonen" name="vehicle" value="shonen" onclick="submitForm()">
-  <label for="vehicle1"> Shonen </label><br>
-  <input type="checkbox" id="horror" name="vehicle" value="horror" onclick="submitForm()">
-  <label for="vehicle2"> Horror </label><br>
-  <input type="checkbox" id="shojo" name="vehicle" value="shojo" onclick="submitForm()">
-  <label for="vehicle2"> Shojo </label><br>
+<%
+CategoriaDAO cdao = new CategoriaDAO();
+String ord = "nome DESC";
+Collection<CategoriaBean> categorie = cdao.doRetrieveAll(ord);
+
+for (CategoriaBean c : categorie)
+	{
+%>
+  <input type="checkbox" id="<%= c.getNome() %>" name="vehicle" value="<%= c.getNome() %>" onclick="submitForm()">
+  <label for="vehicle1"> <%= c.getNome() %> </label><br>
+  
+<%  } %>
 </form>
 	
 	<div class="product-list">

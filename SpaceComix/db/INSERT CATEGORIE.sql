@@ -30,5 +30,4 @@ VALUES
   ('mitologia', 'Opere basate su miti e leggende'),
   ('orrore', 'Opere che cercano di suscitare paura e terrore nel pubblico'),
   ('post apocalittico', 'Ambientate in un mondo dopo una catastrofe'),
-  ('DEFAULT', 'Descrizione mancante'),
   ('thriller politico', 'Un genere di fumetti che combina suspense e intrighi politici');
