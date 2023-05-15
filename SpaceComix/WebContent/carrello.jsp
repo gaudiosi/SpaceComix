@@ -62,38 +62,40 @@
                                 <input type="hidden" name="id" value="<%= prodotto.getProdotto().getID() %>">
                                 <input type="hidden" name="action" value="update">
 
-                                <span class="minus-btn" onclick="updateQuantity(-1)">-</span>
-                                <input type="number" class="input-number" name="quantity" value="<%=prodotto.getQuantita()%>" min="1" max="<%=prodotto.getProdotto().getQuantita()%>" onchange="this.form.submit()">
-                                <span class="plus-btn" onclick="updateQuantity(1)">+</span>
+                                <span class="minus-btn" onclick="updateQuantity('<%= prodotto.getProdotto().getID() %>', -1)">-</span>
+                                <input type="number" class="input-number" id="quantity_<%= prodotto.getProdotto().getID() %>" name="quantity" value="<%=prodotto.getQuantita()%>" min="1" max="<%=prodotto.getProdotto().getQuantita()%>" onchange="this.form.submit()">                     
+                                <span class="plus-btn" onclick="updateQuantity('<%= prodotto.getProdotto().getID() %>', 1)">+</span>
                             </form>
 
                             <script>
-                                function updateQuantity(change) {
-                                    var quantityInput = document.querySelector('input[name="quantity"]');
-                                    var currentQuantity = parseInt(quantityInput.value);
-                                    var newQuantity = currentQuantity + change;
-                                    if (newQuantity >= parseInt(quantityInput.min) && newQuantity <= parseInt(quantityInput.max)) {
-                                        quantityInput.value = newQuantity;
-                                        quantityInput.onchange();
-                                    }
-                                }
-                            </script>
+    							function updateQuantity(productId, change) {
+									var quantityInput = document.getElementById('quantity_' + productId);
+									var currentQuantity = parseInt(quantityInput.value);
+        							var newQuantity = currentQuantity + change;
+        							if (newQuantity >= parseInt(quantityInput.min) && newQuantity <= parseInt(quantityInput.max)) {
+            							quantityInput.value = newQuantity;
+            							quantityInput.onchange();
+        							}
+    							}
+							</script>
+
 
 
                         </div>
                         <div class="price-container">
                             <p class="price"><%= String.format("%.2f",prodotto.getProdotto().getPrezzo())%></p>
-                            <svg onclick="submitForm()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svg">
+                            <svg onclick="submitForm('<%= prodotto.getProdotto().getID() %>')" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
-                            <form id="myForm" action="<%=request.getContextPath()%>/carrello" method="post">
-                                <input type="hidden" name="action" value="remove">
+                            <form id="removeForm_<%= prodotto.getProdotto().getID() %>" action="<%=request.getContextPath()%>/carrello" method="post">
+ 							    <input type="hidden" name="action" value="remove">
                                 <input type="hidden" name="id" value="<%=prodotto.getProdotto().getID()%>">
                             </form>
                             <script>
-                                function submitForm() {
-                                    document.getElementById("myForm").submit();
-                                }
+                            	function submitForm(productId) {
+                                	var form = document.getElementById('removeForm_' + productId);
+                                	form.submit();
+                            	}
                             </script>
                         </div>
                     </div>
