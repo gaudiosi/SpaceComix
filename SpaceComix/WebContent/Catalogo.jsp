@@ -16,28 +16,50 @@
 <body>
 
 
+
 <form>
-  <input type="radio" id="vehicle1" name="vehicle" value="shonen" onclick="submitForm()">
-  <label for="vehicle1"> shonen</label><br>
-  <input type="radio" id="vehicle2" name="vehicle" value="shojo" onclick="submitForm()">
-  <label for="vehicle2"> shojo</label><br>
+  <input type="checkbox" id="shonen" name="vehicle" value="shonen" onclick="submitForm()">
+  <label for="vehicle1"> Shonen </label><br>
+  <input type="checkbox" id="horror" name="vehicle" value="horror" onclick="submitForm()">
+  <label for="vehicle2"> Horror </label><br>
+  <input type="checkbox" id="shojo" name="vehicle" value="shojo" onclick="submitForm()">
+  <label for="vehicle2"> Shojo </label><br>
 </form>
 	
 	<div class="product-list">
-		<%
-			// Recupera la lista di prodotti dal database o da un'altra fonte dati
-			int contaitem = 0;
-			ProductDAO dao = new ProductDAO();
-		  	String order = "id DESC";
-		    String genere = request.getParameter("genere");
-			Collection <ProductBean> listaProdotti = dao.doRetrieveAll(order);
-			
-			// Itera attraverso la lista di prodotti e genera i div per ciascun prodotto
-			for (ProductBean prodotto : listaProdotti) {
-				
-				if (prodotto.appartieneAGenere(genere) == 1 || genere == null) {
-					contaitem++; //totale item per poi genere dinamicamente abbastanza pagine
-		%>
+<%
+    // Recupera la lista di prodotti dal database o da un'altra fonte dati
+    int contaitem = 0;
+    ProductDAO dao = new ProductDAO();
+    String order = "id DESC";
+    String genere = request.getParameter("genere");
+    Collection<ProductBean> listaProdotti = dao.doRetrieveAll(order);
+
+    // Itera attraverso la lista di prodotti e genera i div per ciascun prodotto
+    for (ProductBean prodotto : listaProdotti) {
+        String[] generiRichiesti = null;
+
+        if (genere != null && !genere.isEmpty()) {
+            generiRichiesti = genere.split(",");
+        }
+
+        boolean isProdottoValido = true;
+
+        if (generiRichiesti != null && generiRichiesti.length > 0) {
+            // Controlla se il prodotto appartiene a almeno uno dei generi richiesti
+            isProdottoValido = false;
+
+            for (String genereRichiesto : generiRichiesti) {
+                if (prodotto.appartieneAGenere(genereRichiesto) == 1) {
+                    isProdottoValido = true;
+                    break;
+                }
+            }
+        }
+
+        if (isProdottoValido) {
+            contaitem++; //totale item per poi generare dinamicamente abbastanza pagine
+%>
 		
 		<div class="product" style="background-color:#FFFFFF">
 			<a href="Prodotto?id=<%= prodotto.getID() %>" style="text-decoration:none">
@@ -137,22 +159,39 @@
 -->
 
 <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var checkBoxes = document.getElementsByName('vehicle');
+    var urlParams = new URLSearchParams(window.location.search);
+    var selectedValues = urlParams.get('genere') ? urlParams.get('genere').split(',') : [];
+
+    checkBoxes.forEach(function(checkbox) {
+      checkbox.checked = selectedValues.includes(checkbox.value);
+    });
+  });
+
   function submitForm() {
-    var radios = document.getElementsByName('vehicle');
-    var selectedValue;
+    var checkBoxes = document.getElementsByName('vehicle');
+    var selectedValues = [];
 
-    for (var i = 0; i < radios.length; i++) {
-      if (radios[i].checked) {
-        selectedValue = radios[i].value;
-        break;
+    checkBoxes.forEach(function(checkbox) {
+      if (checkbox.checked) {
+        selectedValues.push(checkbox.value);
       }
+    });
+
+    var urlParams = new URLSearchParams(window.location.search);
+
+    checkBoxes.forEach(function(checkbox) {
+      if (!checkbox.checked) {
+        urlParams.delete('genere', checkbox.value);
+      }
+    });
+
+    if (selectedValues.length > 0) {
+      urlParams.set('genere', selectedValues.join(','));
     }
 
-    if (selectedValue) {
-      var urlParams = new URLSearchParams(window.location.search);
-      urlParams.set('genere', selectedValue);
-      window.location.search = urlParams.toString();
-    }
+    window.location.search = urlParams.toString();
   }
 </script>
 
