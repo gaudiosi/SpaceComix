@@ -83,6 +83,7 @@
 	const products = document.querySelectorAll('.product');
 	let currentPage = 1;
 	const itemsPerPage = parseInt(document.querySelector('.pagination').getAttribute('data-items-per-page'));
+	const maxPage = <%= max %>;
 	function showPage(page) {
 	  const startIndex = (page - 1) * itemsPerPage;
 	  const endIndex = startIndex + itemsPerPage;
@@ -102,10 +103,13 @@
 	  if (event.target.tagName === 'A') {
 		  if((event.target.textContent == "Precedente") && (currentPage > 1))
 			  currentPage--;
-		  else if((event.target.textContent == "Successiva") && (currentPage < <%= max %>))
+		  else if((event.target.textContent == "Successiva") && (currentPage < maxPage))
 			  currentPage++;
-		  else 
-			  currentPage = parseInt(event.target.textContent);
+		  else if (!isNaN(parseInt(event.target.textContent))) {
+			  const page = parseInt(event.target.textContent);
+			  if (page >= 1 && page <= maxPage) {
+			    currentPage = page;
+			  }}
 	    showPage(currentPage);
 	  }
 	});
