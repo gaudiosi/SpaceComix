@@ -29,7 +29,7 @@ body {
 }
 
 .navbar-button {
-  color: #308F9B;
+  color: #34AAC4;
   padding: 0.3em 0.6em;
   border: none;
   border-radius: 3px;
@@ -39,14 +39,14 @@ body {
   font-size: 15px;
   position: relative;
   overflow: hidden;
-  outline: 3px solid #308F9B;
+  outline: 3px solid #34AAC4;
 }
 
 .navbar-button:hover {
   color: #ffffff;
   transform: scale(1.05);
   outline: 2px solid #70bdca;
-  box-shadow: 4px 5px 17px -4px #308F9B;
+  box-shadow: 4px 5px 17px -4px #34AAC4;
 }
 
 .navbar-button::before {
@@ -56,7 +56,7 @@ body {
   top: 0;
   width: 0;
   height: 100%;
-  background-color: #34AAC4;
+  background-color: #308F9B;
   transform: skewX(45deg);
   z-index: -1;
   transition: width 800ms;
