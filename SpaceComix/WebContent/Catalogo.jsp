@@ -32,7 +32,7 @@ for (CategoriaBean c : categorie)
   
 <%  } %>
 </form>
-	
+	<hr>
 	<div class="product-list">
 <%
     // Recupera la lista di prodotti dal database o da un'altra fonte dati
@@ -87,6 +87,7 @@ for (CategoriaBean c : categorie)
 			}
 				
 		%>
+	</div>
 	</div>
 		<%
 	int itemsPerPage = 24;
@@ -201,7 +202,6 @@ for (CategoriaBean c : categorie)
     window.location.search = urlParams.toString();
   }
 </script>
-</div>
 
 </body>
 <%@include file="Footer.jsp" %>

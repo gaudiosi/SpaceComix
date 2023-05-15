@@ -126,3 +126,10 @@ h1 {
 		max-width: 220px;
 	}
 }
+
+.quadrato {
+	
+	display: flex;
+	justify-content: inline-block;
+	
+}
