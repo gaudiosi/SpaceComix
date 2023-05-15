@@ -18,6 +18,7 @@
 <body>
 <div class="quadrato">
 
+<div class="categorie">
 <form>
 <%
 CategoriaDAO cdao = new CategoriaDAO();
@@ -28,10 +29,12 @@ for (CategoriaBean c : categorie)
 	{
 %>
   <input type="checkbox" id="<%= c.getNome() %>" name="vehicle" value="<%= c.getNome() %>" onclick="submitForm()">
-  <label for="vehicle1"> <%= c.getNome() %> </label><br>
+  <label for="<%= c.getNome() %>"> <%= c.getNome() %> </label><br>
   
 <%  } %>
 </form>
+</div>
+
 	<hr>
 	<div class="product-list">
 <%
