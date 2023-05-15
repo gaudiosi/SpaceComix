@@ -31,7 +31,7 @@ public class UserDAO implements DAO<UserBean> {
 	    private static final String TABLE_NAME = "cliente";
 	    private static final String UTENTE = "username";
 	    private static final String PASS = "pass";
-	    private static final String MAIL = "e-mail";
+	    private static final String MAIL = "email";
 	    private static final String ROLE = "ruolo";
 	    private static final String NOME = "nome";
 	    private static final String CNOME = "cognome";
@@ -95,7 +95,8 @@ public class UserDAO implements DAO<UserBean> {
 	            	bean.setNome(rs.getString(NOME));
 	            	bean.setCognome(rs.getString(CNOME));	
 	            }
-	            
+	            if(bean.getCognome() == null)
+	            	throw new SQLException();
 	        } finally {
 	            try {
 	                if (preparedStatement != null)
@@ -204,7 +205,6 @@ public class UserDAO implements DAO<UserBean> {
 	            
 	            ResultSet rs = preparedStatement.executeQuery();
 	            
-
 	            if (rs.next()) {
 	            	bean.setId(Integer.parseInt(rs.getString("id")));
 	            	bean.setUsername(rs.getString(UTENTE));

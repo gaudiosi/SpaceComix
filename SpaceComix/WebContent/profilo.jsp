@@ -35,15 +35,19 @@
  		      	<br>
  		        <div class = "password-container" >
  		        	<label for="password">Password:	</label>
- 		        	<input type="password" id="password1" name="password1" value=" <%= user.getPassword()%>" required>
- 		        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility()">V</button>
+ 		        	<input type="password" id="password" name="password" value=" <%= user.getPassword()%>" required>
+ 		        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility('password')">V</button>
  		        </div>
  		  	</div>
  		       	<br>
- 		       	<div class="button">
- 		        	<input type="submit" value="Update">
- 		        	<input type="reset" value="Reset">
- 		        </div>
+ 		       		<div class="button-container">
+        <div class="button-color">
+        	<input type="submit" value="Update" class="button">
+        </div>
+        <div class="button-color">
+        	<input type="reset" value="Reset" class="button">
+        </div>
+    </div>
  		  	</form>
     <% } %>
     <% String error = (String) session.getAttribute("error");
@@ -55,8 +59,8 @@
 </div>
     
 <script>
-function togglePasswordVisibility1() {
-    var passwordField = document.getElementById("password1");
+function togglePasswordVisibility(pass) {
+    var passwordField = document.getElementById(pass);
     if (passwordField.type === "password") {
         passwordField.type = "text";
     } else {

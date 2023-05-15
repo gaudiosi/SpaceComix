@@ -11,7 +11,7 @@ body {
 
 .quadrato {
 	min-width: 100vw;
-	min-height: 74.7vh;
+	min-height: 82vh;
 }
 
 /* Stili per il navbar */
@@ -19,7 +19,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #114B73;
+  background-color: #273862;
   padding: 1rem;
 }
 
@@ -28,20 +28,42 @@ body {
   max-width: 150px;
 }
 
-a.navbar-button {
-  background-color: #308F9B;
-  color: #fff;
-  padding: 7px 17px;
+.navbar-button {
+  color: #308F9B;
+  padding: 0.3em 0.6em;
+  border: none;
   border-radius: 3px;
-  font-size: 16px;
-  text-align: center;
-  cursor: pointer;
-  text-decoration: none;
-  margin-left: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 1000ms;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  outline: 3px solid #308F9B;
 }
 
 .navbar-button:hover {
+  color: #ffffff;
+  transform: scale(1.05);
+  outline: 2px solid #70bdca;
+  box-shadow: 4px 5px 17px -4px #308F9B;
+}
+
+.navbar-button::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
   background-color: #34AAC4;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 800ms;
+}
+
+.navbar-button:hover::before {
+  width: 250%;
 }
 
 .navbar div {
@@ -50,7 +72,6 @@ a.navbar-button {
 }
 
 .navbar a {
-  color: #fff;
   text-decoration: none;
   margin-left: 10px;
 }
@@ -58,19 +79,23 @@ a.navbar-button {
 .navbar form {
   margin: 0;
   margin-left: 10px;
+  padding: 1px;
 }
 
 .navbar input[type="submit"] {
-  background-color: #308F9B;
-  color: #fff;
+  color: #308F9B;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-weight: bold;
   border: none;
   border-radius: 3px;
   cursor: pointer;
-  padding: 7px 17px;
+  padding: 0.3em 0.6em;
 }
 
 .navbar input[type="submit"]:hover {
-  background-color: #34AAC4;
+  background-color: transparent;
+  color: #ffffff;
 }
 
 /* Stili per il messaggio di errore */
@@ -107,7 +132,7 @@ a.navbar-button {
 }
 
 .footer {
-	background-color: #114B73;
+	background-color: #273862;
 	color: #ffffff;
 	padding: 10px;
 	text-align: center;

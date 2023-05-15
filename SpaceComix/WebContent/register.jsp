@@ -43,10 +43,14 @@
  		</div>
  	</div>
  		<br>
-        <div class="button">
-        	<input type="submit" value="Registrati">
-        	<input type="reset" value="Reset">
+        	<div class="button-container">
+        <div class="button-color">
+        	<input type="submit" value="Registrati" class="button">
         </div>
+        <div class="button-color">
+        	<input type="reset" value="Reset" class="button">
+        </div>
+    </div>
     
   	</form>
   	<% String error = (String) session.getAttribute("error");

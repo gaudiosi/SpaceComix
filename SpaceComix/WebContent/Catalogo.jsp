@@ -14,7 +14,7 @@
 
 </head>
 <body>
-
+<div class="quadrato">
 
 
 <form>
@@ -194,7 +194,7 @@
     window.location.search = urlParams.toString();
   }
 </script>
-
+</div>
 
 </body>
 <%@include file="Footer.jsp" %>
