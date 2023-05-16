@@ -20,6 +20,7 @@
 
 <div class="categorie">
 <form>
+<h4>Categorie</h4>
 <%
 CategoriaDAO cdao = new CategoriaDAO();
 String ord = "nome DESC";
