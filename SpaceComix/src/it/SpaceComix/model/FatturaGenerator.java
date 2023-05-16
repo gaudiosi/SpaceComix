@@ -23,12 +23,10 @@ public class FatturaGenerator {
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
             
             // Aggiungi il titolo della fattura
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
             contentStream.newLineAtOffset(50, 700);
             contentStream.showText("Fattura");
             
             // Aggiungi le info
-            contentStream.setFont(PDType1Font.HELVETICA, 12);
             contentStream.newLineAtOffset(50, 650);
             
             double totaleFattura = 0;

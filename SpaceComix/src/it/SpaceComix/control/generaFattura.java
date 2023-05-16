@@ -13,7 +13,10 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
 import java.util.logging.Logger;
 
 
@@ -28,6 +31,7 @@ public class generaFattura extends HttpServlet {
         Carrello cart = (Carrello) request.getSession().getAttribute("cart");
 
 
+
  // Metodo per ottenere il carrello con i prodotti
 
         try {
@@ -39,11 +43,17 @@ public class generaFattura extends HttpServlet {
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
             contentStream.beginText();
             // Aggiungi il titolo della fattura
+            PDFont pdfFont=  new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
+
+            contentStream.setFont(pdfFont, 16);
             contentStream.newLineAtOffset(50, 700);
             contentStream.showText("Fattura");
 
+
+
             // Aggiungi le info
-            contentStream.newLineAtOffset(50, 650);
+            contentStream.setFont(pdfFont, 12);
+
 
             double totaleFattura = 0;
 
@@ -55,10 +65,9 @@ public class generaFattura extends HttpServlet {
                 double totaleProdotto = quantita * prezzoSingolo;
                 double iva = totaleProdotto * 0.22; // Assumiamo che l'IVA sia del 22%
 
+                contentStream.showText("Fattura");
 
                 // Carica l'immagine del prodotto
-                PDImageXObject image = PDImageXObject.createFromFile("Immagini/" + prodotto.getProdotto().getImage(), document);
-                contentStream.drawImage(image, 200, 650, 150, 150); // Posizione e dimensioni immagine
 
 
                 contentStream.showText("Prodotto: " + nomeProdotto);
