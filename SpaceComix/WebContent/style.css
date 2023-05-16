@@ -55,7 +55,7 @@ input[type="email"],input[type="text"], input[type="password"] {
 }
 
 input[type="submit"], input[type="reset"] {
-  color: #34AAC4;
+  color: #308F9B;
   background-color: transparent;
   text-transform: uppercase;
   font-weight: bold;

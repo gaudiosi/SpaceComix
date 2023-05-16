@@ -29,7 +29,8 @@ body {
 }
 
 .navbar-button {
-  color: #34AAC4;
+  color: #308F9B;
+  background-color: rgba(255, 255, 255, 0.25);
   padding: 0.3em 0.6em;
   border: none;
   border-radius: 3px;
@@ -39,7 +40,7 @@ body {
   font-size: 15px;
   position: relative;
   overflow: hidden;
-  outline: 3px solid #34AAC4;
+  outline: 3px solid #308F9B;
 }
 
 .navbar-button:hover {
@@ -79,13 +80,14 @@ body {
 .navbar form {
   margin: 0;
   margin-left: 10px;
-  padding: 1px;
+  padding: 0px;
 }
 
 .navbar input[type="submit"] {
   color: #308F9B;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.025);;
   text-transform: uppercase;
+  font-size: 15px;
   font-weight: bold;
   border: none;
   border-radius: 3px;

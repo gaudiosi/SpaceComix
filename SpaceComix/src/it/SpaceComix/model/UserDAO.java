@@ -95,8 +95,6 @@ public class UserDAO implements DAO<UserBean> {
 	            	bean.setNome(rs.getString(NOME));
 	            	bean.setCognome(rs.getString(CNOME));	
 	            }
-	            if(bean.getCognome() == null)
-	            	throw new SQLException();
 	        } finally {
 	            try {
 	                if (preparedStatement != null)
