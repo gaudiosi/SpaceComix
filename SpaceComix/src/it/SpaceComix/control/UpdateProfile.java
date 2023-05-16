@@ -55,7 +55,7 @@ public class UpdateProfile extends HttpServlet {
         		userDao.doUpdate(user);
         		user = userDao.doRetrieveByKey(request.getParameter("email"), request.getParameter("password"));
         	} catch (SQLException e){errore = true;}
-        	if(!errore) {
+        	if(!errore && user.getId() != 0) {
         		session.setAttribute("user", user);
         		response.sendRedirect("profilo.jsp");
         	}
