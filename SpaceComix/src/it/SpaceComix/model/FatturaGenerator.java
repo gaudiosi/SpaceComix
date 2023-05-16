@@ -1,15 +1,17 @@
 package it.SpaceComix.model;
+import java.io.File;
 import java.io.IOException;
+
+import it.SpaceComix.model.ProdottoCarrello;
+import it.SpaceComix.model.Carrello;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
-
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
-import it.SpaceComix.model.ProdottoCarrello;
-import it.SpaceComix.model.Carrello;
 
 public class FatturaGenerator {
     public static void main(Carrello cart2) {
@@ -22,13 +24,18 @@ public class FatturaGenerator {
 
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
             
+            // Carica i font dal file locale
+            PDType0Font fontBold = PDType0Font.load(document, new File("fonts/Helvetica-Bold.ttf"));
+            PDType0Font fontRegular = PDType0Font.load(document, new File("fonts/Helvetica.ttf"));
+
+
             // Aggiungi il titolo della fattura
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
+            contentStream.setFont(fontBold, 16);
             contentStream.newLineAtOffset(50, 700);
             contentStream.showText("Fattura");
             
             // Aggiungi le info
-            contentStream.setFont(PDType1Font.HELVETICA, 12);
+            contentStream.setFont(fontRegular, 12);
             contentStream.newLineAtOffset(50, 650);
             
             double totaleFattura = 0;
@@ -66,8 +73,8 @@ public class FatturaGenerator {
             contentStream.showText("Totale Fattura: " + totaleFattura);
             
             contentStream.close();
-
-            document.save("fattura.pdf");
+            
+            document.save("fatture/fattura.pdf");
 
             document.close();
         } catch (IOException e) {
