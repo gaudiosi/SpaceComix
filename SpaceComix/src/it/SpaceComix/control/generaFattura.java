@@ -48,6 +48,7 @@ public class generaFattura extends HttpServlet {
             contentStream.setFont(pdfFont, 16);
             contentStream.newLineAtOffset(50, 700);
             contentStream.showText("Fattura");
+            contentStream.newLineAtOffset(0, -20);
 
 
 
@@ -65,28 +66,27 @@ public class generaFattura extends HttpServlet {
                 double totaleProdotto = quantita * prezzoSingolo;
                 double iva = totaleProdotto * 0.22; // Assumiamo che l'IVA sia del 22%
 
-                contentStream.showText("Fattura");
 
                 // Carica l'immagine del prodotto
 
 
                 contentStream.showText("Prodotto: " + nomeProdotto);
-                contentStream.newLine();
+                contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Descrizione: " + descrizione);
-                contentStream.newLine();
+                contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Quantità: " + quantita);
-                contentStream.newLine();
-                contentStream.showText("Prezzo singolo: " + prezzoSingolo);
-                contentStream.newLine();
-                contentStream.showText("Totale: " + totaleProdotto);
-                contentStream.newLine();
-                contentStream.showText("IVA: " + iva);
-                contentStream.newLine();
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Prezzo singolo: " + String.format("%.2f",prezzoSingolo)+"€");
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Totale: " + String.format("%.2f",totaleProdotto)+"€");
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("IVA: " + String.format("%.2f",iva)+"€");
+                contentStream.newLineAtOffset(0, -20);
 
                 totaleFattura += totaleProdotto;
             }
 
-            contentStream.showText("Totale Fattura: " + totaleFattura);
+            contentStream.showText("Totale Fattura: " + String.format("%.2f",totaleFattura)+"€");
 
             contentStream.endText();
             contentStream.close();
