@@ -14,9 +14,10 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 
  @WebServlet("/generaFattura")
@@ -34,19 +35,41 @@ public class generaFattura extends HttpServlet {
  // Metodo per ottenere il carrello con i prodotti
 
         try {
-
+        	
             PDDocument document = new PDDocument();
             PDPage page = new PDPage(PDRectangle.A4);
             document.addPage(page);
 
+            
+            //stream
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
             contentStream.beginText();
+            
+            /* IMMAGINE
+// Carica l'immagine del logo
+PDImageXObject logoImage = PDImageXObject.createFromFile("svgtest/Logo.png", document);
+
+// Coordinate del logo
+float logoX = 50; // Coordinata X (margine sinistro)
+float logoY = PDRectangle.A4.getHeight() - 50 - logoImage.getHeight(); // Coordinata Y (altezza_pagina - margine superiore - altezza_logo)
+
+// Dimensioni del logo
+float logoWidth = 100; // Larghezza del logo
+float logoHeight = 50; // Altezza del logo
+
+// Disegna il logo sulla pagina
+contentStream.drawImage(logoImage, logoX, logoY, logoWidth, logoHeight);
+            */
+            
+            
             // Aggiungi il titolo della fattura
             PDFont HelveticaBold=  new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
             PDFont Helvetica=  new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
             contentStream.setFont(HelveticaBold, 16);
             contentStream.newLineAtOffset(50, 700);
             contentStream.showText("Fattura");
+            
+            
             contentStream.newLineAtOffset(0, -20);
 
 
