@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import it.SpaceComix.model.Carrello;
-import it.SpaceComix.model.FatturaGenerator;
 import it.SpaceComix.model.ProdottoCarrello;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -43,9 +42,9 @@ public class generaFattura extends HttpServlet {
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
             contentStream.beginText();
             // Aggiungi il titolo della fattura
-            PDFont pdfFont=  new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
-
-            contentStream.setFont(pdfFont, 16);
+            PDFont HelveticaBold=  new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
+            PDFont Helvetica=  new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
+            contentStream.setFont(HelveticaBold, 16);
             contentStream.newLineAtOffset(50, 700);
             contentStream.showText("Fattura");
             contentStream.newLineAtOffset(0, -20);
@@ -53,7 +52,7 @@ public class generaFattura extends HttpServlet {
 
 
             // Aggiungi le info
-            contentStream.setFont(pdfFont, 12);
+            contentStream.setFont(Helvetica, 12);
 
 
             double totaleFattura = 0;
@@ -64,7 +63,8 @@ public class generaFattura extends HttpServlet {
                 int quantita = prodotto.getQuantita();
                 double prezzoSingolo = prodotto.getProdotto().getPrezzo();
                 double totaleProdotto = quantita * prezzoSingolo;
-                double iva = totaleProdotto * 0.22; // Assumiamo che l'IVA sia del 22%
+                double ivap = prodotto.getProdotto().getIva();
+                double iva = totaleProdotto * (ivap/100);
 
 
                 // Carica l'immagine del prodotto
@@ -80,8 +80,8 @@ public class generaFattura extends HttpServlet {
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Totale: " + String.format("%.2f",totaleProdotto)+"€");
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("IVA: " + String.format("%.2f",iva)+"€");
-                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("IVA: " + String.format("%.2f",iva)+"€" + " (" + ivap + "%)");
+                contentStream.newLineAtOffset(0, -50);
 
                 totaleFattura += totaleProdotto;
             }
