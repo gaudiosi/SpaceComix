@@ -29,7 +29,7 @@ body {
 }
 
 .navbar-button {
-  color: #308F9B;
+  color: #61BDD1;
   background-color: rgba(255, 255, 255, 0.25);
   padding: 0.3em 0.6em;
   border: none;
@@ -40,14 +40,14 @@ body {
   font-size: 15px;
   position: relative;
   overflow: hidden;
-  outline: 3px solid #308F9B;
+  outline: 3px solid #61BDD1;
 }
 
 .navbar-button:hover {
   color: #ffffff;
   transform: scale(1.05);
-  outline: 2px solid #70bdca;
-  box-shadow: 4px 5px 17px -4px #34AAC4;
+  outline: 3px solid #70bdca;
+  box-shadow: 4px 5px 17px -4px #61BDD1;
 }
 
 .navbar-button::before {
@@ -84,7 +84,7 @@ body {
 }
 
 .navbar input[type="submit"] {
-  color: #308F9B;
+  color: #61BDD1;
   background-color: rgba(255, 255, 255, 0.025);;
   text-transform: uppercase;
   font-size: 15px;

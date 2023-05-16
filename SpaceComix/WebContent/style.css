@@ -55,7 +55,7 @@ input[type="email"],input[type="text"], input[type="password"] {
 }
 
 input[type="submit"], input[type="reset"] {
-  color: #308F9B;
+  color: #61BDD1;
   background-color: transparent;
   text-transform: uppercase;
   font-weight: bold;
@@ -120,7 +120,7 @@ input[type="submit"]:hover, input[type="reset"]:hover {
 
 
 .button-color {
-  color: #34AAC4;
+  color: #61BDD1;
   padding: 0.3em 0.6em;
   border: none;
   border-radius: 3px;
@@ -130,14 +130,14 @@ input[type="submit"]:hover, input[type="reset"]:hover {
   font-size: 15px;
   position: relative;
   overflow: hidden;
-  outline: 3px solid #34AAC4;
+  outline: 3px solid #61BDD1;
 }
 
 .button-color:hover {
   color: #ffffff;
   transform: scale(1.05);
-  outline: 2px solid #70bdca;
-  box-shadow: 4px 5px 17px -4px #34AAC4;
+  outline: 3px solid #70bdca;
+  box-shadow: 4px 5px 17px -4px #61BDD1;
 }
 
 .button-color::before {

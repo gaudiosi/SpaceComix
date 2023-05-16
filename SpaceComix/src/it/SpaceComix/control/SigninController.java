@@ -47,7 +47,7 @@ public class SigninController extends HttpServlet {
 			} catch (SQLException e) {
 				errore = true;
 			}
-			if(!errore) {
+			if(!errore && user.getId() != 0) {
             	session.setAttribute("user", user);
             	response.sendRedirect("index.jsp");
             }
