@@ -16,19 +16,17 @@ public class FatturaGenerator {
     	Carrello cart = cart2; // Metodo per ottenere il carrello con i prodotti
         
         try {
-            PDDocument document = new PDDocument();
+            final PDDocument document = new PDDocument();
             PDPage page = new PDPage(PDRectangle.A4);
             document.addPage(page);
 
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
             
             // Aggiungi il titolo della fattura
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
             contentStream.newLineAtOffset(50, 700);
             contentStream.showText("Fattura");
             
             // Aggiungi le info
-            contentStream.setFont(PDType1Font.HELVETICA, 12);
             contentStream.newLineAtOffset(50, 650);
             
             double totaleFattura = 0;
