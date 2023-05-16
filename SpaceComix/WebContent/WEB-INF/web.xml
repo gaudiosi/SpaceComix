@@ -34,4 +34,9 @@
     <servlet-name>SigninController</servlet-name>
     <url-pattern>/signin</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>generaFattura</servlet-name>
+    <url-pattern>/generaFattura</url-pattern>
+  </servlet-mapping>
 </web-app>
