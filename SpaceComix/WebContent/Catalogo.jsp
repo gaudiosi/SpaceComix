@@ -29,9 +29,10 @@ Collection<CategoriaBean> categorie = cdao.doRetrieveAll(ord);
 for (CategoriaBean c : categorie)
 	{
 %>
+  <div class="checkBoxs-label">
   <input type="checkbox" id="<%= c.getNome() %>" name="vehicle" value="<%= c.getNome() %>" onclick="submitForm()">
   <label for="<%= c.getNome() %>"> <%= c.getNome() %> </label><br>
-  
+  </div>
 <%  } %>
 </form>
 </div>

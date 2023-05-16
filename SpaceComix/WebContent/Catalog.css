@@ -24,6 +24,8 @@ h1 {
   	margin-bottom: 5px;
 }
 
+
+
 /* Lista prodotti */
 .product-list {
 	display: flex;
@@ -47,6 +49,8 @@ h1 {
 	flex-basis: calc(50% - 20px);
 	max-width: 300px;
 }
+
+
 
 @media (max-width: 1300px) {
 	
@@ -132,4 +136,22 @@ h1 {
 	display: flex;
 	justify-content: inline-block;
 	
+}
+
+
+.categorie {
+	
+	margin-top: 10px;
+	margin-bottom: auto;
+	
+}
+
+.categorie label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.checkBoxs-label {
+	display: flex;
+	margin-right: 10px;
 }
