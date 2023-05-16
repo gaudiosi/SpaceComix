@@ -13,7 +13,7 @@ import it.SpaceComix.model.Carrello;
 
 public class FatturaGenerator {
     public static void main(String[] args) {
-        Carrello cart = getCarrello(); // Metodo per ottenere il carrello con i prodotti
+    	Carrello cart = args[0]; // Metodo per ottenere il carrello con i prodotti
         
         try {
             PDDocument document = new PDDocument();
