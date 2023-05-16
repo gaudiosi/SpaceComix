@@ -124,7 +124,7 @@
                         <p class="color-1">Include IVA</p>
                 </div>
             </div>
-            <form action="/generaFattura" method="post">
+            <form action="generaFattura" method="post">
             <button type="submit" class="check-out">Check Out</button>
 			</form>
         </div>
