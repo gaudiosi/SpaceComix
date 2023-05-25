@@ -11,7 +11,7 @@
   </head>
   <body>
     <nav class="navbar" id="myNavbar">
-	<a href = "index.jsp" class = "logo-img"><img src="Immagini/svgtest/Logo.svg" alt="Logo del sito" class="logo" type="image/svg+xml"></a>
+	<a href = "index.jsp" class = "logo-img"><img src="Immagini/Logo.svg" alt="Logo del sito" class="logo" type="image/svg+xml"></a>
       <div>
         <a href="Catalogo.jsp" class="navbar-button">Novità</a>
         <a href="faq.jsp" class="navbar-button">FAQ</a>
