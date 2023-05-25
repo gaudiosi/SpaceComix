@@ -10,6 +10,7 @@
 </head>
 <body>
 <div class="quadrato">
+<div>
 	<h1>Register Page</h1>
     <form action="Signin" method="post" class="register">
     <div class = "ordine">
@@ -59,6 +60,7 @@
     	   session.setAttribute("error", null);
        }
     %>
+</div>
 </div>
 <script>
 function togglePasswordVisibility(pass) {

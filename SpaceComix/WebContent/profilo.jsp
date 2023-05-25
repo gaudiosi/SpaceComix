@@ -11,6 +11,7 @@
 </head>
 <body>
 <div class="quadrato">
+<div>
 	<% if (user != null) {%>
 	<h1> <%=user.getUsername() %>'s Profile</h1>
  	  <form action="UpdateProfile" method="post" class="profile">
@@ -56,6 +57,7 @@
            session.setAttribute("error", null);
        }
     %>
+</div>
 </div>
     
 <script>

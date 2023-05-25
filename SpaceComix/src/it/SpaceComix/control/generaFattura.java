@@ -20,7 +20,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 //import java.util.logging.Logger;
 
 
- @WebServlet("/generaFattura")
+@WebServlet("/generaFattura")
 public class generaFattura extends HttpServlet {
 
 
@@ -97,19 +97,19 @@ contentStream.drawImage(logoImage, logoX, logoY, logoWidth, logoHeight);
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Descrizione: " + descrizione);
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Quantit√†: " + quantita);
+                contentStream.showText("Quantit‡†: " + quantita);
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Prezzo singolo: " + String.format("%.2f",prezzoSingolo)+"‚Ç¨");
+                contentStream.showText("Prezzo singolo: " + String.format("%.2f",prezzoSingolo)+"Ä");
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Totale: " + String.format("%.2f",totaleProdotto)+"‚Ç¨");
+                contentStream.showText("Totale: " + String.format("%.2f",totaleProdotto)+"Ä");
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("IVA: " + String.format("%.2f",iva)+"‚Ç¨" + " (" + ivap + "%)");
+                contentStream.showText("IVA: " + String.format("%.2f",iva)+"Ä" + " (" + ivap + "%)");
                 contentStream.newLineAtOffset(0, -50);
 
                 totaleFattura += totaleProdotto;
             }
 
-            contentStream.showText("Totale Fattura: " + String.format("%.2f",totaleFattura)+"‚Ç¨");
+            contentStream.showText("Totale Fattura: " + String.format("%.2f",totaleFattura)+"Ä");
 
             contentStream.endText();
             contentStream.close();

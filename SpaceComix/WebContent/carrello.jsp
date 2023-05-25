@@ -7,7 +7,6 @@
 <head>
     <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProdottoCarrello,it.SpaceComix.model.Carrello, it.SpaceComix.model.UserBean"%>
 
-
     <title>Carrello</title>
 
     <link href="carrello.css" rel="stylesheet" type="text/css">
@@ -23,12 +22,9 @@
             margin: 0;
         }
     </style>
-
-
-
 </head>
 
-
+<div class="quadrato">
 <div class="container">
     <%
         Carrello cart = (Carrello) request.getSession().getAttribute("cart");
@@ -153,7 +149,7 @@
 </div>
 
 
-
+</div>
 </body>
 <%@include file="Footer.jsp" %>
 </html>

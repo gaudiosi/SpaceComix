@@ -12,6 +12,8 @@ body {
 .quadrato {
 	min-width: 100vw;
 	min-height: 82vh;
+	display:flex;
+	justify-content: center;
 }
 
 /* Stili per il navbar */
@@ -111,6 +113,7 @@ body {
   
   .navbar .navbar-button:not(.logo-img){
   display: none;
+  data-toggle:dropdown;
   }
   
   .navbar a.icon {
@@ -147,5 +150,23 @@ body {
   .navbar a.icon {
     display: none;
   }
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #F7F0EC;
+}
+
+::-webkit-scrollbar:hover {
+    background-color: #E0E0E0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #34AAC4;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #308F9B;
+}
 
   

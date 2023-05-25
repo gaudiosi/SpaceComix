@@ -10,6 +10,7 @@
 </head>
 <body>
 	<div class="quadrato">
+	<div>
     <h1>Login Page</h1>
     <form action="Login" method="post" class ="login">
     <div class = "ordine">
@@ -31,6 +32,7 @@
         </div>
     </div>
   	</form>
+  	</div>
     </div>
     <% String error = (String) session.getAttribute("error");
        if (error != null) {

@@ -43,7 +43,10 @@ for (CategoriaBean c : categorie)
     // Recupera la lista di prodotti dal database o da un'altra fonte dati
     int contaitem = 0;
     ProductDAO dao = new ProductDAO();
-    String order = "id DESC";
+	String order = "id DESC";
+	if(request.getParameter("ordine") != null){
+		order = request.getParameter("ordine");
+	}
     String genere = request.getParameter("genere");
     Collection<ProductBean> listaProdotti = dao.doRetrieveAll(order);
 

@@ -24,8 +24,6 @@ h1 {
   	margin-bottom: 5px;
 }
 
-
-
 /* Lista prodotti */
 .product-list {
 	display: flex;
@@ -132,19 +130,9 @@ h1 {
 	}
 }
 
-.quadrato {
-	
-	display: flex;
-	justify-content: inline-block;
-	
-}
-
-
 .categorie {
-	
 	margin-top: 10px;
 	margin-bottom: auto;
-	
 }
 
 .categorie label {
