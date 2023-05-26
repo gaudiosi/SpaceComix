@@ -2,6 +2,8 @@ package it.SpaceComix.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import it.SpaceComix.model.ProductBean;
 import it.SpaceComix.model.ProductDAO;
+import it.SpaceComix.model.CategoriaDAO;
+import it.SpaceComix.model.CategoriaBean;
+
 
 @WebServlet("/AddProduct")
 public class AddProduct extends HttpServlet {
@@ -41,6 +46,31 @@ public class AddProduct extends HttpServlet {
         product.setEditore(request.getParameter("editore"));
         product.setIsbn(request.getParameter("isbn"));
         product.setSconto(Integer.parseInt(request.getParameter("sconto")));
+        
+        //PARTE DI CONVERSIONE DA STRINGHE A ARRAYLIST<CategoriaBean>
+        String[] categorieSelezionate = request.getParameterValues("categorieSelezionate");
+        ArrayList<CategoriaBean> generi = new ArrayList<CategoriaBean>();
+		CategoriaDAO cdao = new CategoriaDAO();
+		String ord = "nome DESC";
+		Collection<CategoriaBean> categorie = null;
+		try {
+			categorie = cdao.doRetrieveAll(ord);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (String cs : categorieSelezionate) {
+		    for (CategoriaBean c : categorie) {
+		        if (c.getNome().equals(cs)) {
+		            generi.add(c);
+		            break;
+		        }
+		    }
+		}
+        product.setGeneri(generi);
+
+        //PARTE DI CONVERSIONE DA STRINGHE A ARRAYLIST<CategoriaBean>
 
         String isbnRegex = "^978-[0-9]{1,5}-[0-9]{1,7}-[0-9]{1,6}-[0-9]{1}$";
         if (!product.getIsbn().matches(isbnRegex)) {

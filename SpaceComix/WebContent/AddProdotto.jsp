@@ -41,6 +41,9 @@
         <label for="sconto">Sconto:</label>
         <input type="number" id="sconto" name="sconto" required><br>
 		
+		
+		
+		<!--  SELEZIONE CATEGORIE -->
 		<div class="categorie">
 		<h4>Categorie</h4>
 		<%
@@ -57,9 +60,14 @@
 		<%  
 		} %>
 		</div>
-		
-
+		<% String[] categorieSelezionate = new String[0]; %>
 		<input type="hidden" id="categorieSelezionate" name="categorieSelezionate" value="<%= categorieSelezionate %>">
+		<!--  SELEZIONE CATEGORIE -->
+		
+		
+		
+		
+		
 		
         <input type="submit" value="Add Product">
     </form>

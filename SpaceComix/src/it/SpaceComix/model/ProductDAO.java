@@ -1,5 +1,6 @@
 package it.SpaceComix.model;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,7 +48,11 @@ public class ProductDAO implements DAO<ProductBean> {
             preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setInt(1, product.getQuantita());
             preparedStatement.setInt(2, product.getIva());
-            preparedStatement.setFloat(3, product.getPrezzo());
+            
+            //SONO PIGRO QUINDI ECCOVI LA CONVERSIONE DA FLOAT A BIGDECIMAL, COME DEFICIENTI IN TUTTO IL CODICE ABBIAMO USATO FLOAT MA è DECIMAL NEL DB
+            BigDecimal bd = BigDecimal.valueOf(product.getPrezzo());
+            preparedStatement.setBigDecimal(3, bd);
+            
             preparedStatement.setString(4, product.getTitolo());
             preparedStatement.setString(5,product.getDescrizione());
             preparedStatement.setInt(6, product.getSconto());
@@ -58,7 +63,7 @@ public class ProductDAO implements DAO<ProductBean> {
             preparedStatement2 = connection.prepareStatement(insert2SQL);
             for (CategoriaBean categoria : product.getGeneri())
             {
-                preparedStatement2.setString(1,categoria.getNome());
+                preparedStatement2.setString(1, categoria.getNome());
                 preparedStatement2.setInt(2, product.getID());
                 preparedStatement2.addBatch();
 
