@@ -39,20 +39,16 @@ public class ProductDAO implements DAO<ProductBean> {
         PreparedStatement preparedStatement2 = null;
 
         String insertSQL = "INSERT INTO " + ProductDAO.TABLE_NAME
-                + " (quantita, iva, prezzo, titolo, descrizione, autore, editore, isbn, sconto, imagine_alt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " (quantita, iva, prezzo, titolo, descrizione, autore, editore, isbn, sconto, image_alt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String insert2SQL = "INSERT INTO Appartenenza (idCategoria,idProdotto) VALUES (?,?)";
 
         try {
             connection = ds.getConnection();
-            connection.setAutoCommit(false);//Stackoverflow: According to the documentation, connection.setAutoCommit(false) will allow you to group multiple subsequent Statements under the same transaction
+            connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setInt(1, product.getQuantita());
             preparedStatement.setInt(2, product.getIva());
-            
-            //SONO PIGRO QUINDI ECCOVI LA CONVERSIONE DA FLOAT A BIGDECIMAL, COME DEFICIENTI IN TUTTO IL CODICE ABBIAMO USATO FLOAT MA è DECIMAL NEL DB
-            BigDecimal bd = BigDecimal.valueOf(product.getPrezzo());
-            preparedStatement.setBigDecimal(3, bd);
-            
+            preparedStatement.setFloat(3, product.getPrezzo());
             preparedStatement.setString(4, product.getTitolo());
             preparedStatement.setString(5, product.getDescrizione());
             preparedStatement.setString(6, product.getAutore());
@@ -77,15 +73,15 @@ public class ProductDAO implements DAO<ProductBean> {
 
         } finally {
             try {
-                if (preparedStatement != null)
+            	if (preparedStatement != null)
                     preparedStatement.close();
                 if (preparedStatement2 != null) {
                     preparedStatement2.close();
                 }
-
             } finally {
                 if (connection != null)
-                    connection.close();}
+                    connection.close();
+            }
         }
     }
 

@@ -78,7 +78,7 @@ public class AddProduct extends HttpServlet {
 
         String isbnRegex = "^978-[0-9]{1,5}-[0-9]{1,7}-[0-9]{1,6}-[0-9]{1}$";
         if (!product.getIsbn().matches(isbnRegex)) {
-            errore = true;
+            errore = false;
             String error = "Invalid ISBN format. Please try again.";
             session.setAttribute("error", error);
             response.sendRedirect("AddProdotto.jsp");
