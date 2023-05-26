@@ -13,6 +13,12 @@
 </head>
 <body>
     <h1>Add Product</h1>
+    <% String error = (String) session.getAttribute("error");
+       if (error != null) {
+    	   out.print("<p class = \"error\">" + error + "</p>");
+           session.setAttribute("error", null);
+       }
+    %>
     <form method="post" action="AddProduct">
 
         <label for="titolo">Titolo:</label>

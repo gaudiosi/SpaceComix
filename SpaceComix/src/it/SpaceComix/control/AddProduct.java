@@ -81,7 +81,7 @@ public class AddProduct extends HttpServlet {
             errore = true;
             String error = "Invalid ISBN format. Please try again.";
             session.setAttribute("error", error);
-            response.sendRedirect("add_product.jsp");
+            response.sendRedirect("AddProdotto.jsp");
             return;
         }
 
@@ -96,7 +96,7 @@ public class AddProduct extends HttpServlet {
             session.setAttribute("success", "Prodotto aggiunto.");
             response.sendRedirect("index.jsp");
         } else {
-            String error = "errpre, ritenta.";
+            String error = "errore, ritenta.";
             session.setAttribute("error", error);
             response.sendRedirect("AddProdotto.jsp");
         }

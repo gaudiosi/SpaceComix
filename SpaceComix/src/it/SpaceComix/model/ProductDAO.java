@@ -61,10 +61,7 @@ public class ProductDAO implements DAO<ProductBean> {
             preparedStatement.setInt(9, product.getSconto());
             preparedStatement.setString(10, product.getImage_alt());
             
-            System.out.println("LA STRINGA EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE ");
-            System.out.println(insertSQL);
             preparedStatement.executeUpdate();
-
 
             preparedStatement2 = connection.prepareStatement(insert2SQL);
             for (CategoriaBean categoria : product.getGeneri())
@@ -77,12 +74,6 @@ public class ProductDAO implements DAO<ProductBean> {
             preparedStatement2.executeBatch();
 
             connection.commit();
-
-        } catch (SQLException e) {
-
-            if (connection != null) {
-                connection.rollback();   //Se ci sono eccezioni, annulla tutta la transazione, sia executeUpdate che executeBatch
-            }
 
         } finally {
             try {
