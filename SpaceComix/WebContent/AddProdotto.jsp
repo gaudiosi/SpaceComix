@@ -14,14 +14,6 @@
 <body>
     <h1>Add Product</h1>
     <form method="post" action="AddProduct">
-        <label for="quantita">QUANTITA:</label>
-        <input type="number" id="quantita" name="quantita" required><br>
-
-        <label for="iva">IVA:</label>
-        <input type="number" id="iva" name="iva" required><br>
-
-        <label for="prezzo">Prezzo:</label>
-        <input type="number" step="0.01" id="prezzo" name="prezzo" required><br>
 
         <label for="titolo">Titolo:</label>
         <input type="text" id="titolo" name="titolo" required><br>
@@ -38,6 +30,15 @@
         <label for="isbn">ISBN:</label>
         <input type="text" id="isbn" name="isbn" required><br>
 
+        <label for="quantita">QUANTITA:</label>
+        <input type="number" id="quantita" name="quantita" required><br>
+
+        <label for="prezzo">Prezzo:</label>
+        <input type="number" step="0.01" id="prezzo" name="prezzo" required><br>
+
+        <label for="iva">IVA:</label>
+        <input type="number" id="iva" name="iva" required><br>
+        
         <label for="sconto">Sconto:</label>
         <input type="number" id="sconto" name="sconto" required><br>
 		

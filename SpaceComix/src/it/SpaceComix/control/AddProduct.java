@@ -37,14 +37,18 @@ public class AddProduct extends HttpServlet {
         boolean errore = false;
         HttpSession session = request.getSession();
         ProductBean product = new ProductBean();
-        product.setQuantita(Integer.parseInt(request.getParameter("quantita")));
-        product.setIva(Integer.parseInt(request.getParameter("iva")));
         product.setPrezzo(Float.parseFloat(request.getParameter("prezzo")));
         product.setTitolo(request.getParameter("titolo"));
         product.setDescrizione(request.getParameter("descrizione"));
         product.setAutore(request.getParameter("autore"));
         product.setEditore(request.getParameter("editore"));
         product.setIsbn(request.getParameter("isbn"));
+        product.setQuantita(Integer.parseInt(request.getParameter("quantita")));
+        product.setIva(Integer.parseInt(request.getParameter("iva")));
+        
+        String imagine_alt = "Copertina del volume di "+product.getTitolo();
+        product.setImage_alt(imagine_alt);
+        
         product.setSconto(Integer.parseInt(request.getParameter("sconto")));
         
         //PARTE DI CONVERSIONE DA STRINGHE A ARRAYLIST<CategoriaBean>
