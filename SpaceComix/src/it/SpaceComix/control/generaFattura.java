@@ -14,7 +14,7 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+//import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 //import java.util.logging.Logger;
@@ -97,19 +97,19 @@ contentStream.drawImage(logoImage, logoX, logoY, logoWidth, logoHeight);
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Descrizione: " + descrizione);
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Quantità : " + quantita);
+                contentStream.showText("Quantitï¿½: " + quantita);
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Prezzo singolo: " + String.format("%.2f",prezzoSingolo)+"€");
+                contentStream.showText("Prezzo singolo: " + String.format("%.2f",prezzoSingolo)+"ï¿½");
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Totale: " + String.format("%.2f",totaleProdotto)+"€");
+                contentStream.showText("Totale: " + String.format("%.2f",totaleProdotto)+"ï¿½");
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("IVA: " + String.format("%.2f",iva)+"€" + " (" + ivap + "%)");
+                contentStream.showText("IVA: " + String.format("%.2f",iva)+"ï¿½" + " (" + ivap + "%)");
                 contentStream.newLineAtOffset(0, -50);
 
                 totaleFattura += totaleProdotto;
             }
 
-            contentStream.showText("Totale Fattura: " + String.format("%.2f",totaleFattura)+"€");
+            contentStream.showText("Totale Fattura: " + String.format("%.2f",totaleFattura)+"ï¿½");
 
             contentStream.endText();
             contentStream.close();
