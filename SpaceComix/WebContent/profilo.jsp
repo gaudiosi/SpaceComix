@@ -22,7 +22,7 @@
 		        </div>
 		        <div class = "campi1">
 		        	<label for="text">Cognome:	</label>
-		        	<input type="text" id="cognome" name="cognome" value=" <%= user.getCognome() %> "requierd>
+		        	<input type="text" id="cognome" name="cognome" value=" <%= user.getCognome() %> " required>
 		        	</div>
 		        <br>
 		        <div class = "campi2"> 
