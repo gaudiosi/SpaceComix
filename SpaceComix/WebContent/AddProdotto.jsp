@@ -61,40 +61,16 @@
 		for (CategoriaBean c : categorie) {
 		%>
   			<div class="checkBoxs-label">
-  				<input type="checkbox" id="<%= c.getNome() %>" name="categorie" value="<%= c.getNome() %>" onclick="submitForm()">
+  				<input type="checkbox" id="<%=c.getNome()%>" name="categorie" value="<%=c.getNome()%>" onclick="submitForm()">
   				<label for="<%= c.getNome() %>"> <%= c.getNome() %> </label><br>
   			</div>
 		<%  
 		} %>
 		</div>
-		<% String[] categorieSelezionate = new String[0]; %>
-		<input type="hidden" id="categorieSelezionate" name="categorieSelezionate" value="<%= categorieSelezionate %>">
-		<!--  SELEZIONE CATEGORIE -->
-		
-		
-		
-		
-		
-		
         <input type="submit" value="Add Product">
     </form>
     
-    
-<script>
-  var categorieSelezionate = [];
 
-  function submitForm() {
-    var checkboxes = document.getElementsByName("categorie");
-
-    categorieSelezionate = [];
-
-    for (var i = 0; i < checkboxes.length; i++) {
-      if (checkboxes[i].checked) {
-        categorieSelezionate.push(checkboxes[i].value);
-      }
-    }
-  }
-</script>
     
 </body>
 </html>

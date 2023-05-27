@@ -44,7 +44,7 @@ public class ProductDAO implements DAO<ProductBean> {
         try {
             connection = ds.getConnection();
             connection.setAutoCommit(false);
-            preparedStatement = connection.prepareStatement(insertSQL);
+            preparedStatement = connection.prepareStatement(insertSQL, preparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, product.getQuantita());
             preparedStatement.setInt(2, product.getIva());
             preparedStatement.setFloat(3, product.getPrezzo());
@@ -55,18 +55,32 @@ public class ProductDAO implements DAO<ProductBean> {
             preparedStatement.setString(8, product.getIsbn());
             preparedStatement.setInt(9, product.getSconto());
             preparedStatement.setString(10, product.getImage_alt());
-            
+
             preparedStatement.executeUpdate();
 
-            preparedStatement2 = connection.prepareStatement(insert2SQL);
-            for (CategoriaBean categoria : product.getGeneri())
+
+
+            if(product.getGeneri().size()>0)
             {
-                preparedStatement2.setString(1, categoria.getNome());
-                preparedStatement2.setInt(2, product.getID());
-                preparedStatement2.addBatch();
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                int InsertedId = -1;
+                if (generatedKeys.next()) {
+                    InsertedId = generatedKeys.getInt(1);
+                }
+
+
+                preparedStatement2 = connection.prepareStatement(insert2SQL);
+                for (CategoriaBean categoria : product.getGeneri())
+                {
+                    preparedStatement2.setString(1, categoria.getNome());
+                    preparedStatement2.setInt(2, InsertedId);
+                    preparedStatement2.addBatch();
+
+                }
+                preparedStatement2.executeBatch();
 
             }
-            preparedStatement2.executeBatch();
+
 
             connection.commit();
 

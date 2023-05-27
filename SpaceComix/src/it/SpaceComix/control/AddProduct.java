@@ -52,7 +52,7 @@ public class AddProduct extends HttpServlet {
         product.setSconto(Integer.parseInt(request.getParameter("sconto")));
         
         //PARTE DI CONVERSIONE DA STRINGHE A ARRAYLIST<CategoriaBean>
-        String[] categorieSelezionate = request.getParameterValues("categorieSelezionate");
+        String[] categorieSelezionate = request.getParameterValues("categorie");
         ArrayList<CategoriaBean> generi = new ArrayList<CategoriaBean>();
 		CategoriaDAO cdao = new CategoriaDAO();
 		String ord = "nome DESC";
@@ -63,16 +63,21 @@ public class AddProduct extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		for (String cs : categorieSelezionate) {
-		    for (CategoriaBean c : categorie) {
-		        if (c.getNome().equals(cs)) {
-		            generi.add(c);
-		            break;
-		        }
-		    }
-		}
-        product.setGeneri(generi);
+
+        if(categorieSelezionate!= null)
+        {
+            for (String cs : categorieSelezionate) {
+                for (CategoriaBean c : categorie) {
+                    if (c.getNome().equals(cs)) {
+                        generi.add(c);
+                        break;
+                    }
+                }
+            }
+            product.setGeneri(generi);
+        }
+
+
 
         //PARTE DI CONVERSIONE DA STRINGHE A ARRAYLIST<CategoriaBean>
 
