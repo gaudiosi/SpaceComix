@@ -39,7 +39,9 @@ public class ProductDAO implements DAO<ProductBean> {
 
         String insertSQL = "INSERT INTO " + ProductDAO.TABLE_NAME
                 + " (quantita, iva, prezzo, titolo, descrizione, autore, editore, isbn, sconto, image_alt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        String insert2SQL = "INSERT INTO Appartenenza (idCategoria,idProdotto) VALUES (?,?)";
+        String insert2SQL = "INSERT INTO Appartenenza (idCategoria, idProdotto) VALUES (?,?)";
+        String TEST = "SELECT * FROM spacecomix.prodotto\r\n"
+        		+ "where isbn = \""+product.getIsbn()+"\"";
 
         try {
             connection = ds.getConnection();
@@ -57,14 +59,20 @@ public class ProductDAO implements DAO<ProductBean> {
             preparedStatement.setString(10, product.getImage_alt());
             
             preparedStatement.executeUpdate();
-
-            preparedStatement2 = connection.prepareStatement(insert2SQL);
-            for (CategoriaBean categoria : product.getGeneri())
-            {
-                preparedStatement2.setString(1, categoria.getNome());
-                preparedStatement2.setInt(2, product.getID());
-                preparedStatement2.addBatch();
-
+            
+            
+            PreparedStatement ps = null;
+            ps = connection.prepareStatement(TEST);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+            	preparedStatement2 = connection.prepareStatement(insert2SQL);
+            	for (CategoriaBean categoria : product.getGeneri())
+            	{
+            		preparedStatement2.setString(1, categoria.getNome());
+            		preparedStatement2.setInt(2, rs.getInt("id"));
+            		preparedStatement2.addBatch();
+            		
+            	}
             }
             preparedStatement2.executeBatch();
 
