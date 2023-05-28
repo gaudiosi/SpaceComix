@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +18,17 @@ import it.SpaceComix.model.ProductDAO;
 import it.SpaceComix.model.CategoriaDAO;
 import it.SpaceComix.model.CategoriaBean;
 
+import java.io.*;
+import java.nio.file.*;
+import javax.servlet.http.*;
+import org.apache.commons.io.*;
+
 
 @WebServlet("/AddProduct")
+@MultipartConfig
 public class AddProduct extends HttpServlet {
+    private static final String DIRECTORY_PATH = "Immagini";
+
     private static final long serialVersionUID = 1L;
 
     public AddProduct() {
@@ -34,6 +43,16 @@ public class AddProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+    	
+        Part filePart = request.getPart("file");
+        String fileName = getFileName(filePart);
+        String filePath = DIRECTORY_PATH + File.separator + fileName;
+        Files.createDirectories(Paths.get(DIRECTORY_PATH));
+        
+        try (InputStream inputStream = filePart.getInputStream(); OutputStream outputStream = new FileOutputStream(filePath)) {
+               		IOUtils.copy(inputStream, outputStream);
+           	}
+        
         boolean errore = false;
         HttpSession session = request.getSession();
         ProductBean product = new ProductBean();
@@ -45,6 +64,7 @@ public class AddProduct extends HttpServlet {
         product.setIsbn(request.getParameter("isbn"));
         product.setQuantita(Integer.parseInt(request.getParameter("quantita")));
         product.setIva(Integer.parseInt(request.getParameter("iva")));
+        product.setImage(fileName);
         
         String imagine_alt = "Copertina del volume di "+product.getTitolo();
         product.setImage_alt(imagine_alt);
@@ -105,5 +125,16 @@ public class AddProduct extends HttpServlet {
             session.setAttribute("error", error);
             response.sendRedirect("AddProdotto.jsp");
         }
+    }
+    
+    private String getFileName(Part part) {
+        String contentDisposition = part.getHeader("content-disposition");
+        String[] elements = contentDisposition.split(";");
+        for (String element : elements) {
+            if (element.trim().startsWith("filename")) {
+                return element.substring(element.indexOf("=") + 1).trim().replace("\"", "");
+            }
+        }
+        return "file";
     }
 }

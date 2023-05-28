@@ -46,7 +46,7 @@
 
             %>
             <div class="card-container">
-                <img src="Immagini/svgtest/<%=prodotto.getProdotto().getImage()%>" alt="<%=prodotto.getProdotto().getImage_alt()%>" class="card-image" type="image/svg+xml" />
+                <img src="Immagini/<%=prodotto.getProdotto().getImage()%>" alt="<%=prodotto.getProdotto().getImage_alt()%>" class="card-image" type="image/svg+xml" />
                 <div class="product-container">
                     <div class="product-details">
                         <h2 class="product-details"><%=prodotto.getProdotto().getTitolo()%></h2>

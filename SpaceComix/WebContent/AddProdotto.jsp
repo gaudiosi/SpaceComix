@@ -19,7 +19,7 @@
            session.setAttribute("error", null);
        }
     %>
-    <form method="post" action="AddProduct">
+    <form method="post" action="AddProduct"  enctype="multipart/form-data">
 
         <label for="titolo">Titolo:</label>
         <input type="text" id="titolo" name="titolo" required><br>
@@ -48,7 +48,8 @@
         <label for="sconto">Sconto:</label>
         <input type="number" id="sconto" name="sconto" required><br>
 		
-		
+	    <h1>Caricamento immagini</h1>
+		Seleziona un file da caricare: <input type="file" name="file" /><br />
 		
 		<!--  SELEZIONE CATEGORIE -->
 		<div class="categorie">

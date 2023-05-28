@@ -38,7 +38,7 @@ public class ProductDAO implements DAO<ProductBean> {
         PreparedStatement preparedStatement2 = null;
 
         String insertSQL = "INSERT INTO " + ProductDAO.TABLE_NAME
-                + " (quantita, iva, prezzo, titolo, descrizione, autore, editore, isbn, sconto, image_alt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " (quantita, iva, prezzo, titolo, descrizione, autore, editore, isbn, sconto, immagine , image_alt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String insert2SQL = "INSERT INTO Appartenenza (idCategoria,idProdotto) VALUES (?,?)";
 
         try {
@@ -54,7 +54,8 @@ public class ProductDAO implements DAO<ProductBean> {
             preparedStatement.setString(7, product.getEditore());
             preparedStatement.setString(8, product.getIsbn());
             preparedStatement.setInt(9, product.getSconto());
-            preparedStatement.setString(10, product.getImage_alt());
+            preparedStatement.setString(10, product.getImage());
+            preparedStatement.setString(11, product.getImage_alt());
 
             preparedStatement.executeUpdate();
 
