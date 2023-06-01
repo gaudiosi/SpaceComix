@@ -40,61 +40,64 @@ public class ProductDAO implements DAO<ProductBean> {
         String insertSQL = "INSERT INTO " + ProductDAO.TABLE_NAME
                 + " (quantita, iva, prezzo, titolo, descrizione, autore, editore, isbn, sconto, immagine , image_alt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String insert2SQL = "INSERT INTO Appartenenza (idCategoria,idProdotto) VALUES (?,?)";
-
         try {
-            connection = ds.getConnection();
-            connection.setAutoCommit(false);
-            preparedStatement = connection.prepareStatement(insertSQL, preparedStatement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, product.getQuantita());
-            preparedStatement.setInt(2, product.getIva());
-            preparedStatement.setFloat(3, product.getPrezzo());
-            preparedStatement.setString(4, product.getTitolo());
-            preparedStatement.setString(5, product.getDescrizione());
-            preparedStatement.setString(6, product.getAutore());
-            preparedStatement.setString(7, product.getEditore());
-            preparedStatement.setString(8, product.getIsbn());
-            preparedStatement.setInt(9, product.getSconto());
-            preparedStatement.setString(10, product.getImage());
-            preparedStatement.setString(11, product.getImage_alt());
+        	try {
+        		connection = ds.getConnection();
+        		connection.setAutoCommit(false);
+        		preparedStatement = connection.prepareStatement(insertSQL, preparedStatement.RETURN_GENERATED_KEYS);
+        		preparedStatement.setInt(1, product.getQuantita());
+        		preparedStatement.setInt(2, product.getIva());
+        		preparedStatement.setFloat(3, product.getPrezzo());
+        		preparedStatement.setString(4, product.getTitolo());
+        		preparedStatement.setString(5, product.getDescrizione());
+        		preparedStatement.setString(6, product.getAutore());
+        		preparedStatement.setString(7, product.getEditore());
+        		preparedStatement.setString(8, product.getIsbn());
+        		preparedStatement.setInt(9, product.getSconto());
+        		preparedStatement.setString(10, product.getImage());
+        		preparedStatement.setString(11, product.getImage_alt());
 
-            preparedStatement.executeUpdate();
-
-
-            if(product.getGeneri().size()>0)
-            {
-                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-                int InsertedId = -1;
-                if (generatedKeys.next()) {
-                    InsertedId = generatedKeys.getInt(1);
-                }
+        		preparedStatement.executeUpdate();
 
 
-                preparedStatement2 = connection.prepareStatement(insert2SQL);
-                for (CategoriaBean categoria : product.getGeneri())
-                {
-                    preparedStatement2.setString(1, categoria.getNome());
-                    preparedStatement2.setInt(2, InsertedId);
-                    preparedStatement2.addBatch();
-
-                }
-                preparedStatement2.executeBatch();
-
-            }
+        		if(product.getGeneri().size()>0)
+        		{
+        			ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                	int InsertedId = -1;
+                	if (generatedKeys.next()) {
+                		InsertedId = generatedKeys.getInt(1);
+                	}
 
 
-            connection.commit();
+                	preparedStatement2 = connection.prepareStatement(insert2SQL);
+                	for (CategoriaBean categoria : product.getGeneri())
+                	{
+                		preparedStatement2.setString(1, categoria.getNome());
+                		preparedStatement2.setInt(2, InsertedId);
+                		preparedStatement2.addBatch();
 
-        } finally {
-            try {
-            	if (preparedStatement != null)
-                    preparedStatement.close();
-                if (preparedStatement2 != null) {
-                    preparedStatement2.close();
-                }
-            } finally {
-                if (connection != null)
-                    connection.close();
-            }
+                	}
+                	preparedStatement2.executeBatch();
+
+        		}
+
+
+        		connection.commit();
+
+        	} finally {
+        		try {
+        			if (preparedStatement != null)
+        				preparedStatement.close();
+        			if (preparedStatement2 != null) {
+        				preparedStatement2.close();
+        			}
+        		} finally {
+        			if (connection != null)
+        				connection.close();
+        		}
+        	}
+        }catch(NullPointerException e) {
+        	throw new SQLException();
         }
     }
 

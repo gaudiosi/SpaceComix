@@ -154,7 +154,7 @@ for (CategoriaBean c : categorie)
 	});
 	</script>
 	
-<!--	FUNZIONA QUANDO USEREMO LE AJAX
+<!--
 <script>
   function submitForm() {
     var radioValue = document.querySelector('input[name="vehicle"]:checked').value;

@@ -100,7 +100,7 @@ public class AddProduct extends HttpServlet {
 
         //PARTE DI CONVERSIONE DA STRINGHE A ARRAYLIST<CategoriaBean>
 
-        String isbnRegex = "^978-[0-9]{1,5}-[0-9]{1,7}-[0-9]{1,6}-[0-9]{1}$";
+        String isbnRegex = "^978-[0-9]{1,5}-[0-9]{1,7}-[0-9]{1,6}-[0-9]$";
         if (!product.getIsbn().matches(isbnRegex)) {
             String error = "Invalid ISBN format. Please try again.";
             session.setAttribute("error", error);
@@ -111,7 +111,7 @@ public class AddProduct extends HttpServlet {
         ProductDAO productDao = new ProductDAO();
         try {
             productDao.doSave(product);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             errore = true;
         }
 
