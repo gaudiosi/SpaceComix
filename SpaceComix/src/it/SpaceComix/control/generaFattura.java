@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import it.SpaceComix.model.Carrello;
 import it.SpaceComix.model.ProdottoCarrello;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -121,7 +123,10 @@ contentStream.drawImage(logoImage, logoX, logoY, logoWidth, logoHeight);
 
             document.close();
         } catch (IOException e) {
-            e.printStackTrace();
+        	HttpSession session = request.getSession();
+        	String error = "Problemi a generare la fattura.";
+			session.setAttribute("error", error);
+			response.sendRedirect("carrello.jsp");
         }
 
 

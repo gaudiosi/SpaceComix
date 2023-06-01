@@ -53,7 +53,7 @@ public class AddProduct extends HttpServlet {
                		IOUtils.copy(inputStream, outputStream);
            	}
         
-        boolean errore = false;
+        boolean errore = true;
         HttpSession session = request.getSession();
         ProductBean product = new ProductBean();
         product.setPrezzo(Float.parseFloat(request.getParameter("prezzo")));
@@ -80,8 +80,7 @@ public class AddProduct extends HttpServlet {
 		try {
 			categorie = cdao.doRetrieveAll(ord);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			errore = true;
 		}
 
         if(categorieSelezionate!= null)
@@ -103,7 +102,6 @@ public class AddProduct extends HttpServlet {
 
         String isbnRegex = "^978-[0-9]{1,5}-[0-9]{1,7}-[0-9]{1,6}-[0-9]{1}$";
         if (!product.getIsbn().matches(isbnRegex)) {
-            errore = false;
             String error = "Invalid ISBN format. Please try again.";
             session.setAttribute("error", error);
             response.sendRedirect("AddProdotto.jsp");
