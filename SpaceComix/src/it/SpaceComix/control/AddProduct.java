@@ -53,7 +53,7 @@ public class AddProduct extends HttpServlet {
                		IOUtils.copy(inputStream, outputStream);
            	}
         
-        boolean errore = true;
+        boolean errore = false;
         HttpSession session = request.getSession();
         ProductBean product = new ProductBean();
         product.setPrezzo(Float.parseFloat(request.getParameter("prezzo")));

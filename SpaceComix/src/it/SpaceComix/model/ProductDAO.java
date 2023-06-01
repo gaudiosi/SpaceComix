@@ -31,7 +31,7 @@ public class ProductDAO implements DAO<ProductBean> {
     private static final String TABLE_NAME = "Prodotto";
 
     @Override
-    public synchronized void doSave(ProductBean product) throws SQLException {
+    public synchronized void doSave(ProductBean product) throws SQLException,NullPointerException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -58,7 +58,6 @@ public class ProductDAO implements DAO<ProductBean> {
             preparedStatement.setString(11, product.getImage_alt());
 
             preparedStatement.executeUpdate();
-
 
 
             if(product.getGeneri().size()>0)

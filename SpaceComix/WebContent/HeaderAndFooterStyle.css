@@ -113,7 +113,6 @@ body {
   
   .navbar .navbar-button:not(.logo-img){
   display: none;
-  data-toggle:dropdown;
   }
   
   .navbar a.icon {

@@ -6,7 +6,7 @@
 <%@ page import="it.SpaceComix.model.CategoriaBean" %>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>Add Product</title>
