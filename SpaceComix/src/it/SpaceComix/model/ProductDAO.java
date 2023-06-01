@@ -36,7 +36,6 @@ public class ProductDAO implements DAO<ProductBean> {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        PreparedStatement preparedStatement2 = null;
 
         String insertSQL = "INSERT INTO " + ProductDAO.TABLE_NAME
                 + " (quantita, iva, prezzo, titolo, descrizione, autore, editore, isbn, sconto, immagine , image_alt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -70,15 +69,16 @@ public class ProductDAO implements DAO<ProductBean> {
                 }
 
 
-                preparedStatement2 = connection.prepareStatement(insert2SQL);
-                for (CategoriaBean categoria : product.getGeneri())
-                {
-                    preparedStatement2.setString(1, categoria.getNome());
-                    preparedStatement2.setInt(2, InsertedId);
-                    preparedStatement2.addBatch();
+                try (PreparedStatement preparedStatement2 = connection.prepareStatement(insert2SQL)) {
+                	for (CategoriaBean categoria : product.getGeneri())
+                	{
+                    	preparedStatement2.setString(1, categoria.getNome());
+                    	preparedStatement2.setInt(2, InsertedId);
+                    	preparedStatement2.addBatch();
 
+                	}
+                	preparedStatement2.executeBatch();
                 }
-                preparedStatement2.executeBatch();
 
             }
 
@@ -89,9 +89,6 @@ public class ProductDAO implements DAO<ProductBean> {
             try {
             	if (preparedStatement != null)
                     preparedStatement.close();
-                if (preparedStatement2 != null) {
-                    preparedStatement2.close();
-                }
             } finally {
                 if (connection != null)
                     connection.close();

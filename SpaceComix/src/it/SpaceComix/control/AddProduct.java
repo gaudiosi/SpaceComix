@@ -111,7 +111,7 @@ public class AddProduct extends HttpServlet {
         ProductDAO productDao = new ProductDAO();
         try {
             productDao.doSave(product);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             errore = true;
         }
 
