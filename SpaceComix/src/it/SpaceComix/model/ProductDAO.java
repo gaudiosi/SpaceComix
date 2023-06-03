@@ -122,6 +122,8 @@ public class ProductDAO implements DAO<ProductBean> {
                 bean.setTitolo(rs.getString("titolo"));
                 bean.setDescrizione(rs.getString("descrizione"));
                 bean.setAutore(rs.getString("autore"));
+                bean.setEditore(rs.getString("editore"));
+                bean.setIsbn(rs.getString("isbn"));
                 bean.setSconto(rs.getInt("sconto"));
                 bean.setImage(rs.getString("immagine"));
                 bean.setImage_alt(rs.getString("image_alt"));
@@ -222,6 +224,9 @@ public class ProductDAO implements DAO<ProductBean> {
                 bean.setPrezzo(rs.getFloat("prezzo"));
                 bean.setTitolo(rs.getString("titolo"));
                 bean.setDescrizione(rs.getString("descrizione"));
+                bean.setAutore(rs.getString("autore"));
+                bean.setEditore(rs.getString("editore"));
+                bean.setIsbn(rs.getString("isbn"));
                 bean.setSconto(rs.getInt("sconto"));
                 bean.setImage(rs.getString("immagine"));
                 bean.setImage_alt(rs.getString("image_alt"));
@@ -262,4 +267,41 @@ public class ProductDAO implements DAO<ProductBean> {
 	public ProductBean doRetrieveByKey(String code, String code1) throws SQLException {
 		return null;
 	}
+	
+	
+	public synchronized void doUpdate(ProductBean product) throws SQLException {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String updateSQL = "UPDATE " + TABLE_NAME
+                + " SET quantita = ?, iva = ?, prezzo = ?, titolo = ?, descrizione = ?, autore = ?, editore = ?, isbn = ?, sconto = ?  WHERE id = ?";
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(updateSQL);
+            preparedStatement.setInt(1, product.getQuantita());
+            preparedStatement.setInt(2, product.getIva());
+            preparedStatement.setFloat(3, product.getPrezzo());
+            preparedStatement.setString(4, product.getTitolo());
+            preparedStatement.setString(5, product.getDescrizione());
+            preparedStatement.setString(6, product.getAutore());
+            preparedStatement.setString(7, product.getEditore());
+            preparedStatement.setString(8, product.getIsbn());
+            preparedStatement.setInt(9, product.getSconto());
+            preparedStatement.setInt(10, product.getID());
+
+            preparedStatement.executeUpdate();
+
+            connection.commit();
+        } finally {
+        	try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                if (connection != null)
+                    connection.close();
+            }
+        }
+    }
 }

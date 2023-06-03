@@ -19,7 +19,7 @@
    		response.sendRedirect("index.jsp");
    	   }
     %>
-    
+    <a href="AddProdotto.jsp" class="navbar-button">AGGIUNGI PRODOTTO</a>
     
 </div>
 </body>
