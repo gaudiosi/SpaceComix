@@ -18,6 +18,9 @@
 		<a href="carrello.jsp" class="navbar-button">Carrello</a>
 		<%UserBean user = (UserBean) session.getAttribute("user");
 			       if (user != null) {
+			           if (user.getRuolo().equals("admin")) {
+			        	   out.print("<a href=\"ADMIN.jsp\" class=\"navbar-button\"> ADMIN PAGE</a>");
+			           }
 			           out.print("<a href=\"profilo.jsp\" class=\"navbar-button\">" + user.getUsername() + "</a>");
 			           out.print("<form action=\"Logout\" method=\"get\" class=\"navbar-button\"> " +
 			        		     "<input type=\"submit\" value=\"Logout\">" + 
