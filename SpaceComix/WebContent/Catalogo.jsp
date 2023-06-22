@@ -6,6 +6,8 @@
 <%@ page import="it.SpaceComix.model.CategoriaDAO" %>
 <%@ page import="it.SpaceComix.model.CategoriaBean" %>
 <%@ page import="java.util.*" import = "java.text.DecimalFormat" %>
+
+
 <!DOCTYPE html>
 <html lang ="it">
 <head>
