@@ -10,8 +10,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Product</title>
+    <%@include file="Header.jsp" %>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<% if (user == null || !user.getRuolo().equals("admin")) {
+    	   response.sendError(401, "Soggetto non autorizzato ad accedere alla pagina");
+   	   }
+    %>
     <h1>Add Product</h1>
     <% String error = (String) session.getAttribute("error");
        if (error != null) {
@@ -57,7 +63,7 @@
 		<%
 		CategoriaDAO cdao = new CategoriaDAO();
 		String ord = "nome DESC";
-		Collection<CategoriaBean> categorie = cdao.doRetrieveAll(ord);
+		Collection<CategoriaBean> categorie = cdao.doRetrieveAll(ord); //da cambiare
 
 		for (CategoriaBean c : categorie) {
 		%>
@@ -69,9 +75,9 @@
 		} %>
 		</div>
         <input type="submit" value="Add Product">
+        
     </form>
     
-
-    
 </body>
+<%@include file="Footer.jsp" %>
 </html>
