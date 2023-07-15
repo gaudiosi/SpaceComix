@@ -11,14 +11,15 @@
 <body>
 	<div class="quadrato">
 	<div>
+	<p id = error></p>
     <h1>Login Page</h1>
     <form action="Login" method="post" class ="login">
     <div class = "ordine">
         <label for="email">Email:	</label>
-        <input type="email" id="email" name="email" required><br>
+        <input type="email" class="email" name="email" required><br>
         <div class = "password-container" >
         	<label for="password">Password:	</label>
-        	<input type="password" id="password" name="password" required>
+        	<input type="password" class="password" name="password" required>
         	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility('password')">V</button>
  		</div>
  		<br>
@@ -34,12 +35,7 @@
   	</form>
   	</div>
     </div>
-    <% String error = (String) session.getAttribute("error");
-       if (error != null) {
-    	   out.print("<p class = \"error\">" + error + "</p>");
-           session.setAttribute("error", null);
-       }
-    %>
+    
 <script>
 function togglePasswordVisibility(pass) {
     var passwordField = document.getElementById(pass);
@@ -49,6 +45,31 @@ function togglePasswordVisibility(pass) {
         passwordField.type = "password";
     }
 }
+
+<script>
+$(document).ready(function() {
+    $(".login").submit(function(event) {
+        event.preventDefault(); 
+        
+        var email = $(".email").val();
+        var password = $(".password").val();
+        
+        $.ajax({
+            type: "POST",
+            url: "Login",
+            data: {
+                email: email,
+                password: password
+            },
+            success: function(response) {
+            	window.location.href = 'index.jsp';
+            },
+            error: function(xhr, status, error) {
+            	 document.getElementById('error').innerHTML = 'Credenziali non valide. Riprova.';          
+            }
+        });
+    });
+});
 </script>
 </body>
 <%@include file="Footer.jsp" %>

@@ -38,9 +38,10 @@ public class Prodotto extends HttpServlet {
             }
         }
         else response.sendRedirect("Home"); //da vedere
-
-
     }
 
 
-}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    		throws ServletException, IOException {
+    	doPost(request, response);
+}}
