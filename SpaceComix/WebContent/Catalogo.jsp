@@ -83,7 +83,7 @@ for (CategoriaBean c : categorie)
 				</div>
 				<div class="product-details">
 					<div class="product-title"><p><%= prodotto.getTitolo() %></p></div>
-					<div class="product-description"><p><%= prodotto.getDescrizione()%></p></div>
+					<%--<div class="product-description"><p><%= prodotto.getDescrizione()%></p></div>--%>
 					<div class="product-price">
 						<p><%= String.format("%.2f",prodotto.getPrezzo())%>€</p>
 					</div>

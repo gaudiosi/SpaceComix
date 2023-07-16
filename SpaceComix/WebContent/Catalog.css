@@ -47,6 +47,9 @@ h1 {
 	transition: box-shadow 0.2s ease-in-out;
 	flex-basis: calc(50% - 20px);
 	max-width: 300px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 
 
@@ -74,19 +77,23 @@ h1 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 200px;
+	height: auto;
 	overflow: hidden;
+	flex: 1;
 }
 
 .product-image img {
 	max-width: 100%;
 	max-height: 100%;
 	object-fit: contain;
+	width: 100%;
+	height: auto;
 }
 
 /* Dettagli prodotto */
 .product-details {
-	padding: 20px;
+	padding: 5px;
+	height: 100%;
 }
 
 .product-title {
@@ -100,13 +107,14 @@ h1 {
 	font-size: 16px;
 	line-height: 1.5;
 	color: #19272e;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .product-price {
 	font-size: 24px;
 	font-weight: bold;
 	color: #34aac4;
+	margin-bottom: -25px;
 }
 
 /* Mobile first */

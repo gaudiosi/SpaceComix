@@ -6,7 +6,7 @@ body {
 .container {
     height: auto; /* Sets the height to be equal to the viewport height */
     /* Sets the background color to a light gray shade */
-    padding-top: 5rem;  /* Sets the top padding to 5 rem */
+    padding-top: 2rem;  /* Sets the top padding to 5 rem */
     background-color: #f7f0f0;
     padding-bottom: 6rem;
 
@@ -46,7 +46,7 @@ body {
     }
 }*/
 .main-container {
-    max-width: 64rem; /* set max width */
+    max-width: 70rem; /* set max width */
     margin-left: auto; /* center horizontally */
     margin-right: auto; /* center horizontally */
     justify-content: center;
@@ -341,12 +341,33 @@ svg:hover {
 
 } al momento non serve ad una mazza*/
 
+
+
+.container-1{
+    padding-left: 8rem;
+    padding-right: 8rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    margin-left: auto;
+    margin-right: auto; /* margin auto sia a sinistra che a desta: centrati orizzontalmente rispetto al padre*/
+
+}
+.emptycart-container{
+
+    background-color: #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+
+
+}
+
 .emptycart {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 70%;
 
 
 }
@@ -360,11 +381,14 @@ svg:hover {
 #head {
     text-align: center;
     margin-top: 1rem;
+    margin-bottom: 10px; /* adjust the margin as needed */
+
 }
 
 #para {
     text-align: center;
     margin-top: 1rem;
+    color: #696969;
 }
 
 .piuomeno{
