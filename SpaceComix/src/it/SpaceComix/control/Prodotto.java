@@ -34,7 +34,7 @@ public class Prodotto extends HttpServlet {
             }
             catch (SQLException e)
             {
-                response.sendError(500);
+                response.sendError(500, "Errore nell'elaborazione del server");
             }
         }
         else response.sendRedirect("Home"); //da vedere

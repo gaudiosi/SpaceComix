@@ -3,6 +3,7 @@ package it.SpaceComix.control;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,12 +50,19 @@ public class SigninController extends HttpServlet {
 			}
 			if(!errore && user.getId() != 0) {
             	session.setAttribute("user", user);
-            	response.sendRedirect("index.jsp");
+            	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            	dispatcher.forward(request, response);
+            } else {
+            	String error = "Errore del server";
+        		session.setAttribute("error", error);
+        		RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
+            	dispatcher.forward(request, response);
             }
 		}else {
-			String error = "Invalid paramiter. Please try again.";
+			String error = "Password non coincidenti. Si prega di riprovare";
 			session.setAttribute("error", error);
-			response.sendRedirect("register.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
+        	dispatcher.forward(request, response);
 		}
     }
 }

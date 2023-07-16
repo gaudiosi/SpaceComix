@@ -49,7 +49,7 @@ function togglePasswordVisibility(pass) {
         passwordField.type = "password";
     }
 }
-s
+
 $(document).ready(function() {
     $(".login").submit(function(event) {
         event.preventDefault(); // Impedisce il comportamento predefinito della submit del form
