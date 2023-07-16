@@ -56,7 +56,6 @@ public class UserDAO implements DAO<UserBean> {
 
 	            preparedStatement.executeUpdate();
 
-	            connection.commit();
 	        } finally {
 				try {
 					if (preparedStatement != null)
@@ -107,6 +106,45 @@ public class UserDAO implements DAO<UserBean> {
 	        return bean;
 	    }
 
+	    public synchronized boolean doRetrieveByKey(String email) throws SQLException {
+	        Connection connection = null;
+	        PreparedStatement preparedStatement = null;
+
+	        UserBean bean = new UserBean();
+
+	        String selectSQL = "SELECT * FROM cliente C WHERE C.email = ?";
+
+	        try {
+	            connection = ds.getConnection();
+	            preparedStatement = connection.prepareStatement(selectSQL);
+	            preparedStatement.setString(1, email);
+	            
+	            ResultSet rs = preparedStatement.executeQuery();
+	            
+
+	            if (rs.next()) {
+	            	bean.setId(Integer.parseInt(rs.getString("id")));
+	            	bean.setUsername(rs.getString(UTENTE));
+	            	bean.setPassword(rs.getString(PASS));
+	            	bean.setEmail(rs.getString(MAIL));
+	            	bean.setRuolo(rs.getString(ROLE));
+	            	bean.setNome(rs.getString(NOME));
+	            	bean.setCognome(rs.getString(CNOME));	
+	            }
+	        } finally {
+	            try {
+	                if (preparedStatement != null)
+	                    preparedStatement.close();
+	            } finally {
+	                if (connection != null)
+	                    connection.close();
+	            }
+	        }
+	        if(bean.getUsername() != null)
+	        	return true;
+	        return false;
+	    }
+	    
 		@Override
 		public boolean doDelete(int code) throws SQLException {
 			 Connection connection = null;

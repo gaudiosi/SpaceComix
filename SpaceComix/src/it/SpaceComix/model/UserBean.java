@@ -80,6 +80,19 @@ public class UserBean{
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
+	
+	public String stringify(){
+		String json = "{";
+		json += "\"id\":" + this.id + ",";
+		json += "\"username\":" + this.username + ",";
+		json += "\"password\":" + this.password + ",";
+		json += "\"email\":" + this.email + ",";
+		json += "\"ruolo\":" + this.ruolo + ",";
+		json += "\"nome\":" + this.nome + ",";
+		json += "\"cognome\":" + this.cognome + "}";
+		
+		return json;
+	 }
 
 	@Override
 	public int hashCode() {

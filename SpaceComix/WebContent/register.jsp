@@ -12,7 +12,7 @@
 <div class="quadrato">
 <div>
 	<h1>Register Page</h1>
-    <form action="Signin" method="post" class="register">
+    <form id="registration-form" action="Signin" method="post" class="register" onsubmit="return validate()">
     <div class = "ordine">
     	<div class ="campi1">
     		<label for="text">Nome:	</label>
@@ -54,12 +54,13 @@
     </div>
     
   	</form>
-  	<% String error = (String) session.getAttribute("error");
+  	 <% String error = (String) session.getAttribute("error");
        if (error != null) {
     	   out.print("<p class = \"error\">" + error + "</p>");
-    	   session.setAttribute("error", null);
+           session.setAttribute("error", null);
        }
     %>
+  	<p id="error-message" class="error"></p>
 </div>
 </div>
 <script>
@@ -71,6 +72,30 @@ function togglePasswordVisibility(pass) {
         passwordField.type = "password";
     }
 }
+
+function validate() {
+
+	    var email = $("#email").val();
+
+	    $.ajax({
+	      url: "EmailAvailabilityServlet",
+	      method: "POST",
+	      data: { email: email },
+	      dataType: "json",
+	      success: function(response) {
+	    	  if (response.available) {
+	    	    return true;
+	    	  } else {
+	    	    $("#error-message").text("L'email è già registrata. Si prega di utilizzare un'altra email.");
+	    	    return false;
+	    	  }
+	    	},
+	      error: function() {
+	        $("#error-message").text("Si è verificato un errore nella richiesta. Riprova più tardi.");
+	        return false;
+	      }
+	    });
+};
 </script>
 </body>
 <%@include file="Footer.jsp" %>
