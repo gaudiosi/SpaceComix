@@ -20,10 +20,10 @@ public class UserBean{
 	     this.nome = nome;
 	     this.cognome = cognome;
 	 }
-
-	 public UserBean() {
-		// TODO Auto-generated constructor stub
-	}
+	 
+	 public UserBean()
+	 {
+	 }
 
 	public int getId() {
 		 return id;
@@ -81,18 +81,18 @@ public class UserBean{
 		this.cognome = cognome;
 	}
 	
-	public String stringify(){
-		String json = "{";
-		json += "\"id\":" + this.id + ",";
-		json += "\"username\":" + this.username + ",";
-		json += "\"password\":" + this.password + ",";
-		json += "\"email\":" + this.email + ",";
-		json += "\"ruolo\":" + this.ruolo + ",";
-		json += "\"nome\":" + this.nome + ",";
-		json += "\"cognome\":" + this.cognome + "}";
-		
-		return json;
-	 }
+	public String stringify() {
+		  String json = "{";
+		  json += "\"id\": " + this.id + ",";
+		  json += "\"username\": \"" + this.username + "\",";
+		  json += "\"password\": \"" + this.password + "\",";
+		  json += "\"email\": \"" + this.email + "\",";
+		  json += "\"ruolo\": \"" + this.ruolo + "\",";
+		  json += "\"nome\": \"" + this.nome + "\",";
+		  json += "\"cognome\": \"" + this.cognome + "\"}";
+		  
+		  return json;
+	}
 
 	@Override
 	public int hashCode() {

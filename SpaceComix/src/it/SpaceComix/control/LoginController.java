@@ -33,6 +33,7 @@ public class LoginController extends HttpServlet {
 	        boolean errore = false;
 	        UserDAO userDao = new UserDAO();
 	        UserBean user = new UserBean();
+	        
 			try {
 				user = userDao.doRetrieveByKey(email, password);
 			} catch (SQLException e){errore = true;}
@@ -41,11 +42,8 @@ public class LoginController extends HttpServlet {
 			
 	        if (!errore && user.getId() != 0) {
 	            session.setAttribute("user", user);
-	            response.sendRedirect("index.jsp");
 	        } else {
-	        	String error = "Invalid email or password. Please try again.";
-	        	session.setAttribute("error", error);
-	        	response.sendRedirect("Login.jsp");
+	        	response.sendError(800);
 	        }
 	    }
 	}

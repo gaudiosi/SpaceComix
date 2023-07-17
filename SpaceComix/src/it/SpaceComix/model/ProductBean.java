@@ -184,6 +184,34 @@ public class ProductBean implements Serializable {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
+	
+	public String stringify(){
+		int i = 0;
+		String json = "{";
+		json += "\"id\":" + this.id + ",";
+		json += "\"quantita\":" + this.quantita + ",";
+		json += "\"iva\":" + this.iva + ",";
+		json += "\"prezzo\":" + this.prezzo + ",";
+		json += "\"titolo\":\"" + this.titolo + "\",";
+		json += "\"descrizione\":\"" + this.descrizione + "\",";
+		json += "\"autore\":\"" + this.autore + "\",";
+		json += "\"editore\":\"" + this.editore + "\",";
+		json += "\"isbn\":\"" + this.isbn + "\",";
+		json += "\"sconto\":" + this.sconto + ",";
+		json += "\"image\":\"" + this.image + "\",";
+		json += "\"image_alt\":\"" + this.image_alt + "\",";
+		json += "\"generi\":[";
+		for(CategoriaBean c :generi) {
+			if(i == 0) {
+				json += c.stringify();
+			} else {
+				json += "," + c.stringify();
+			}
+			i++;
+		}
+		
+		return json;
+	 }
 
 	@Override
     public String toString() {

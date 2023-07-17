@@ -7,6 +7,7 @@
 	<title>Pagina di Login</title>
 	<link rel="stylesheet" href="style.css">
 	<%@include file="Header.jsp"%>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<div class="quadrato">
@@ -32,14 +33,10 @@
         </div>
     </div>
   	</form>
+  		<p id = "error" class = "error"></p>
   	</div>
     </div>
-    <% String error = (String) session.getAttribute("error");
-       if (error != null) {
-    	   out.print("<p class = \"error\">" + error + "</p>");
-           session.setAttribute("error", null);
-       }
-    %>
+
 <script>
 function togglePasswordVisibility(pass) {
     var passwordField = document.getElementById(pass);
@@ -52,12 +49,17 @@ function togglePasswordVisibility(pass) {
 
 $(document).ready(function() {
     $(".login").submit(function(event) {
-        event.preventDefault(); // Impedisce il comportamento predefinito della submit del form
+        event.preventDefault();
         
         var email = $("#email").val();
         var password = $("#password").val();
         
-        // Effettua la richiesta Ajax
+        var emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    	if (!emailRegex.test(email)) {
+    		$("#error").text("L'email non rispetta la sua normale costruzione.");
+    		return;
+    	}
+        
         $.ajax({
             type: "POST",
             url: "Login",
@@ -65,9 +67,15 @@ $(document).ready(function() {
                 email: email,
                 password: password
             },
-            success: function(response) {
-            	window.location.href = 'index.jsp';
-
+    		success: function(response) {
+   				window.location.href = 'index.jsp';
+            },
+            error: function(xhr, status, error) {
+                if (xhr.status === 500) {
+                    $("#error").text("Errore interno del server. Si prega di riprovare più tardi.");
+                } else {
+                	$("#error").text("Email o password invalidi. Si prega di riprovare.");
+                }
             }
         });
     });

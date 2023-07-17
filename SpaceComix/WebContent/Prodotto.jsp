@@ -59,7 +59,6 @@
                               <span id="numrecensioni">4 Reviews</span>
                           </span>
                       </div>
-                      <%%>
                       <p class="descrizione"><%=prodotto.getDescrizione()%></p>
                       <hr class="my-horizontal-line">
                       <div class="prezzo-carrello-wish">

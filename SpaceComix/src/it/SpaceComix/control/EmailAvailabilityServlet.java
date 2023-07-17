@@ -28,7 +28,7 @@ public class EmailAvailabilityServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String email = request.getParameter("email");
-        boolean emailExists = checkEmailExists(email);
+        boolean emailExists = !checkEmailExists(email);
         
         String json = "{\"result\":"+ emailExists +"}";
 
@@ -45,6 +45,7 @@ public class EmailAvailabilityServlet extends HttpServlet {
 		try {
 			risposta = userDao.doRetrieveByKey(email);
 		} catch (SQLException e) {
+			risposta = true;
 		}
         return risposta;
     }

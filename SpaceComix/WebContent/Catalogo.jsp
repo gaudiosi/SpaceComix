@@ -15,7 +15,7 @@
 	<title>Il nostro catalogo prodotti</title>
 	<%@include file="Header.jsp" %>
 	<link rel="stylesheet" href="Catalog.css">
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <div class="quadrato">
@@ -23,24 +23,13 @@
 <div class="categorie">
 <form>
 <h4>Categorie</h4>
-<%
-CategoriaDAO cdao = new CategoriaDAO();
-String ord = "nome DESC";
-Collection<CategoriaBean> categorie = cdao.doRetrieveAll(ord);
-
-for (CategoriaBean c : categorie)
-	{
-%>
-  <div class="checkBoxs-label">
-  <input type="checkbox" id="<%= c.getNome() %>" name="vehicle" value="<%= c.getNome() %>" onclick="submitForm()">
-  <label for="<%= c.getNome() %>"> <%= c.getNome() %> </label><br>
+  <div class="checkBoxs-label" id="FormCategorie">
   </div>
-<%  } %>
 </form>
 </div>
 
 	<hr>
-	<div class="product-list">
+	<div id="product-list" class="product-list">
 <%
     // Recupera la lista di prodotti dal database o da un'altra fonte dati
     int contaitem = 0;
@@ -154,28 +143,7 @@ for (CategoriaBean c : categorie)
 	    showPage(currentPage);
 	  }
 	});
-	</script>
-	
-<!--
-<script>
-  function submitForm() {
-    var radioValue = document.querySelector('input[name="vehicle"]:checked').value;
-
-    // Send an AJAX request to the server to update the order
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        // Update the content on the page if needed
-      }
-    };
-    xhttp.open("GET", "Catalogo.jsp?genere=" + radioValue, true);
-    xhttp.send();
-    
-    document.getElementById("genere").value = radioValue;
-  }
 </script>
--->
-
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     var checkBoxes = document.getElementsByName('vehicle');
@@ -211,6 +179,57 @@ for (CategoriaBean c : categorie)
 
     window.location.search = urlParams.toString();
   }
+</script>
+<script>
+$(document).ready(function() {
+	  $.ajax({
+	    url: 'GetCategorie',
+	    type: 'POST',
+	    dataType: 'json',
+	    success: function(data) {
+	      var formCategorie = $('#FormCategorie');
+	      for (var i = 0; i < data.categorie.length; i++) {
+	        var categoria = data.categorie[i];
+
+	        var div = $('<div>');
+	        var input = $('<input>').attr('type', 'checkbox').attr('id', categoria.nome).attr('name', 'vehicle').attr('value', categoria.nome).attr('onclick', 'submitForm()');
+	        var label = $('<label>').attr('for', categoria.nome ).text(categoria.nome);
+
+	        input.appendTo(div);
+	        label.appendTo(div);
+	        formCategorie.append(div);
+	      }
+	    },
+	    error: function(xhr, status, error) {
+	      response.sendError(500);
+	    }
+	  });
+});
+
+$(document).ready(function() {
+	  $.ajax({
+	    url: 'GetProdotti',
+	    type: 'POST',
+	    dataType: 'json',
+	    success: function(data) {
+	      var formCategorie = $('#FormCategorie');
+	      for (var i = 0; i < data.categorie.length; i++) {
+	        var categoria = data.categorie[i];
+
+	        var div = $('<div>');
+	        var input = $('<input>').attr('type', 'checkbox').attr('id', categoria.nome).attr('name', 'vehicle').attr('value', categoria.nome).attr('onclick', 'submitForm()');
+	        var label = $('<label>').attr('for', categoria.nome ).text(categoria.nome);
+
+	        input.appendTo(div);
+	        label.appendTo(div);
+	        formCategorie.append(div);
+	      }
+	    },
+	    error: function(xhr, status, error) {
+	      response.sendError(500);
+	    }
+	  });
+});
 </script>
 
 </body>

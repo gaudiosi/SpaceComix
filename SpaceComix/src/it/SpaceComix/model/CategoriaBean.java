@@ -34,6 +34,14 @@ public class CategoriaBean {
         this.nome = nome;
         this.descrizione = descrizone;
     }
+    
+    public String stringify(){
+		String json = "{";
+		json += "\"nome\":\"" + this.nome + "\",";
+		json += "\"descrizione\":\"" + this.descrizione + "\"}";
+		
+		return json;
+	 }
 
     @Override
     public boolean equals(Object o) {

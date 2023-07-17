@@ -7,12 +7,13 @@
 	<title>SignIn Page</title>
 	<link rel="stylesheet" href="style.css">
 	<%@include file="Header.jsp" %>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <div class="quadrato">
 <div>
 	<h1>Register Page</h1>
-    <form id="registration-form" action="Signin" method="post" class="register" onsubmit="return validate()">
+    <form id="registration-form" action="Signin" method="post" class="register" onsubmit="return validate();">
     <div class = "ordine">
     	<div class ="campi1">
     		<label for="text">Nome:	</label>
@@ -75,26 +76,50 @@ function togglePasswordVisibility(pass) {
 
 function validate() {
 
-	    var email = $("#email").val();
-
-	    $.ajax({
-	      url: "EmailAvailabilityServlet",
-	      method: "POST",
-	      data: { email: email },
-	      dataType: "json",
-	      success: function(response) {
-	    	  if (response.available) {
-	    	    return true;
-	    	  } else {
-	    	    $("#error-message").text("L'email è già registrata. Si prega di utilizzare un'altra email.");
-	    	    return false;
-	    	  }
-	    	},
-	      error: function() {
-	        $("#error-message").text("Si è verificato un errore nella richiesta. Riprova più tardi.");
-	        return false;
-	      }
-	    });
+	var error = "";
+	var email = $("#email").val();
+	var password1 =$("#password1").val();
+	var password2 =$("#password2").val();
+	var controllo = true;
+	
+	var emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+	if (!emailRegex.test(email)) {
+		error += "L'email non rispetta la sua normale costruzione.\n";
+		controllo = false;
+	}
+	
+	if (!(password1 === password2)) {
+		error += "Password non coincidenti.\n";
+		controllo = false;
+	}
+	
+	if (controllo === false){
+		$("#error-message").text(error);
+		return false;
+	}
+		
+	
+	$.ajax({
+		url: "EmailAvailabilityServlet",
+		method: "POST",
+		data: { email: email },
+		dataType: "json",
+		async: false,
+		success: function(response) {
+			var result = response.result;
+			if (result === true) {
+				controllo = true;
+			} else {
+				$("#error-message").text("L'email è già registrata. Si prega di utilizzare un'altra email.");
+				controllo = false;
+			}
+		},
+		error: function() {
+			$("#error-message").text("Si è verificato un errore nella richiesta. Si prega di riprovare.");
+			controllo = false;
+		}
+	});
+	return controllo;
 };
 </script>
 </body>

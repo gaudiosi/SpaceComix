@@ -148,7 +148,10 @@ h1 {
   white-space: nowrap;
 }
 
+.checkBoxs-label > div{
+  display: flex
+}
+
 .checkBoxs-label {
-	display: flex;
 	margin-right: 10px;
 }
