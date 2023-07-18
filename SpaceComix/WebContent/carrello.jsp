@@ -120,10 +120,9 @@
                         <p class="color-1">Include IVA</p>
                 </div>
             </div>
-            <a href="checkout.jsp">Check-Out</a>
-            <!--  <form action="" method="post"> -->
-          	<!--  <button type="submit" class="check-out">Check Out</button>
-		  </form> -->
+            <div class="button-container">
+            	<a href="checkout.jsp" class="button-color">Check-Out</a>
+            </div>
         </div>
 
     </div>

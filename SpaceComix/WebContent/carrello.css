@@ -394,3 +394,52 @@ svg:hover {
 .piuomeno{
     width: 150px;
 }
+
+.button-container {
+	display:flex;
+	justify-content: space-between;
+  	align-items: center;
+  	max-width: 200px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	margin-bottom: 5px;
+}
+
+.button-color {
+  color: #61BDD1;
+  padding: 0.3em 0.6em;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 1000ms;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  outline: 3px solid #61BDD1;
+}
+
+.button-color:hover {
+  color: #ffffff;
+  transform: scale(1.05);
+  outline: 3px solid #70bdca;
+  box-shadow: 4px 5px 17px -4px #61BDD1;
+}
+
+.button-color::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #308F9B;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 800ms;
+}
+
+.button-color:hover::before {
+  width: 250%;
+}

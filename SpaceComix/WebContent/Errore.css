@@ -29,6 +29,16 @@ h1, p {
 	margin: 2rem 10rem;
 }
 
+.button-container {
+	display:flex;
+	justify-content: space-between;
+  	align-items: center;
+  	max-width: 200px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	margin-bottom: 5px;
+}
+
 .button-color {
   color: #61BDD1;
   padding: 0.3em 0.6em;
@@ -36,6 +46,7 @@ h1, p {
   border-radius: 3px;
   font-weight: bold;
   text-transform: uppercase;
+  text-decoration: none;
   transition: all 1000ms;
   font-size: 15px;
   position: relative;
