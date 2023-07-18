@@ -16,8 +16,9 @@
         	<h1> Error Page <%= statusCode%> </h1>
     	<% String errorMessage = (String) request.getAttribute("javax.servlet.error.message"); %>
     		<p><%= errorMessage %></p>
-    	
+    	<div class="button-container">
     		<a href="index.jsp" class="button-color">Ritorna alla pagina iniziale</a>
+    	</div>
     </div>
 	</div>
 </body>
