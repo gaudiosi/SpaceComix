@@ -23,162 +23,42 @@
 <div class="categorie">
 <form>
 <h4>Categorie</h4>
-  <div class="checkBoxs-label" id="FormCategorie">
-  </div>
+  <div class="checkBoxs-label" id="FormCategorie"></div>
 </form>
 </div>
 
 	<hr>
-	<div id="product-list" class="product-list">
-<%
-    // Recupera la lista di prodotti dal database o da un'altra fonte dati
-    int contaitem = 0;
-    ProductDAO dao = new ProductDAO();
-	String order = "id DESC";
-	if(request.getParameter("ordine") != null){
-		order = request.getParameter("ordine");
-	}
-    String genere = request.getParameter("genere");
-    Collection<ProductBean> listaProdotti = dao.doRetrieveAll(order);
-
-    // Itera attraverso la lista di prodotti e genera i div per ciascun prodotto
-    for (ProductBean prodotto : listaProdotti) {
-        String[] generiRichiesti = null;
-
-        if (genere != null && !genere.isEmpty()) {
-            generiRichiesti = genere.split(",");
-        }
-
-        boolean isProdottoValido = true;
-
-        if (generiRichiesti != null && generiRichiesti.length > 0) {
-            // Controlla se il prodotto appartiene a almeno uno dei generi richiesti
-            isProdottoValido = false;
-
-            for (String genereRichiesto : generiRichiesti) {
-                if (prodotto.appartieneAGenere(genereRichiesto) == 1) {
-                    isProdottoValido = true;
-                    break;
-                }
-            }
-        }
-
-        if (isProdottoValido) {
-            contaitem++; //totale item per poi generare dinamicamente abbastanza pagine
-%>
-		
-		<div class="product" style="background-color:#FFFFFF">
-			<a href="Prodotto?id=<%= prodotto.getID() %>" style="text-decoration:none">
-				<div class="product-image">
-					<img src="Immagini/<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>" type="image/svg+xml">
-				</div>
-				<div class="product-details">
-					<div class="product-title"><p><%= prodotto.getTitolo() %></p></div>
-					<%--<div class="product-description"><p><%= prodotto.getDescrizione()%></p></div>--%>
-					<div class="product-price">
-						<p><%= String.format("%.2f",prodotto.getPrezzo())%>€</p>
-					</div>
-				</div>
-			</a>
-		</div>
-		<%
-				}
-			}
-				
-		%>
+	<div class="product-list" id="productList">
 	</div>
-	</div>
-		<%
-	int itemsPerPage = 24;
-	int max = contaitem/itemsPerPage;
-	if ((contaitem % itemsPerPage) != 0) max++;
-	if (max > 1) {
-		%>
-	<div class="pagination" data-items-per-page="<%= itemsPerPage %>">
-		<a href="#">Precedente</a>
-		<%
-		for(int i = 1; i <= max; i++)
-		{
-		%>
-		<a href="#"><%= i %></a>
-		<% 
-		}
-		%>
-		<a href="#">Successiva</a>
-		<% 
-		}
-		%>
-	</div>
-	<script>
-	const products = document.querySelectorAll('.product');
-	let currentPage = 1;
-	const itemsPerPage = parseInt(document.querySelector('.pagination').getAttribute('data-items-per-page'));
-	const maxPage = <%= max %>;
-	function showPage(page) {
-	  const startIndex = (page - 1) * itemsPerPage;
-	  const endIndex = startIndex + itemsPerPage;
-
-	  for (let i = 0; i < products.length; i++) {
-	    if (i >= startIndex && i < endIndex) {
-	      products[i].style.display = 'block';
-	    } else {
-	      products[i].style.display = 'none';
-	    }
-	  }
-	}
-
-	showPage(currentPage);
-
-	document.querySelector('.pagination').addEventListener('click', function(event) {
-	  if (event.target.tagName === 'A') {
-		  if((event.target.textContent == "Precedente") && (currentPage > 1))
-			  currentPage--;
-		  else if((event.target.textContent == "Successiva") && (currentPage < maxPage))
-			  currentPage++;
-		  else if (!isNaN(parseInt(event.target.textContent))) {
-			  const page = parseInt(event.target.textContent);
-			  if (page >= 1 && page <= maxPage) {
-			    currentPage = page;
-			  }}
-	    showPage(currentPage);
-	  }
-	});
-</script>
+</div>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+var urlParams;
+
+document.addEventListener("DOMContentLoaded", function() {
     var checkBoxes = document.getElementsByName('vehicle');
-    var urlParams = new URLSearchParams(window.location.search);
-    var selectedValues = urlParams.get('genere') ? urlParams.get('genere').split(',') : [];
+    urlParams = new URLSearchParams(window.location.search);
 
     checkBoxes.forEach(function(checkbox) {
-      checkbox.checked = selectedValues.includes(checkbox.value);
+    	checkbox.checked = selectedValues.includes(checkbox.value);
     });
   });
 
-  function submitForm() {
+function submitForm() {
     var checkBoxes = document.getElementsByName('vehicle');
     var selectedValues = [];
 
     checkBoxes.forEach(function(checkbox) {
-      if (checkbox.checked) {
-        selectedValues.push(checkbox.value);
-      }
-    });
-
-    var urlParams = new URLSearchParams(window.location.search);
-
-    checkBoxes.forEach(function(checkbox) {
-      if (!checkbox.checked) {
-        urlParams.delete('genere', checkbox.value);
-      }
+        if (checkbox.checked) {
+            selectedValues.push(checkbox.value);
+        }
     });
 
     if (selectedValues.length > 0) {
-      urlParams.set('genere', selectedValues.join(','));
+        urlParams.set('genere', selectedValues.join(','));
     }
 
-    window.location.search = urlParams.toString();
-  }
+    TrovaProdotti(selectedValues.join(","));
+}
 </script>
 <script>
 $(document).ready(function() {
@@ -188,50 +68,67 @@ $(document).ready(function() {
 	    dataType: 'json',
 	    success: function(data) {
 	      var formCategorie = $('#FormCategorie');
-	      for (var i = 0; i < data.categorie.length; i++) {
-	        var categoria = data.categorie[i];
-
-	        var div = $('<div>');
-	        var input = $('<input>').attr('type', 'checkbox').attr('id', categoria.nome).attr('name', 'vehicle').attr('value', categoria.nome).attr('onclick', 'submitForm()');
-	        var label = $('<label>').attr('for', categoria.nome ).text(categoria.nome);
-
-	        input.appendTo(div);
-	        label.appendTo(div);
-	        formCategorie.append(div);
+	      
+	      if (formCategorie.is(':empty')) {
+	        for (var i = 0; i < data.categorie.length; i++) {
+	          var categoria = data.categorie[i];
+	          
+	          var div = $('<div>');
+	          var input = $('<input>').attr('type', 'checkbox').attr('id', categoria.nome).attr('name', 'vehicle').attr('value', categoria.nome).attr('onclick', 'submitForm()');
+	          var label = $('<label>').attr('for', categoria.nome ).text(categoria.nome);
+	  
+	          input.appendTo(div);
+	          label.appendTo(div);
+	          formCategorie.append(div);
+	        }
 	      }
 	    },
 	    error: function(xhr, status, error) {
 	      response.sendError(500);
 	    }
 	  });
-});
+	  
+	  TrovaProdotti("");
+	});
 
-$(document).ready(function() {
-	  $.ajax({
-	    url: 'GetProdotti',
-	    type: 'POST',
-	    dataType: 'json',
-	    success: function(data) {
-	      var formCategorie = $('#FormCategorie');
-	      for (var i = 0; i < data.categorie.length; i++) {
-	        var categoria = data.categorie[i];
+function TrovaProdotti(SelectedValues) {
+	
+	console.log(SelectedValues);
+	
+	 $.ajax({
+		    url: 'GetProdotti',
+		    type: 'POST',
+		    data: { generi: SelectedValues },
+		    dataType: 'json',
+		    success: function(data) {
+		      var productList = $('#productList');
+		      productList.empty();
+		      for (var i = 0; i < data.prodotti.length; i++) {
+		          var prodotto = data.prodotti[i];
+		          
+		          var div = $('<div>').addClass('product').css('background-color', '#FFFFFF');
+		          var link = $('<a>').attr('href', 'Prodotto?id=' + prodotto.id).css('text-decoration', 'none');
+		          var productImage = $('<div>').addClass('product-image').css('min-height', '28rem');
+		          var img = $('<img>').attr('src', 'Immagini/' + prodotto.image).attr('alt', prodotto.image_alt).attr('type', 'image/svg+xml');
+		          var productDetails = $('<div>').addClass('product-details');
+		          var productTitle = $('<div>').addClass('product-title').append($('<p>').text(prodotto.titolo));
+		          var productPrice = $('<div>').addClass('product-price').append($('<p>').text(prodotto.prezzo.toFixed(2) + '€'));
 
-	        var div = $('<div>');
-	        var input = $('<input>').attr('type', 'checkbox').attr('id', categoria.nome).attr('name', 'vehicle').attr('value', categoria.nome).attr('onclick', 'submitForm()');
-	        var label = $('<label>').attr('for', categoria.nome ).text(categoria.nome);
-
-	        input.appendTo(div);
-	        label.appendTo(div);
-	        formCategorie.append(div);
-	      }
-	    },
-	    error: function(xhr, status, error) {
-	      response.sendError(500);
-	    }
-	  });
-});
+		          img.appendTo(productImage);
+		          productTitle.appendTo(productDetails);
+		          productPrice.appendTo(productDetails);
+		          productImage.appendTo(link);
+		          productDetails.appendTo(link);
+		          link.appendTo(div);
+		          productList.append(div);
+		      }
+		    },
+		    error: function(xhr, status, error) {
+		      response.sendError(500);
+		    }
+		  });
+}
 </script>
-
-</body>
 <%@include file="Footer.jsp" %>
+</body>
 </html>

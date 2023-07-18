@@ -209,6 +209,7 @@ public class ProductBean implements Serializable {
 			}
 			i++;
 		}
+		json += "]}";
 		
 		return json;
 	 }
