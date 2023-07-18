@@ -68,7 +68,7 @@ $(document).ready(function() {
                 password: password
             },
     		success: function(response) {
-   				window.location.href = 'index.jsp';
+   				window.location.href = 'index';
             },
             error: function(xhr, status, error) {
                 if (xhr.status === 500) {

@@ -2,11 +2,12 @@
 <%@ page import="java.util.Collection" %>
 <%@ page import="it.SpaceComix.model.ProductDAO" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="it.SpaceComix.model.CategoriaBean" %>
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="utf-8">
-    <title>Homepage </title>
+    <title>index</title>
     <link rel="stylesheet" href="index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -22,9 +23,11 @@
 </div>--%>
 
 <%
-    ProductDAO dao = new ProductDAO();
-    String order = "id DESC";
-    Collection<ProductBean> listaProdotti = dao.doRetrieveAll(order);
+    Collection<ProductBean> listaProdotti1 = (Collection<ProductBean>)request.getSession().getAttribute("prodotti1");
+
+    Collection<ProductBean> listaProdotti2 = (Collection<ProductBean>)request.getSession().getAttribute("prodotti2");
+    String cat1 = (String) request.getSession().getAttribute("cat1");
+    String cat2= (String) request.getSession().getAttribute("cat2");
 
 %>
 
@@ -47,17 +50,20 @@
         <div class="carousel">
 
             <%
-                Iterator collection = listaProdotti.iterator();
-                ProductBean prodotto = (ProductBean) collection.next();
 
-                for (int i=0; i<9 && collection.hasNext(); i++, prodotto= (ProductBean) collection.next())
+                Iterator collection1 = listaProdotti1.iterator();
+
+                ProductBean prodotto = (ProductBean) collection1.next();
+
+
+                for (int i=0; i<9 && collection1.hasNext(); i++, prodotto= (ProductBean) collection1.next())
                 {
             %>
             <img src="Immagini/<%=prodotto.getImage()%>" alt="<%=prodotto.getImage_alt()%>" data-id="<%=prodotto.getID()%>" />
 
 
             <%
-                };%>
+                }%>
 
         </div>
         <i id="right" class="fa-solid fa-angle-right"></i>
@@ -69,7 +75,7 @@
     <section class="section shop" id="shop" aria-label="shop" data-section>
         <div class="container">
             <div class="title-wrapper">
-                <h2 class="h2 section-title">I migliori "..."</h2>
+                <h2 class="h2 section-title">I migliori Dark Fantasy</h2>
                 <a href="#" class="btn-link">
                     <span class="span">Vedi tutto</span>
                     <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
@@ -80,17 +86,18 @@
                 <div class="carousel">
 
                     <%
-                        collection = listaProdotti.iterator();
-                         prodotto = (ProductBean) collection.next();
+                        Iterator collection2 = listaProdotti2.iterator();
 
-                        for (int i=0; i<9 && collection.hasNext(); i++, prodotto= (ProductBean) collection.next())
+                         prodotto = (ProductBean) collection2.next();
+
+                        for (int i=0; i<9 && collection2.hasNext(); i++, prodotto= (ProductBean) collection2.next())
                         {
                     %>
                     <img src="Immagini/<%=prodotto.getImage()%>" alt="<%=prodotto.getImage_alt()%>" data-id="<%=prodotto.getID()%>"  />
 
 
                     <%
-                        };%>
+                        }%>
 
                 </div>
                 <i id="right" class="fa-solid fa-angle-right"></i>

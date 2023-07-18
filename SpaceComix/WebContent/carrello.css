@@ -1,12 +1,11 @@
 body {
     font-family: "Inter", sans-serif;
-    overflow: scroll;
+    overflow: scroll; /* se l'elemento non entra nello schermo, si può scorrere*/
 
 }
 .container {
-    height: auto; /* Sets the height to be equal to the viewport height */
-    /* Sets the background color to a light gray shade */
-    padding-top: 2rem;  /* Sets the top padding to 5 rem */
+    height: auto;
+    padding-top: 2rem;
     background-color: #f7f0f0;
     padding-bottom: 6rem;
 
@@ -21,37 +20,19 @@ body {
     text-align: center;
 }
 
-/*
-.main-container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 5rem;
-    justify-content: center;
-    padding-left: 6px;
-    padding-right: 6px;
-}
-
-@media (min-width: 768px) {
-    .main-container {
-        display: flex;
-        justify-content: space-between;
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
 
 @media (min-width: 1280px) {
     .main-container {
         padding-left: 0;
     }
-}*/
+}
 .main-container {
-    max-width: 70rem; /* set max width */
-    margin-left: auto; /* center horizontally */
-    margin-right: auto; /* center horizontally */
+    max-width: 70rem;
+    margin-left: auto;
+    margin-right: auto;
     justify-content: center;
-    padding-left: 1.5rem; /* set padding on the left side */
-    padding-right: 1.5rem; /* set padding on the right side */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 
@@ -77,11 +58,11 @@ body {
         display: flex;
     }
     .rounded-container {
-        width: 66.666667%; /* applies 2/3 width of parent container when screen size is medium or above */
+        width: 66.666667%; /* Quando lo schermo e >medio setta la larghezza a del  contenitore prodotti 66% del padre */
     }
     .total-container {
         margin-top: 0;
-        width: 33.333333%;
+        width: 33.333333%; /* Quando ... setta la larghezza del contenitore del prezzo al 33% del padre a destra  */
         margin-right: 1.5rem;
     }
     .card-container{
@@ -96,17 +77,18 @@ body {
     background-color: #ffffff;
     justify-content: space-between;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* 0 ne a destra ne a sinistra, 4 l'ombra è in basso, 6 l'ombra è sfocata, -1 raggio di estensione*/
 
 }
 
 
 .card-image {
     width: 100%;
-    border-radius: 0.5rem;
+    border-radius: 0.5rem; /* rotonda*/
 }
 
 @media (min-width: 640px) {
+
     .card-container{
         display: flex;
     }
@@ -116,11 +98,11 @@ body {
     .product-container {
         display: flex;
         margin-left: 1rem;
-        justify-content: space-between;
+        justify-content: space-between; /*c'è spazio tra un figlio e l'altro */
         width: 100%;
     }
     .flex-container {
-        display: block;
+        display: block; /* mostra l'elemento su una nuova linea */
         margin-left: 1.5rem;
         margin-top: 1.5rem;
     }

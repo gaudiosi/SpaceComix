@@ -50,7 +50,7 @@ public class SigninController extends HttpServlet {
 			}
 			if(!errore && user.getId() != 0) {
             	session.setAttribute("user", user);
-            	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            	RequestDispatcher dispatcher = request.getRequestDispatcher("index");
             	dispatcher.forward(request, response);
             } else {
             	String error = "Errore del server";

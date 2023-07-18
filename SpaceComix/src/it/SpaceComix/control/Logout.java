@@ -21,7 +21,7 @@ public class Logout extends HttpServlet {
 		request.getSession().removeAttribute("userid");
 		request.getSession().invalidate();
 
-		response.sendRedirect("index.jsp");	
+		response.sendRedirect("index");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 

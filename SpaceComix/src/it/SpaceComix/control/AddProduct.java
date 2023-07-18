@@ -176,7 +176,7 @@ public class AddProduct extends HttpServlet {
 
                 if (!errore) {
                     session.setAttribute("success", request.getParameter("action") +"Avvenuta con successo");
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("index");
                 } else {
                     String error = "errore, ritenta.";
                     session.setAttribute("error", error);

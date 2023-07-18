@@ -10,7 +10,7 @@
   </head>
   <body>
     <nav class="navbar" id="myNavbar">
-	<a href = "index.jsp" class = "logo-img"><img src="Immagini/Logo.svg" alt="Logo del sito" class="logo"></a>
+	<a href = "index" class = "logo-img"><img src="Immagini/Logo.svg" alt="Logo del sito" class="logo"></a>
 	<div id="escludi">
 		<%@include file="BarraRicerca.jsp" %>
 	</div>
