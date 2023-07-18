@@ -125,7 +125,7 @@ ion-icon {
 }
 a,
 span,
-input,
+input:not(#escludi):not(#escludi *),
 button,
 ion-icon { display: block; }
 

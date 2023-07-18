@@ -13,7 +13,7 @@
 	<div class="quadrato">
 	<div>
     <h1>Login Page</h1>
-    <form action="Login" method="post" class ="login">
+    <form action="Login" method="post" class ="login" id ="login">
     <div class = "ordine">
         <label for="email">Email:	</label>
         <input type="email" id="email" class="email" name="email" required><br>

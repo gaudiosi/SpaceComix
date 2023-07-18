@@ -18,7 +18,7 @@ body {
 }
 
 /* Stili per il navbar */
-.navbar {
+.navbar:not(#escludi):not(#escludi *) {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,7 +71,7 @@ body {
   width: 250%;
 }
 
-.navbar div {
+.navbar div:not(#escludi):not(#escludi *) {
   display: flex;
   align-items: center;
 }
@@ -81,13 +81,13 @@ body {
   margin-left: 10px;
 }
 
-.navbar form {
+.navbar form:not(#escludi):not(#escludi *) {
   margin: 0;
   margin-left: 10px;
   padding: 0px;
 }
 
-.navbar input[type="submit"] {
+.navbar input[type="submit"]:not(#escludi):not(#escludi *) {
   color: #61BDD1;
   background-color: rgba(255, 255, 255, 0.025);;
   text-transform: uppercase;
@@ -99,7 +99,7 @@ body {
   padding: 0.3em 0.6em;
 }
 
-.navbar input[type="submit"]:hover {
+.navbar input[type="submit"]:hover:not(#escludi):not(#escludi *) {
   background-color: transparent;
   color: #ffffff;
 }

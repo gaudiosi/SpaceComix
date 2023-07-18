@@ -4,15 +4,14 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* Stili per l'header e il titolo della pagina */
 h1 {
   color: #114B73;
   text-align: center;
   margin-top: 2rem;
 }
 
-form.profile {
-	max-width: 370px;
+form.profile:not(#escludi):not(#escludi *) {
+	max-width: 500px;
 	margin: 0 auto;
 	background-color: #fff;
 	padding: 2rem;
@@ -20,8 +19,8 @@ form.profile {
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
-form.register {
-	max-width: 370px;
+form.register:not(#escludi):not(#escludi *) {
+	max-width: 500px;
 	margin: 0 auto;
 	background-color: #fff;
 	padding: 2rem;
@@ -29,8 +28,8 @@ form.register {
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
-form.login {
-	max-width: 200px;
+form.login:not(#escludi):not(#escludi *) {
+	max-width: 400px;
 	margin: 0 auto;
 	background-color: #fff;
 	padding: 2rem;
@@ -38,14 +37,14 @@ form.login {
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
-/* Stili per le etichette e gli input del form */
-label {
+
+label:not(#escludi):not(#escludi *) {
   color: #114B73;
   display: block;
   margin-bottom: 0.5rem;
 }
 
-input[type="email"],input[type="text"], input[type="password"] {
+input[type="email"],input[type="text"]:not(#escludi):not(#escludi *), input[type="password"] {
   padding: 0.5rem;
   border-radius: 3px;
   border: none;
@@ -53,7 +52,7 @@ input[type="email"],input[type="text"], input[type="password"] {
   margin-bottom: 1rem;
 }
 
-input[type="submit"], input[type="reset"] {
+input[type="submit"]:not(#escludi):not(#escludi *), input[type="reset"] {
   color: #61BDD1;
   background-color: transparent;
   text-transform: uppercase;
@@ -64,11 +63,11 @@ input[type="submit"], input[type="reset"] {
   padding: 0.3em 0.6em;
 }
 
-input[type="submit"]:hover, input[type="reset"]:hover {
+input[type="submit"]:hover:not(#escludi):not(#escludi *), input[type="reset"]:hover {
   background-color: transparent;
   color: #ffffff;
 }
-/* Stili per il pulsante per mostrare/nascondere la password */
+
 .password-container {
   position: relative;
   display: inline-block;

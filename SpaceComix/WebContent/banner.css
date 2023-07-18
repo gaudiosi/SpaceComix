@@ -276,13 +276,13 @@ html {
     overscroll-behavior: contain;
 }
 
-input {
+input:not(#escludi):not(#escludi *) {
     display: block;
     width: 100%;
     font: inherit;
 }
 
-input::placeholder { font: inherit; }
+input::placeholder:not(#escludi):not(#escludi *) { font: inherit; }
 
 
 

@@ -14,7 +14,7 @@
 <div>
 	<% if (user != null) {%>
 	<h1> <%=user.getUsername() %>'s Profile</h1>
- 	  <form action="UpdateProfile" method="post" class="profile">
+ 	  <form action="UpdateProfile" method="post" class="profile" id="profile">
  	  		<div class = "ordine">
 				<div class = "campi1">
 					<label for="text">Nome:	</label>
