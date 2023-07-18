@@ -17,19 +17,19 @@ body {
   display: inline-block;
 }
 
-input:not(#login):not(#login *):not(#registration-form):not(#registration-form *):not(#profile):not(#profile *) {
+input:not(#login):not(#login *):not(#logout):not(#logout *):not(#registration-form):not(#registration-form *):not(#profile):not(#profile *) {
   border: 1px solid transparent;
   background-color: #f1f1f1;
   padding: 10px;
   font-size: 16px;
 }
 
-input[type=text]:not(#login):not(#login *):not(#registration-form):not(#registration-form *):not(#profile):not(#profile *) {
+input[type=text]:not(#login):not(#login *):not(#logout):not(#logout *):not(#registration-form):not(#registration-form *):not(#profile):not(#profile *) {
   background-color: #f1f1f1;
   width: 100%;
 }
 
-input[type=submit]:not(#login):not(#login *):not(#registration-form):not(#registration-form *):not(#profile):not(#profile *) {
+input[type=submit]:not(#login):not(#login *):not(#logout):not(#logout *):not(#registration-form):not(#registration-form *):not(#profile):not(#profile *) {
   background-color: DodgerBlue;
   color: #fff;
   cursor: pointer;

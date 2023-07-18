@@ -25,7 +25,7 @@
 			           }
 			           out.print("<a href=\"profilo.jsp\" class=\"navbar-button\">" + user.getUsername() + "</a>");
 			           out.print("<form action=\"Logout\" method=\"get\" class=\"navbar-button\"> " +
-			        		     "<input type=\"submit\" value=\"Logout\">" + 
+			        		     "<input id=\"logout\" type=\"submit\" value=\"Logout\">" + 
 			           			 "</form> ");
 			       } else {
 			    	   out.print("<a href=\"Login.jsp\" class=\"navbar-button\">Login</a>" +
