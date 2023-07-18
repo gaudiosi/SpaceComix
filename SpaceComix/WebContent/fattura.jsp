@@ -27,7 +27,10 @@
     </div>
 
     <div id="destinatario">
-        <!-- Mostra i dati del destinatario -->
+    <% if(user != null) { %> 
+        <h3>Nome: <%= user.getNome() %></h3>
+        <h3>Cognome: <%= user.getCognome() %></h3>
+        <% } %>
     </div>
 
     <table>
