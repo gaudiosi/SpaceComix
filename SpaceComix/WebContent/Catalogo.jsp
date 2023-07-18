@@ -93,8 +93,6 @@ $(document).ready(function() {
 
 function TrovaProdotti(SelectedValues) {
 	
-	console.log(SelectedValues);
-	
 	 $.ajax({
 		    url: 'GetProdotti',
 		    type: 'POST',

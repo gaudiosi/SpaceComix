@@ -7,11 +7,13 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="HeaderAndFooterStyle.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <nav class="navbar" id="myNavbar">
-	<a href = "index.jsp" class = "logo-img"><img src="Immagini/Logo.svg" alt="Logo del sito" class="logo" type="image/svg+xml"></a>
+	<a href = "index.jsp" class = "logo-img"><img src="Immagini/Logo.svg" alt="Logo del sito" class="logo"></a>
+	<div id="escludi">
+		<%@include file="BarraRicerca.jsp" %>
+	</div>
       <div>
         <a href="Catalogo.jsp" class="navbar-button">Novità</a>
         <a href="faq.jsp" class="navbar-button">FAQ</a>
@@ -23,7 +25,7 @@
 			           }
 			           out.print("<a href=\"profilo.jsp\" class=\"navbar-button\">" + user.getUsername() + "</a>");
 			           out.print("<form action=\"Logout\" method=\"get\" class=\"navbar-button\"> " +
-			        		     "<input type=\"submit\" value=\"Logout\">" + 
+			        		     "<input id=\"logout\" type=\"submit\" value=\"Logout\">" + 
 			           			 "</form> ");
 			       } else {
 			    	   out.print("<a href=\"Login.jsp\" class=\"navbar-button\">Login</a>" +
