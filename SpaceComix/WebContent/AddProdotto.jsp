@@ -90,30 +90,7 @@
                     </div>
                 </div>
 
-
-                <!--  SELEZIONE CATEGORIE -->
-
-
-                <div class="checkboxes">
-
-                    <%
-                        CategoriaDAO cdao = new CategoriaDAO();
-                        String ord = "nome DESC";
-                        Collection<CategoriaBean>  categorie = cdao.doRetrieveAll(ord);
-
-                        for(CategoriaBean c: categorie){
-
-                    %>
-                    <div class="checkbox-group">
-                        <input id="<%=c.getNome()%>" type="checkbox" name="categorie" value="<%=c.getNome()%>" onclick="submitForm()">
-                        <label for="<%= c.getNome()%>"><%=c.getNome()%></label>
-                    </div>
-
-
-                    <%
-                        }
-                    %>
-
+                <div class="checkboxes" id="checkboxes">
                 </div>
 
                 <div class="button-container">
@@ -122,10 +99,34 @@
             </form>
         </div>
     </div>
-
-
-</body>
-</html>
+    <script>
+    $(document).ready(function() {
+  	  $.ajax({
+  	    url: 'GetCategorie',
+  	    type: 'POST',
+  	    dataType: 'json',
+  	    success: function(data) {
+  	      var checkboxes = $('#checkboxes');
+  	      
+  	        for (var i = 0; i < data.categorie.length; i++) {
+  	          var categoria = data.categorie[i];
+  	          
+  	          var div = $('<div>').attr('class', 'checkbox-group');
+  	          var input = $('<input>').attr('id', categoria.nome).attr('type', 'checkbox').attr('name', 'categorie').attr('value', categoria.nome);
+  	          var label = $('<label>').attr('for', categoria.nome ).text(categoria.nome);
+  	  
+  	          input.appendTo(div);
+  	          label.appendTo(div);
+  	        checkboxes.append(div);
+  	        console.log(checkboxes);
+  	        }
+  	    },
+  	    error: function(xhr, status, error) {
+  	      response.sendError(500);
+  	    }
+  	  });
+  	});
+    </script>
     
 </body>
 <%@include file="Footer.jsp" %>
