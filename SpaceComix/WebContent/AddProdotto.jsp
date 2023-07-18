@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <title>Add Product</title>
     <%@include file="Header.jsp" %>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="EditProdotto.css">
 </head>
 <body>
 	<% if (user == null || !user.getRuolo().equals("admin")) {
@@ -25,58 +25,107 @@
            session.setAttribute("error", null);
        }
     %>
-    <form method="post" action="AddProduct"  enctype="multipart/form-data">
 
-        <label for="titolo">Titolo:</label>
-        <input type="text" id="titolo" name="titolo" required><br>
 
-        <label for="descrizione">Descrizione:</label>
-        <textarea id="descrizione" name="descrizione" rows="4" cols="50" required></textarea><br>
 
-        <label for="autore">Autore:</label>
-        <input type="text" id="autore" name="autore" required><br>
 
-        <label for="editore">Editore:</label>
-        <input type="text" id="editore" name="editore" required><br>
+    <div class="quadrato">
+        <div class="container">
+            <form action="AddProduct" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="action" value="add">
 
-        <label for="isbn">ISBN:</label>
-        <input type="text" id="isbn" name="isbn" required><br>
 
-        <label for="quantita">QUANTITA:</label>
-        <input type="number" id="quantita" name="quantita" required><br>
+                <h1 class="title">Aggiungi un prodotto</h1>
 
-        <label for="prezzo">Prezzo:</label>
-        <input type="number" step="0.01" id="prezzo" name="prezzo" required><br>
+                <div class="grid">
+                    <div class="form-group a">
+                        <label for="titolo">Titolo</label>
+                        <input id="titolo" type="text" name="titolo" required>
+                    </div>
 
-        <label for="iva">IVA:</label>
-        <input type="number" id="iva" name="iva" required><br>
-        
-        <label for="sconto">Sconto:</label>
-        <input type="number" id="sconto" name="sconto" required><br>
-		
-	    <h1>Caricamento immagini</h1>
-		Seleziona un file da caricare: <input type="file" name="file" /><br />
-		
-		<!--  SELEZIONE CATEGORIE -->
-		<div class="categorie">
-		<h4>Categorie</h4>
-		<%
-		CategoriaDAO cdao = new CategoriaDAO();
-		String ord = "nome DESC";
-		Collection<CategoriaBean> categorie = cdao.doRetrieveAll(ord); //da cambiare
+                    <div class="form-group b">
+                        <label for="editore">Editore</label>
+                        <input type="text" id="editore" name="editore" required >
+                    </div>
 
-		for (CategoriaBean c : categorie) {
-		%>
-  			<div class="checkBoxs-label">
-  				<input type="checkbox" id="<%=c.getNome()%>" name="categorie" value="<%=c.getNome()%>" onclick="submitForm()">
-  				<label for="<%= c.getNome() %>"> <%= c.getNome() %> </label><br>
-  			</div>
-		<%  
-		} %>
-		</div>
-        <input type="submit" value="Add Product">
-        
-    </form>
+                    <div class="form-group c">
+                        <label for="autore">Autore</label>
+                        <input type="text" id="autore" name="autore" required >
+                    </div>
+
+                    <div class="form-group d">
+                        <label for="isbn">ISBN </label>
+                        <input type="text" id="isbn" name="isbn" required >
+                    </div>
+
+                    <div class="textarea-group">
+                        <label for="descrizione">Descrizione</label>
+                        <textarea id="descrizione" name="descrizione" rows="4" cols="50" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prezzo">Prezzo</label>
+                        <input id="prezzo" name="prezzo" type="number" step="0.01" required >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantita">Quantita</label>
+                        <input name="quantita" id="quantita" type="number" required >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sconto">Sconto</label>
+                        <input name="sconto" id="sconto" type="number" required >
+                    </div>
+                    <div class="form-group">
+                        <label for="iva">Iva</label>
+                        <input name="iva" id="iva" type="number" required >
+                    </div>
+                    <div class="form-group">
+                        <div class="button-container">
+                            <label class="button" for="file">Clicca per selezionare un'immagine</label>
+                            <input id="file" type="file" name="file"  style="display:none;"/>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!--  SELEZIONE CATEGORIE -->
+
+
+                <div class="checkboxes">
+
+                    <%
+                        CategoriaDAO cdao = new CategoriaDAO();
+                        String ord = "nome DESC";
+                        Collection<CategoriaBean>  categorie = cdao.doRetrieveAll(ord);
+
+                        for(CategoriaBean c: categorie){
+
+                    %>
+                    <div class="checkbox-group">
+                        <input id="<%=c.getNome()%>" type="checkbox" name="categorie" value="<%=c.getNome()%>" onclick="submitForm()">
+                        <label for="<%= c.getNome()%>"><%=c.getNome()%></label>
+                    </div>
+
+
+                    <%
+                        }
+                    %>
+
+                </div>
+
+                <div class="button-container">
+                    <button class="button" type="submit">Aggiungi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>
     
 </body>
 <%@include file="Footer.jsp" %>

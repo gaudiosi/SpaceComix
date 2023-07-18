@@ -21,6 +21,9 @@
     %>
     
     <a href="AddProdotto.jsp" class="navbar-button">AGGIUNGI PRODOTTO</a>
+
+	<a href="Catalogo.jsp" class="navbar-button"> MODIFICA/RIMUOVI PRODOTTO</a>
+
     
 </div>
 </body>

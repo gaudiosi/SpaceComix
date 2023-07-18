@@ -175,3 +175,68 @@ svg.stella {
 
 
 }
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 2px;
+    height: 40px;
+    width: 85px;
+    border: none;
+    background: #a549da3d;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+
+.lable {
+    line-height: 22px;
+    font-size: 19px;
+    color: #A649DA;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+.lable1 {
+    line-height: 22px;
+    font-size: 19px;
+    color: #c93a07 !important;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+
+.button:hover {
+    background: #a549da62;
+}
+#button2 {
+    background: #f69a7b !important;
+    width: 135px !important;
+
+}
+#button2:hover
+{
+    background: #ff8962;
+
+}
+
+.button:hover .svg-icon {
+    animation: lr 1s linear infinite;
+}
+
+@keyframes lr {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-1px);
+    }
+
+    75% {
+        transform: translateX(1px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

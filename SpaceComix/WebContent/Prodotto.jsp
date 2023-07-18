@@ -33,6 +33,31 @@
       %>
       <section class="container-0">
           <div class="container-1">
+              <%
+                  if (user != null) {
+                      if (user.getRuolo().equals("admin")) {
+                         %>
+              <form action="<%=request.getContextPath()%>/AddProduct" method="get">
+                  <input type="hidden" name="id" value="<%=prodotto.getID()%>">
+                  <button class="button" name="action" value="modifica" type="submit">
+                  <svg class="svg-icon" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g stroke="#a649da" stroke-linecap="round" stroke-width="2"><path d="m20 20h-16"></path><path clip-rule="evenodd" d="m14.5858 4.41422c.781-.78105 2.0474-.78105 2.8284 0 .7811.78105.7811 2.04738 0 2.82843l-8.28322 8.28325-3.03046.202.20203-3.0304z" fill-rule="evenodd"></path></g></svg>
+                  <span class="lable">Edit</span>
+              </button>
+              </form>
+              <form action="<%=request.getContextPath()%>/AddProduct" method="post">
+                  <input type="hidden" name="id" value="<%=prodotto.getID()%>">
+                  <button class="button" name="action" value="delete" type="submit" id="button2">
+                      <svg class="svg-icon" fill="none" height="24" viewBox="0 0 24 24" width="43" xmlns="http://www.w3.org/2000/svg"><g stroke="#c93a07" stroke-linecap="round" stroke-width="2"><path d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16" fill-rule="evenodd"></path></g></svg>
+                      <span class="lable1">Rimuovi</span>
+                  </button>
+              </form>
+
+
+              <%
+                      }
+
+                  }
+              %>
               <div class="container-2">
                   <img src="Immagini/<%= prodotto.getImage() %>" alt="<%= prodotto.getImage_alt() %>" class="product-img" type="image/svg+xml">
                   <div class="container-nome-voto-autore">

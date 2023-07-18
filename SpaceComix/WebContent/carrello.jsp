@@ -120,10 +120,10 @@
                         <p class="color-1">Include IVA</p>
                 </div>
             </div>
-            <a href="checkout.jsp">Check-Out</a>
-            <!--  <form action="" method="post"> -->
-          	<!--  <button type="submit" class="check-out">Check Out</button>
-		  </form> -->
+
+             <form action="checkout.jsp" >
+          	  <button type="submit" class="check-out">Check Out</button>
+		  </form>
         </div>
 
     </div>
@@ -153,4 +153,22 @@
 </div>
 </body>
 <%@include file="Footer.jsp" %>
+
+<script>
+    const items = document.querySelectorAll(".accordion button");
+
+    function toggleAccordion() {
+        const itemToggle = this.getAttribute('aria-expanded');
+
+        for (i = 0; i < items.length; i++) {
+            items[i].setAttribute('aria-expanded', 'false');
+        }
+
+        if (itemToggle == 'false') {
+            this.setAttribute('aria-expanded', 'true');
+        }
+    }
+
+    items.forEach(item => item.addEventListener('click', toggleAccordion));
+</script>
 </html>
