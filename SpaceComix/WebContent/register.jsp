@@ -6,9 +6,9 @@
 	<meta charset="UTF-8">
 	<title>SignIn Page</title>
 	<link rel="stylesheet" href="style.css">
-	<%@include file="Header.jsp" %>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+<%@include file="Header.jsp" %>
 <body>
 <div class="quadrato">
 <div>

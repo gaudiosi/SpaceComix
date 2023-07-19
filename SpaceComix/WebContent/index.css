@@ -123,11 +123,6 @@ ion-icon {
     gap: 3px;
     transition: 0.25s ease;
 }
-a,
-span,
-input:not(#escludi):not(#escludi *),
-button,
-ion-icon { display: block; }
 
 
 .shop .btn-link:is(:hover, :focus) { color:hsl(148, 20%, 38%); }

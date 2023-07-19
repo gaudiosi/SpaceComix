@@ -13,10 +13,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Risultati Ricerca</title>
-	<%@include file="Header.jsp" %>
 	<link rel="stylesheet" href="Catalog.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+<%@include file="Header.jsp" %>
 <body>
 <div class="quadrato">
 <div>
