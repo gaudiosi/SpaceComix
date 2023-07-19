@@ -4,7 +4,7 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProdottoCarrello,it.SpaceComix.model.Carrello, it.SpaceComix.model.UserBean"%>
     <meta charset="UTF-8">
     <title>Checkout</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    	<script src="js/jquery-3.7.0.js"></script>
 
     <%@include file="Header.jsp" %>
 </head>

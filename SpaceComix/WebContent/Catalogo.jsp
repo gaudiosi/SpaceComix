@@ -15,7 +15,7 @@
 	<title>Il nostro catalogo prodotti</title>
 	<%@include file="Header.jsp" %>
 	<link rel="stylesheet" href="Catalog.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="js/jquery-3.7.0.js"></script>
 </head>
 <body>
 <div class="quadrato">

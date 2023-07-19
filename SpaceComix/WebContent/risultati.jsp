@@ -14,7 +14,7 @@
 	<meta charset="UTF-8">
 	<title>Risultati Ricerca</title>
 	<link rel="stylesheet" href="Catalog.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="js/jquery-3.7.0.js"></script>
 </head>
 <%@include file="Header.jsp" %>
 <body>

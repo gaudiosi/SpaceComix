@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="barraRicerca.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="js/jquery-3.7.0.js"></script>
 </head>     
 <body>
 <form id="ricerca" autocomplete="off" action="Cerca" method="post">
