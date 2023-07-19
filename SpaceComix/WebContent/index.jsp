@@ -40,7 +40,7 @@
 <div class="container">
     <div class="title-wrapper">
         <h2 class="h2 section-title">I migliori Shonen</h2>
-        <a href="Catalogo.jsp?genere=shonen" class="btn-link">
+        <a href="Catalogo.jsp?genere=<%=cat1%>" class="btn-link">
             <span class="span">Vedi tutto</span>
             <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
         </a>
@@ -76,7 +76,7 @@
         <div class="container">
             <div class="title-wrapper">
                 <h2 class="h2 section-title">I migliori Dark Fantasy</h2>
-                <a href="#" class="btn-link">
+                <a href="Catalogo.jsp?genere=<%=cat2%>" class="btn-link">
                     <span class="span">Vedi tutto</span>
                     <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
                 </a>
@@ -120,7 +120,6 @@
         images.forEach((image) => {
             image.addEventListener("click", (event) => {
                 const imageUrl = event.target.dataset.id;
-                // Replace "customUrl" with your actual custom data attribute name
                 if (imageUrl) {
                     let adress = "Prodotto?id=";
                     window.location.href = adress.concat(imageUrl); // Redirect to the custom URL

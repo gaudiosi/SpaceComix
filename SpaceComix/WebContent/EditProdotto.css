@@ -84,7 +84,6 @@
 }
 
 .checkbox-group input[type="checkbox"] {
-    /* ici on ne doit pas mettre de display: none afin de pouvoir "tabber" */
     width: 2px;
     height: 2px;
     padding: 0;
@@ -176,9 +175,7 @@
     }
 
     .button {
-        /* bon, bon, bon
-        c'est pas tout mais j'ai faim moi ^^
-        */
+
         width: auto;
         color: white !important;
 
