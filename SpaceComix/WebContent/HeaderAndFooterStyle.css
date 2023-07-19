@@ -129,7 +129,7 @@ ion-icon { display: block; }
 }
 
 @media (max-width: 984px) {
-   
+
 .navbar {
   overflow: hidden;
   background-color: #273862;
@@ -142,10 +142,9 @@ ion-icon { display: block; }
 
 .navbar a.icon {
   color: white;
-  padding: 14px 16px;
+  padding: 40px 16px;
   text-decoration: none;
   font-size: 17px;
-  background: black;
   display: block;
   position: absolute;
   right: 0;

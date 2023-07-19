@@ -16,12 +16,6 @@
 <%@include file="Header.jsp" %>
 
 <body>
-<%--
-<div class="container2">
-    <img src="Immagini/Banner_waifu2x_noise1_scale4x.png" alt="Your Image">
-    <div class="fade-out"></div>
-</div>--%>
-
 <%
     Collection<ProductBean> listaProdotti1 = (Collection<ProductBean>)request.getSession().getAttribute("prodotti1");
 
@@ -32,7 +26,7 @@
 %>
 
 
-
+<%--Banner--%>
 <%@include file="banner.jsp" %>
 
 <%-- Slider Prodotti --%>
@@ -46,7 +40,7 @@
         </a>
     </div>
     <div class="wrapper">
-        <i id="left" class="fa-solid fa-angle-left"></i>
+        <i id="left" class="fa-solid fa-angle-left" data-id="left"></i>
         <div class="carousel">
 
             <%
@@ -82,7 +76,7 @@
                 </a>
             </div>
             <div class="wrapper">
-                <i id="left" class="fa-solid fa-angle-left"></i>
+                <i id="left2" class="fa-solid fa-angle-left" data-id="left"></i>
                 <div class="carousel">
 
                     <%
@@ -100,7 +94,7 @@
                         }%>
 
                 </div>
-                <i id="right" class="fa-solid fa-angle-right"></i>
+                <i id="right2" class="fa-solid fa-angle-right"></i>
             </div>
 
         </div>
@@ -111,22 +105,25 @@
 <%@include file="Footer.jsp" %>
 
 </html>
+
+<%-- --%>
+
 <script>
     const carousels = document.querySelectorAll(".carousel");
 
+    <%--Per fare href abbiamo usato js, poiché inserire ogni immagine in un suo contenitore rompe il css --%>
     carousels.forEach((carousel) => {
         const images = carousel.querySelectorAll("img");
 
         images.forEach((image) => {
-            image.addEventListener("click", (event) => {
-                const imageUrl = event.target.dataset.id;
+            image.addEventListener("click", (event) => { <%-- Per ogni immagine, se viene cliccata allora--%>
+                const imageUrl = event.target.dataset.id; <%--Conserviamo il suo attributo data-id e, se non è una stringa vuota, allora fa la redirect --%>
                 if (imageUrl) {
                     let adress = "Prodotto?id=";
                     window.location.href = adress.concat(imageUrl); // Redirect to the custom URL
                 }
             });
         });
-
 
 
 
@@ -142,7 +139,7 @@
         arrowIcons.forEach((icon) => {
             icon.addEventListener("click", () => {
                 let firstImgWidth = firstImg.clientWidth + 14;
-                carousel.scrollLeft += icon.id == "left" ? -firstImgWidth : firstImgWidth;
+                carousel.scrollLeft += icon.getAttribute("data-id") == "left" ? -firstImgWidth : firstImgWidth;
                 setTimeout(() => showHideIcons(), 60);
             });
         });
@@ -172,6 +169,6 @@
 
 
 <%--  Freccia SLider Prodotti--%>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" integrity="sha384-EcogLzNzScolFpuLPk/kxJRnmu39K6J1j3+8yrfrebDq7qtbZoB2gfP0rD08JKit" crossorigin="anonymous"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" integrity="sha384-xYx1P7dxspoifaKXuLoaPybset7M4RzoZPDVwB+CrVVobxN3h90OQGVoHYHtCr9G" crossorigin="anonymous"></script>
 
