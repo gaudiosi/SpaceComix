@@ -18,6 +18,7 @@
     	   response.sendError(401, "Soggetto non autorizzato ad accedere alla pagina");
    	   }
     %>
+    <h1>Add Product</h1>
     <% String error = (String) session.getAttribute("error");
        if (error != null) {
     	   out.print("<p class = \"error\">" + error + "</p>");
