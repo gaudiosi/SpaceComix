@@ -96,7 +96,103 @@ public class ProductDAO implements DAO<ProductBean> {
         }
     }
 
+    public synchronized Collection<ProductBean> doRetrieveByKey(String code) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        Collection<ProductBean> products = new LinkedList<ProductBean>();
+
+        String selectSQL = "SELECT * FROM " + TABLE_NAME +
+                " AS P LEFT JOIN Appartenenza AS A ON P.id = A.idProdotto" +
+                " LEFT JOIN Categoria AS C ON A.idCategoria=C.nome WHERE P.titolo LIKE ?";
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setString(1,"%" + code + "%");
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            boolean currentnext = rs.next();
+
+            while (currentnext) {       //Finché esiste una riga corrente crea un nuovo prodotto
+
+
+                ProductBean bean = new ProductBean();
+
+                bean.setID(rs.getInt("id"));
+                bean.setQuantita(rs.getInt("quantita"));
+                bean.setIva(rs.getInt("iva"));
+                bean.setPrezzo(rs.getFloat("prezzo"));
+                bean.setTitolo(rs.getString("titolo"));
+                bean.setDescrizione(rs.getString("descrizione"));
+                bean.setAutore(rs.getString("autore"));
+                bean.setEditore(rs.getString("editore"));
+                bean.setIsbn(rs.getString("isbn"));
+                bean.setSconto(rs.getInt("sconto"));
+                bean.setImage(rs.getString("immagine"));
+                bean.setImage_alt(rs.getString("image_alt"));
+
+                products.add(bean);
+
+                if(rs.getString("C.nome") != null)
+                {
+                    do {  //Crea una nuova categoria
+                        CategoriaBean c = new CategoriaBean();
+                        c.setNome(rs.getString("C.nome"));
+                        c.setDescrizione(rs.getString("C.descrizione"));
+                        bean.addCategoria(c);
+                        currentnext = rs.next();
+                    } while(currentnext && rs.getInt("id")== bean.getID());
+                    //FinchÃ© la nuova riga corrente ha lo stesso prodotto
+                }
+                else {
+                    currentnext = rs.next();
+                }
+
+            }
+
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                if (connection != null)
+                    connection.close();
+            }
+        }
+        
+        return products;
+    }
+
     @Override
+    public synchronized boolean doDelete(int code) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int result = 0;
+
+        String deleteSQL = "DELETE FROM " + ProductDAO.TABLE_NAME + " WHERE id = ?";
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(deleteSQL);
+            preparedStatement.setInt(1, code);
+
+            result = preparedStatement.executeUpdate();
+
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                if (connection != null)
+                    connection.close();
+            }
+        }
+        return (result != 0);
+    }
+    
     public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -156,34 +252,6 @@ public class ProductDAO implements DAO<ProductBean> {
             }
         }
         return bean;
-    }
-
-    @Override
-    public synchronized boolean doDelete(int code) throws SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int result = 0;
-
-        String deleteSQL = "DELETE FROM " + ProductDAO.TABLE_NAME + " WHERE id = ?";
-
-        try {
-            connection = ds.getConnection();
-            preparedStatement = connection.prepareStatement(deleteSQL);
-            preparedStatement.setInt(1, code);
-
-            result = preparedStatement.executeUpdate();
-
-        } finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } finally {
-                if (connection != null)
-                    connection.close();
-            }
-        }
-        return (result != 0);
     }
 
     @Override
