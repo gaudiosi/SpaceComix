@@ -7,7 +7,7 @@
 	<title>Pagina di Login</title>
 	<link rel="stylesheet" href="style.css">
 	<%@include file="Header.jsp"%>
-	<script src="js/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<div class="quadrato">
