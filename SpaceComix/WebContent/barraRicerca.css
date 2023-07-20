@@ -3,13 +3,14 @@
 }
 
 body {
-  font: 16px Arial;  
+  font: 16px Arial,sans-serif;
 }
 
 /*the container must be positioned relative:*/
 .autocomplete {
   position: relative;
   display: inline-block;
+  justify-content: space-between;
 }
 
 input:not(#login):not(#login *):not(#logout):not(#logout *):not(#registration-form):not(#registration-form *):not(#profile):not(#profile *) {

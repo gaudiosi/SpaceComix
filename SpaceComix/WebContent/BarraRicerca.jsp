@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="barraRicerca.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous">
+
+    </script>
+</head>
 <body>
 <form id="ricerca" autocomplete="off" action="Cerca" method="post">
   <div class="autocomplete" style="width:300px;">

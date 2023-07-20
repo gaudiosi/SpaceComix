@@ -15,19 +15,19 @@
 	<title>Il nostro catalogo prodotti</title>
 	<%@include file="Header.jsp" %>
 	<link rel="stylesheet" href="Catalog.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="quadrato">
 
-<div class="categorie">
-<form>
-<h4>Categorie</h4>
-  <div class="checkBoxs-label" id="FormCategorie"></div>
-</form>
-</div>
+	<div class="categorie">
+		<form>
+			<h4>Categorie</h4>
+			<div class="checkBoxs-label" id="FormCategorie"></div>
+		</form>
+	</div>
 
-	<hr>
+
 	<div class="product-list" id="productList">
 	</div>
 </div>
