@@ -101,6 +101,53 @@ public class OrdineDAO implements DAO<OrdineBean> {
     }
 
     
+    public synchronized Collection<OrdineBean> doRetrieveByUser(int idU) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        Collection<OrdineBean> ordini = new LinkedList<OrdineBean>();
+
+        String selectSQL = "SELECT * FROM " + TABLE_NAME +
+                "WHERE idUtente = ?";
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, idU);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            boolean currentnext = rs.next();
+
+            while (currentnext) {       //Finché esiste una riga corrente crea un nuovo prodotto
+
+
+                OrdineBean bean = new OrdineBean();
+
+            	bean.setId(Integer.parseInt(rs.getString("id")));
+            	bean.setIdUtente(Integer.parseInt(rs.getString(UTENTE)));
+            	bean.setDataOrdine(rs.getDate(DATA));
+            	bean.setTelefono(rs.getString(TELEFONO));
+
+                ordini.add(bean);
+
+                
+
+            }
+
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                if (connection != null)
+                    connection.close();
+            }
+        }
+        
+        return ordini;
+    }
+    
     
 
 	@Override
