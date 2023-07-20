@@ -1,7 +1,6 @@
 drop schema if exists SpaceComix;
 create schema SpaceComix;
 use SpaceComix;
-
 create table Cliente(
 id int auto_increment,
 username varchar(16) not NULL,
@@ -96,22 +95,6 @@ on delete cascade
 on update cascade
 );
 
-create table Composizione(
-idOrdine int,
-idProdotto int,
-prezzo decimal(6,2),
-prezzo_vendita int,
-iva int,
-quantita int,
-primary key(idOrdine, idProdotto),
-foreign key (idProdotto) references Prodotto(id)
-on delete no action
-on update no action,
-foreign key (idOrdine) references Ordine(id)
-on delete no action
-on update no action
-);
-
 create table Recensione(
 testo varchar(50) not NULL,
 stelle int not NULL,
@@ -124,4 +107,17 @@ on update cascade,
 foreign key (idProdotto) references Prodotto(id)
 on delete cascade
 on update cascade
+);
+
+create table Composizione(
+idOrdine int,
+idProdotto int,
+prezzo decimal(6,2),
+prezzo_vendita int,
+iva int,
+quantita int,
+primary key(idOrdine, idProdotto),
+foreign key (idOrdine) references Ordine(id)
+on delete no action
+on update no action
 );
