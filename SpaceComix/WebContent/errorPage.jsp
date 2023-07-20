@@ -18,7 +18,7 @@
     	<% String errorMessage = (String) request.getAttribute("javax.servlet.error.message"); %>
     		<p><%= errorMessage %></p>
     	<div class="button-container">
-    		<a href="index.jsp" class="button-color">Ritorna alla pagina iniziale</a>
+    		<a href="index" class="button-color">Ritorna alla pagina iniziale</a>
     	</div>
     </div>
 	</div>
