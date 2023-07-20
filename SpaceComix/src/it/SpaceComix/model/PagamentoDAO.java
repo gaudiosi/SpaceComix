@@ -54,7 +54,6 @@ public class PagamentoDAO implements DAO<PagamentoBean>{
 
 
 
-            connection.commit();
         } finally {
             try {
                 if (preparedStatement != null)

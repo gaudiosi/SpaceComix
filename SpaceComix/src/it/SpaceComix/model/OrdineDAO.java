@@ -40,7 +40,7 @@ public class OrdineDAO implements DAO<OrdineBean> {
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + OrdineDAO.TABLE_NAME
-				+ " (idUtente, telefono, dataOrdine, id, numCarta, indirizzo) VALUES (?, ?, ?, ?, ?, ?)";
+				+ " (idUtente, telefono, dataOrdine, numCarta, indirizzo) VALUES (?, ?, ?, ?, ?)";
 		String insert2SQL = "INSERT INTO Composizione (prezzo_vendita,iva, quantita, idOrdine, idProdotto) VALUES (?, ?, ?, ?, ?)";
 
 		try {
@@ -50,9 +50,8 @@ public class OrdineDAO implements DAO<OrdineBean> {
 			preparedStatement.setInt(1, product.getIdUtente());
 			preparedStatement.setString(2, product.getTelefono());
 			preparedStatement.setDate(3, product.getDataOrdine());
-			preparedStatement.setInt(4, product.getId());
-			preparedStatement.setString(5, product.getNumCarta());
-			preparedStatement.setString(6, product.getIndirizzo());
+			preparedStatement.setString(4, product.getNumCarta());
+			preparedStatement.setString(5, product.getIndirizzo());
 
 
 

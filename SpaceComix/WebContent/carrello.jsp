@@ -121,7 +121,7 @@
                 </div>
             </div>
 
-             <form action="checkout.jsp" >
+             <form action="<%=request.getContextPath()%>/checkout" method="get">
           	  <button type="submit" class="check-out">Check Out</button>
 		  </form>
         </div>

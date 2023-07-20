@@ -27,7 +27,7 @@ public class UtenteOrdiniServlet extends HttpServlet {
         OrdineDAO ordineDAO = new OrdineDAO();
         Collection<OrdineBean> ordini = null;
         try {
-            ordini = ordineDAO.doRetrieveByUser(idUtente);
+            ordini = ordineDAO.doRetrievebyUser(idUtente);
         } catch (SQLException e) {
         }
         request.setAttribute("ordiniUtente", ordini);

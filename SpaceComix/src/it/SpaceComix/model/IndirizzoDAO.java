@@ -52,11 +52,9 @@ public class IndirizzoDAO implements DAO<IndirizzoBean>{
 
             preparedStatement.executeUpdate();
 
-            //salvare le categorie del prodotto
 
 
 
-            connection.commit();
         } finally {
             try {
                 if (preparedStatement != null)

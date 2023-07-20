@@ -23,6 +23,7 @@ public class UserBean{
 	 
 	 public UserBean()
 	 {
+		 id= -1;
 	 }
 
 	public int getId() {

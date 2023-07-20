@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProdottoCarrello,it.SpaceComix.model.Carrello, it.SpaceComix.model.UserBean"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+    <%@ page import="it.SpaceComix.model.*" %>
+    <%@ page import="java.util.ArrayList" %>
     <meta charset="UTF-8">
     <title>Fattura</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js" integrity="sha384-/KtSGZ3Y6FUl+HbMMbSX94R0r8VGddnyrvYXTOQ9LuO3HxckA9kzrCQUafZZwJB3" crossorigin="anonymous"></script>
@@ -12,10 +14,11 @@
 	double totale = 0;
 	double spedizione = 2;
 	Carrello cart = (Carrello) request.getSession().getAttribute("cart");
-	ArrayList<ProdottoCarrello> prodotti = cart.getProducts();
-    for(ProdottoCarrello prodotto: prodotti )
+    OrdineBean ordine = (OrdineBean) request.getSession().getAttribute("ordine");
+    ArrayList<ProductOrdineBean> prodotti = (ArrayList<ProductOrdineBean>) ordine.getProdotti();
+    for(ProductOrdineBean prodotto: prodotti )
     {
-        totale+=prodotto.getProdotto().getPrezzo()* prodotto.getQuantita();
+        totale+=prodotto.getPrezzo_vendita()* prodotto.getQuantita();
     }
 %>
 <div class="quadrato">
@@ -27,8 +30,9 @@
 
     <div id="destinatario">
     <% if(user != null) { %> 
-        <h3>Nome: <%= user.getNome() %></h3>
-        <h3>Cognome: <%= user.getCognome() %></h3>
+        <h3>Nome: <%= user.getNome() %>  <%= user.getCognome() %></h3>
+        <h4>Pagamento: XXXX-XXXX-XXXX- <%= ordine.getNumCarta().substring(8) %></h4>
+        <h4> Indirizzo di spedizione: <%=ordine.getIndirizzo()%></h4>
         <% } %>
     </div>
 
@@ -47,14 +51,14 @@
         <tbody>
             <% 
             // Itera sui prodotti nel carrello e mostra i dettagli nella tabella
-            for (ProdottoCarrello prodotto : prodotti) {
-                double prezzo = prodotto.getProdotto().getPrezzo() * prodotto.getQuantita();
+            for (ProductOrdineBean prodotto : prodotti) {
+                double prezzo = prodotto.getPrezzo_vendita() * prodotto.getQuantita();
                 double iva = prezzo * 0.15;
                 double importoNetto = prezzo - iva;
             %>
             <tr>
-                <td><%= prodotto.getProdotto().getTitolo() %> (<%= prodotto.getProdotto().getID() %>)</td>
-                <td><%= String.format("%.2f", prodotto.getProdotto().getPrezzo()) %>€</td>
+                <td><%= prodotto.getTitolo() %> (<%= prodotto.getIdProdotto() %>)</td>
+                <td><%= String.format("%.2f", prodotto.getPrezzo_vendita()) %>€</td>
                 <td><%= prodotto.getQuantita() %></td>
                 <td><%= String.format("%.2f", importoNetto) %>€</td>
                 <td><%= String.format("%.2f", iva) %>€</td>
