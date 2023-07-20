@@ -263,6 +263,76 @@ public class OrdineDAO implements DAO<OrdineBean> {
 		return products;
 	}
 
+	public synchronized Collection<OrdineBean> doRetrievebyUser(int code) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<OrdineBean> products = new LinkedList<OrdineBean>();
+
+		String selectSQL = "SELECT * FROM " + TABLE_NAME +
+				" AS O LEFT JOIN Composizione AS C ON O.id = C.idOrdine" +
+				" LEFT JOIN Prodotto AS P ON C.idProdotto=P.id WHERE O.idUtente=?";
+
+
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, code);
+
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			boolean currentnext = rs.next();
+
+			while (currentnext) {       //Finché esiste una riga corrente crea un nuovo prodotto
+
+
+				OrdineBean bean = new OrdineBean();
+
+				bean.setIdUtente(rs.getInt("idUtente"));
+				bean.setTelefono(rs.getString("telefono"));
+				bean.setDataOrdine(rs.getDate("dataOrdine"));
+				bean.setNumCarta(rs.getString("numCarta"));
+				bean.setIndirizzo((rs.getString("indirizzo")));
+				bean.setId(rs.getInt("O.id"));
+
+				products.add(bean);
+
+				if(rs.getString("C.idOrdine") != null)
+				{
+					do {  //Crea una nuova categoria
+						ProductOrdineBean p = new ProductOrdineBean();
+						p.setTitolo(rs.getString("P.titolo"));
+						p.setPrezzo_vendita(rs.getInt("C.prezzo_vendita"));
+						p.setIdProdotto(rs.getInt("C.idProdotto"));
+						p.setQuantita(rs.getInt("C.quantita"));
+						p.setIva(rs.getInt("C.iva"));
+
+						bean.addProductOrdine(p);
+						currentnext = rs.next();
+					} while(currentnext && rs.getInt("idOrdine")== bean.getId());
+					//FinchÃ© la nuova riga corrente ha lo stesso ordine
+				}
+				else {
+					currentnext = rs.next();
+				}
+
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+
+		return products;
+	}
+
 	@Override
 	public OrdineBean doRetrieveByKey(String code, String code1) throws SQLException {
 		return null;
