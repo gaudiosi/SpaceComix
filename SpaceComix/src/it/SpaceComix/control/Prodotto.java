@@ -73,7 +73,6 @@ public class Prodotto extends HttpServlet {
         Set<CategoriaBean> set1 = new HashSet<>(col1);
         Set<CategoriaBean> set2 = new HashSet<>(col2);
         set1.retainAll(set2);  //RIMANGONO SOLO GLI ELEMENTI IN COMUNE
-        System.out.println(set1.size());
         return set1.size();
     }
 }

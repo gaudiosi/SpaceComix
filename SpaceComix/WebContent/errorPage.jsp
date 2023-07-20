@@ -2,7 +2,6 @@
 <%@ page isErrorPage="true" %>
 <%@ page import="javax.servlet.ServletException, javax.servlet.http.HttpServletResponse" %>
 <!DOCTYPE html>
-<html>
 <html lang="it">
 
 <head>

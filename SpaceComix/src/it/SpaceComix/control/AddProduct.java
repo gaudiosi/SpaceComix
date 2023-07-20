@@ -160,7 +160,6 @@ public class AddProduct extends HttpServlet {
                     {
 
                         productDao.doDelete(product.getID());
-                        System.out.println(errore+ "ahah");
 
                     }
                     if(!request.getParameter("action").equals("delete")) {

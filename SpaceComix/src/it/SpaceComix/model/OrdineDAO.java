@@ -1,9 +1,6 @@
 package it.SpaceComix.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -35,179 +32,239 @@ public class OrdineDAO implements DAO<OrdineBean> {
     private static final String UTENTE = "idUtente";
     private static final String DATA = "dataOrdine";
     private static final String TELEFONO = "telefono";
-    Date data = new Date();
-    
-    @Override
-    public synchronized void doSave(OrdineBean order) throws SQLException {
 
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+	@Override
+	public synchronized void doSave(OrdineBean product) throws SQLException,NullPointerException {
 
-        String insertSQL = "INSERT INTO " + TABLE_NAME
-                + " (idUtente, dataOrdine, telefono) VALUES (?, ?, ?)";
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 
-        try {
-            connection = ds.getConnection();
-            preparedStatement = connection.prepareStatement(insertSQL);
-            preparedStatement.setInt(1, order.getIdUtente());
-            preparedStatement.setDate(2, (java.sql.Date) data);
-            preparedStatement.setString(3, order.getTelefono());
-            preparedStatement.executeUpdate();
+		String insertSQL = "INSERT INTO " + OrdineDAO.TABLE_NAME
+				+ " (idUtente, telefono, dataOrdine, id, numCarta, indirizzo) VALUES (?, ?, ?, ?, ?, ?)";
+		String insert2SQL = "INSERT INTO Composizione (prezzo_vendita,iva, quantita, idOrdine, idProdotto) VALUES (?, ?, ?, ?, ?)";
 
-        } finally {
+		try {
+			connection = ds.getConnection();
+			connection.setAutoCommit(false);
+			preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, product.getIdUtente());
+			preparedStatement.setString(2, product.getTelefono());
+			preparedStatement.setDate(3, product.getDataOrdine());
+			preparedStatement.setInt(4, product.getId());
+			preparedStatement.setString(5, product.getNumCarta());
+			preparedStatement.setString(6, product.getIndirizzo());
+
+
+
+			preparedStatement.executeUpdate();
+
+
+			if(product.getProdotti().size()>0)
+			{
+				ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+				int InsertedId = -1;
+				if (generatedKeys.next()) {
+					InsertedId = generatedKeys.getInt(1);
+				}
+
+
+				try (PreparedStatement preparedStatement2 = connection.prepareStatement(insert2SQL)) {
+					for (ProductOrdineBean prod : product.getProdotti())
+					{
+						preparedStatement2.setFloat(1, prod.getPrezzo_vendita());
+						preparedStatement2.setInt(2, prod.getIva());
+						preparedStatement2.setInt(3, prod.getQuantita());
+						preparedStatement2.setInt(4, InsertedId);
+						preparedStatement2.setInt(5, prod.getIdProdotto());
+
+
+
+						preparedStatement2.addBatch();
+
+					}
+					preparedStatement2.executeBatch();
+				}
+
+			}
+
+
+			connection.commit();
+
+		} finally {
 			try {
 				if (preparedStatement != null)
 					preparedStatement.close();
 			} finally {
-                if (connection != null)
-                    connection.close();
+				if (connection != null)
+					connection.close();
 			}
-        }
-    }
-    
-    @Override
-	public OrdineBean doRetrieveByKey(int code) throws SQLException {
+		}
+	}
+
+
+	@Override
+	public synchronized boolean doDelete(int code) throws SQLException {
 		Connection connection = null;
-        PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement = null;
 
-        OrdineBean bean = new OrdineBean();
+		int result = 0;
 
-        String selectSQL = "SELECT * FROM"+ TABLE_NAME +" C WHERE C.id = ?";
+		String deleteSQL = "DELETE FROM " + OrdineDAO.TABLE_NAME + " WHERE id = ?";
 
-        try {
-            connection = ds.getConnection();
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, code);
-            
-            ResultSet rs = preparedStatement.executeQuery();
-            
-            if (rs.next()) {
-            	bean.setId(Integer.parseInt(rs.getString("id")));
-            	bean.setIdUtente(Integer.parseInt(rs.getString(UTENTE)));
-            	bean.setDataOrdine(rs.getDate(DATA));
-            	bean.setTelefono(rs.getString(TELEFONO));
-            }
-            
-        } finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } finally {
-                if (connection != null)
-                    connection.close();
-            }
-        }
-        return bean;
-    }
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			preparedStatement.setInt(1, code);
 
-    
-    public synchronized Collection<OrdineBean> doRetrieveByUser(int idU) throws SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+			result = preparedStatement.executeUpdate();
 
-        Collection<OrdineBean> ordini = new LinkedList<OrdineBean>();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return (result != 0);
+	}
 
-        String selectSQL = "SELECT * FROM " + TABLE_NAME +
-                "WHERE idUtente = ?";
+	public synchronized OrdineBean doRetrieveByKey(int code) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 
-        try {
-            connection = ds.getConnection();
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, idU);
+		OrdineBean bean = new OrdineBean();
 
-            ResultSet rs = preparedStatement.executeQuery();
+		String selectSQL = "SELECT * FROM " + TABLE_NAME +
+				" AS O LEFT JOIN Composizione AS C ON O.id = C.idOrdine" +
+				" LEFT JOIN Prodotto AS P ON C.idProdotto=P.id WHERE O.id = ?";
 
-            boolean currentnext = rs.next();
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, code);
 
-            while (currentnext) {       //Finché esiste una riga corrente crea un nuovo prodotto
+			ResultSet rs = preparedStatement.executeQuery();
 
+			if (rs.next()) {
+				bean.setIdUtente(rs.getInt("idUtente"));
+				bean.setTelefono(rs.getString("telefono"));
+				bean.setDataOrdine(rs.getDate("dataOrdine"));
+				bean.setNumCarta(rs.getString("numCarta"));
+				bean.setIndirizzo((rs.getString("indirizzo")));
+				bean.setId(rs.getInt("id"));
 
-                OrdineBean bean = new OrdineBean();
+				if(rs.getString("C.idOrdine") != null)
+				{
+					do {
 
-            	bean.setId(Integer.parseInt(rs.getString("id")));
-            	bean.setIdUtente(Integer.parseInt(rs.getString(UTENTE)));
-            	bean.setDataOrdine(rs.getDate(DATA));
-            	bean.setTelefono(rs.getString(TELEFONO));
+						ProductOrdineBean p = new ProductOrdineBean();
+						p.setTitolo(rs.getString("P.titolo"));
+						p.setPrezzo_vendita(rs.getInt("C.prezzo_vendita"));
+						p.setIdProdotto(rs.getInt("C.idProdotto"));
+						p.setQuantita(rs.getInt("C.quantita"));
+						p.setIva(rs.getInt("C.iva"));
 
-                ordini.add(bean);
+						bean.addProductOrdine(p);
 
-                
+					} while (rs.next());
 
-            }
-
-        } finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } finally {
-                if (connection != null)
-                    connection.close();
-            }
-        }
-        
-        return ordini;
-    }
-    
-    
-
-	@Override
-	public Collection<OrdineBean> doRetrieveAll(String order) throws SQLException {
-		 Connection connection = null;
-	        PreparedStatement preparedStatement = null;
-
-	        Collection<OrdineBean> ordini = new LinkedList<OrdineBean>();
-
-	        String selectSQL = "SELECT * FROM " + TABLE_NAME;
-	        if (order != null && !order.equals("")) {
-	            selectSQL += " ORDER BY ?";
-	        }
-
-	        try {
-	            connection = ds.getConnection();
-	            preparedStatement = connection.prepareStatement(selectSQL);
-	            
-	            if (order != null && !order.equals("")) {
-	                preparedStatement.setString(1, order);
-	            }
-
-	            ResultSet rs = preparedStatement.executeQuery();
-
-	            boolean currentnext = rs.next();
-
-	            while (currentnext) {
+				}
 
 
-	                OrdineBean bean = new OrdineBean();
+			}
 
-	            	bean.setId(Integer.parseInt(rs.getString("id")));
-	            	bean.setIdUtente(Integer.parseInt(rs.getString(UTENTE)));
-	            	bean.setDataOrdine(rs.getDate(DATA));
-	            	bean.setTelefono(rs.getString(TELEFONO));
-	               
-	                ordini.add(bean);
-	            }
 
-	        } finally {
-	            try {
-	                if (preparedStatement != null)
-	                    preparedStatement.close();
-	            } finally {
-	                if (connection != null)
-	                    connection.close();
-	            }
-	        }
-	        return ordini;
-	    }
-
-	@Override
-	public boolean doDelete(int code) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return bean;
 	}
 
 	@Override
-	public OrdineBean doRetrieveByKey(String username, String password) throws SQLException {
-		// TODO Auto-generated method stub
+	public synchronized Collection<OrdineBean> doRetrieveAll(String order) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<OrdineBean> products = new LinkedList<OrdineBean>();
+
+		String selectSQL = "SELECT * FROM " + TABLE_NAME +
+				" AS O LEFT JOIN Composizione AS C ON O.id = C.idOrdine" +
+				" LEFT JOIN Prodotto AS P ON C.idProdotto=P.id";
+
+		if (order != null && !order.equals("")) {
+			selectSQL += " ORDER BY ?";
+		}
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			if (order != null && !order.equals("")) {
+				preparedStatement.setString(1, order);
+			}
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			boolean currentnext = rs.next();
+
+			while (currentnext) {       //Finché esiste una riga corrente crea un nuovo prodotto
+
+
+				OrdineBean bean = new OrdineBean();
+
+				bean.setIdUtente(rs.getInt("idUtente"));
+				bean.setTelefono(rs.getString("telefono"));
+				bean.setDataOrdine(rs.getDate("dataOrdine"));
+				bean.setNumCarta(rs.getString("numCarta"));
+				bean.setIndirizzo((rs.getString("indirizzo")));
+				bean.setId(rs.getInt("O.id"));
+
+				products.add(bean);
+
+				if(rs.getString("C.idOrdine") != null)
+				{
+					do {  //Crea una nuova categoria
+						ProductOrdineBean p = new ProductOrdineBean();
+						p.setTitolo(rs.getString("P.titolo"));
+						p.setPrezzo_vendita(rs.getInt("C.prezzo_vendita"));
+						p.setIdProdotto(rs.getInt("C.idProdotto"));
+						p.setQuantita(rs.getInt("C.quantita"));
+						p.setIva(rs.getInt("C.iva"));
+
+						bean.addProductOrdine(p);
+						currentnext = rs.next();
+					} while(currentnext && rs.getInt("idOrdine")== bean.getId());
+					//FinchÃ© la nuova riga corrente ha lo stesso ordine
+				}
+				else {
+					currentnext = rs.next();
+				}
+
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+
+		return products;
+	}
+
+	@Override
+	public OrdineBean doRetrieveByKey(String code, String code1) throws SQLException {
 		return null;
 	}
 

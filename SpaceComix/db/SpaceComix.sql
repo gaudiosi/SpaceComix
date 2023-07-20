@@ -63,6 +63,8 @@ create table Ordine(
 id int auto_increment,
 idUtente int,
 telefono varchar(16) not NULL,
+numCarta   char(16)    null,
+indirizzo  varchar(75) null,
 dataOrdine date not NULL,
 primary key(id),
 foreign key (idUtente) references Cliente(id)

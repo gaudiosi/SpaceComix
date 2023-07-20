@@ -2,7 +2,7 @@ package it.SpaceComix.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 public class OrdineBean implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -15,14 +15,20 @@ public class OrdineBean implements Serializable {
 
     private Date dataOrdine;
 
-    private ArrayList<ProductsOrdineBean> prodotti;
+    private String indirizzo;
+    private String numCarta;
+
+    private ArrayList<ProductOrdineBean> prodotti;
 
     public OrdineBean() {
         id = -1;
         idUtente = -1;
         telefono = "";
-        dataOrdine = new Date();
-        prodotti = new ArrayList<ProductsOrdineBean>();
+        dataOrdine = new Date(0,0,0);
+        prodotti = new ArrayList<ProductOrdineBean>();
+        indirizzo= "";
+        numCarta ="";
+
 
     }
 
@@ -58,21 +64,43 @@ public class OrdineBean implements Serializable {
         this.dataOrdine = dataOrdine;
     }
 
-    public ArrayList<ProductsOrdineBean> getProdotti() {
+    public ArrayList<ProductOrdineBean> getProdotti() {
         return prodotti;
     }
 
-    public void setProdotti(ArrayList<ProductsOrdineBean> prodotti) {
+    public void setProdotti(ArrayList<ProductOrdineBean> prodotti) {
         this.prodotti = prodotti;
     }
 
+    public void setNumCarta(String numCarta) {
+        this.numCarta = numCarta;
+    }
 
+    public String getNumCarta() {
+        return numCarta;
+    }
 
-    //vedere meglio come conviene implementare addProduct
-    public void addProduct(ProductsOrdineBean prodotto)
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+
+    public void addProductOrdine(ProductOrdineBean prod)
     {
-        //if(!prodotti.contains(prodotto))
-        prodotti.add(prodotto);
+        int contenuto = 0;
+
+      for (ProductOrdineBean cat : prodotti)
+        {
+            if (cat.equals(prod))
+            {
+                contenuto = 1;
+                break;
+            }
+        }
+        if(contenuto==0) prodotti.add(prod);
 
     }
 

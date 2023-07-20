@@ -101,6 +101,12 @@
     </section>
 
 
+</body>
+<%@include file="Footer.jsp" %>
+
+
+<%-- --%>
+
 <script>
     const carousels = document.querySelectorAll(".carousel");
 
@@ -161,14 +167,9 @@
 </script>
 
 
+
 <%--  Freccia SLider Prodotti--%>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" integrity="sha384-EcogLzNzScolFpuLPk/kxJRnmu39K6J1j3+8yrfrebDq7qtbZoB2gfP0rD08JKit" crossorigin="anonymous"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" integrity="sha384-xYx1P7dxspoifaKXuLoaPybset7M4RzoZPDVwB+CrVVobxN3h90OQGVoHYHtCr9G" crossorigin="anonymous"></script>
-
-
-
-
-</body>
-<%@include file="Footer.jsp" %>
 
 </html>
