@@ -8,8 +8,8 @@
 
 
 <!DOCTYPE html>
-<html>
-<head lang="it">
+<html lang="it">
+<head>
     <title>Ordini</title>
     <%@include file="Header.jsp" %>
     <%
