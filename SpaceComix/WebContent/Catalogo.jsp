@@ -61,9 +61,14 @@ function submitForm() {
 
     if (selectedValues.length > 0) {
         urlParams.set('genere', selectedValues.join(','));
+    } else {
+        urlParams.delete('genere');
     }
 
     TrovaProdotti(selectedValues.join(","));
+
+    var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + '?' + urlParams.toString();
+    window.history.pushState({ path: newUrl }, '', newUrl);
 }
 </script>
 <script>
