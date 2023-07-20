@@ -50,8 +50,8 @@
         <% IndirizzoBean indirizzo = (IndirizzoBean) request.getSession().getAttribute("alreadyindirizzo"); %>
         <input id="ccap" type="text" name="cap" pattern="[0-9]{1-5}" required <%if(indirizzo!=null){ %>value="<%=indirizzo.getCap()%>"<%}%>> <br>
         <label for="cita">Citta</label><input id="cita" type="text" name="citta" required <%if(indirizzo!=null){ %>value="<%=indirizzo.getCitta()%>"<%}%>> <br>
-        <label for="via">Via</label><input id="via" type="text" name="via" required<%if(indirizzo!=null){ %>value="<%=indirizzo.getVia()%>"<%}%>> <br>
-        <label for="civico"> Civico</label><input id="civico" type="text" pattern="[0-9]{1-3}" name="civico" required<%if(indirizzo!=null){ %>value="<%=indirizzo.getCivico()%>"<%}%>><br>
+        <label for="via">Via</label><input id="via" type="text" name="via" required <%if(indirizzo!=null){ %>value="<%=indirizzo.getVia()%>"<%}%>> <br>
+        <label for="civico"> Civico</label><input id="civico" type="text" pattern="[0-9]{1-3}" name="civico" required <%if(indirizzo!=null){ %>value="<%=indirizzo.getCivico()%>"<%}%>><br>
         <label for="tel">Recapito telefonico</label><input id="tel" type="text" name="telefono" required><br>
 
 

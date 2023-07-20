@@ -113,10 +113,11 @@ public class Checkout extends HttpServlet {
                 if(vecchioindirizzo.getIdUtente()!=-1 && !nuovoindirizzo.equals(vecchioindirizzo)){
 
                     modeli.doDelete(vecchioindirizzo.getIdUtente());
+                    modeli.doSave(nuovoindirizzo);
+
                 }
 
 
-                modeli.doSave(nuovoindirizzo);
                 newordine.setIndirizzo(nuovoindirizzo.getCap()+ " " + nuovoindirizzo.getCitta() + " " + nuovoindirizzo.getVia() + " " + nuovoindirizzo.getCivico());
 
 

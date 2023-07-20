@@ -31,7 +31,7 @@
     <div id="destinatario">
     <% if(user != null) { %> 
         <h3>Nome: <%= user.getNome() %>  <%= user.getCognome() %></h3>
-        <h4>Pagamento: XXXX-XXXX-XXXX- <%= ordine.getNumCarta().substring(8) %></h4>
+        <h4>Pagamento: XXXX-XXXX-XXXX- <%= ordine.getNumCarta().substring(12) %></h4>
         <h4> Indirizzo di spedizione: <%=ordine.getIndirizzo()%></h4>
         <% } %>
     </div>
