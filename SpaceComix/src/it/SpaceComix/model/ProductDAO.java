@@ -361,7 +361,6 @@ public class ProductDAO implements DAO<ProductBean> {
 
             preparedStatement.executeUpdate();
 
-            connection.commit();
         } finally {
         	try {
                 if (preparedStatement != null)

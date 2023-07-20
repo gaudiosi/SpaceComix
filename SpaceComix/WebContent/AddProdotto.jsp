@@ -28,6 +28,7 @@
 
 
 
+    <%-- Form per Aggiungere un nuovo prodotto --%>
     <div class="quadrato">
         <div class="container">
             <form action="AddProduct" method="post" enctype="multipart/form-data">
@@ -99,6 +100,10 @@
         </div>
     </div>
     <script>
+
+        <%-- funzione che recupera i dati dal server utilizzando AJAX, crea dinamicamente caselle per ogni categoria in base ai dati ricevuti e le aggiunge all'elemento HTML con ID "caselle di controllo".--%>
+
+
     $(document).ready(function() {
   	  $.ajax({
   	    url: 'GetCategorie',
@@ -106,14 +111,14 @@
   	    dataType: 'json',
   	    success: function(data) {
   	      var checkboxes = $('#checkboxes');
-  	      
+
   	        for (var i = 0; i < data.categorie.length; i++) {
   	          var categoria = data.categorie[i];
-  	          
+
   	          var div = $('<div>').attr('class', 'checkbox-group');
   	          var input = $('<input>').attr('id', categoria.nome).attr('type', 'checkbox').attr('name', 'categorie').attr('value', categoria.nome);
   	          var label = $('<label>').attr('for', categoria.nome ).text(categoria.nome);
-  	  
+
   	          input.appendTo(div);
   	          label.appendTo(div);
   	        checkboxes.append(div);
@@ -126,7 +131,7 @@
   	  });
   	});
     </script>
-    
+
 </body>
 <%@include file="Footer.jsp" %>
 </html>

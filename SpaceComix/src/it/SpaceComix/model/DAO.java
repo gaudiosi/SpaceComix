@@ -13,4 +13,6 @@ public interface DAO<T> {
     public T doRetrieveByKey(String username, String password) throws SQLException;
 
     public Collection<T> doRetrieveAll(String order) throws SQLException;
+
+    void doUpdate(T temproudct) throws SQLException;
 }
