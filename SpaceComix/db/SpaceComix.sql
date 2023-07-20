@@ -1,7 +1,6 @@
 drop schema if exists SpaceComix;
 create schema SpaceComix;
 use SpaceComix;
-
 create table Cliente(
 id int auto_increment,
 username varchar(16) not NULL,
@@ -112,6 +111,7 @@ on update cascade
 
 create table Composizione(
 idOrdine int,
+idProdotto int,
 prezzo decimal(6,2),
 prezzo_vendita int,
 iva int,
