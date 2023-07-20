@@ -139,11 +139,15 @@ public class Checkout extends HttpServlet {
                     LocalDate localDate = LocalDate.parse(inputMonth + "-01", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
                     pagamento.setScadenza(sqlDate);
-                    System.out.println(localDate);
                 } else {
                     response.sendError(401, "Data Incorretta");
                 }
-                modelp.doSave(pagamento);
+                Collection<PagamentoBean> carte = modelp.doRetrieveAll(null);
+                if(!carte.contains(pagamento)) {
+                    for(PagamentoBean pa:carte){System.out.println(pa);}
+                    System.out.println(pagamento);
+                    modelp.doSave(pagamento);
+                }
                 newordine.setNumCarta(pagamento.getNumCarta());
 
 

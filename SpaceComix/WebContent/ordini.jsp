@@ -9,7 +9,7 @@
 
 <!DOCTYPE html>
 <html>
-<head>
+<head lang="it">
     <title>Ordini</title>
     <%@include file="Header.jsp" %>
     <%
@@ -30,6 +30,8 @@
 	<% if (ordini != null) {%>
     <h1>Ordini dell'utente</h1>
     <table>
+        <caption style="display: none;">Fattura</caption>
+
         <thead>
             <tr>
                 <th>ID Ordine</th>

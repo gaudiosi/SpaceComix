@@ -145,7 +145,7 @@ public class PagamentoDAO implements DAO<PagamentoBean>{
 
         Collection<PagamentoBean> products = new LinkedList<PagamentoBean>();
 
-        String selectSQL = "SELECT * FROM " + TABLE_NAME;
+        String selectSQL = "SELECT * FROM " + PagamentoDAO.TABLE_NAME;
         if (order != null && !order.equals("")) {
             selectSQL += " ORDER BY ?";
         }

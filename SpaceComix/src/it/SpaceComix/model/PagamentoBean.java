@@ -78,7 +78,7 @@ public class PagamentoBean implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PagamentoBean that = (PagamentoBean) o;
-        return idUtente == that.idUtente && cvc == that.cvc && numCarta.equals(that.numCarta) && scadenza.equals(that.scadenza) && intestatario.equals(that.intestatario);
+        return idUtente == that.idUtente && cvc == that.cvc && numCarta.equals(that.numCarta) && intestatario.equals(that.intestatario);
     }
 
     @Override
