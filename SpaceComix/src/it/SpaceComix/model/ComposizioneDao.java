@@ -118,6 +118,12 @@ public class ComposizioneDao implements DAO<ComposizioneBean> {
 		return null;
 	}
 
+	@Override
+	public void doUpdate(ComposizioneBean temproudct) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
    
 
 	
