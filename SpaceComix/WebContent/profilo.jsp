@@ -70,6 +70,10 @@ function togglePasswordVisibility(pass) {
     }
 }
 </script>
+<form action="UtenteOrdiniServlet" method="post">
+	<input type="hidden" name="userid" value=<%=user.getId() %>>
+	<input type="submit" value="ordini" class="button">
+</form>
 </body>
 <%@include file="Footer.jsp" %>
 </html>
