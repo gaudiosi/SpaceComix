@@ -116,7 +116,6 @@ prezzo decimal(6,2),
 prezzo_vendita int,
 iva int,
 quantita int,
-idProdotto int,
 primary key(idOrdine, idProdotto),
 foreign key (idOrdine) references Ordine(id)
 on delete no action
