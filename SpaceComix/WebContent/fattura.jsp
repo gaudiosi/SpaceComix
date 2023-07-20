@@ -22,7 +22,7 @@
 <div>
 <div id="FATTURA">
     <div id="logo">
-        <!-- Inserisci qui il logo -->
+			<a href = "index" class = "logo-img"><img src="Immagini/Logo.svg" alt="Logo del sito" class="logo"></a>
     </div>
 
     <div id="destinatario">

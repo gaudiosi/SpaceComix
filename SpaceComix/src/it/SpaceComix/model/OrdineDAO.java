@@ -72,7 +72,7 @@ public class OrdineDAO implements DAO<OrdineBean> {
 
         OrdineBean bean = new OrdineBean();
 
-        String selectSQL = "SELECT * FROM"+ TABLE_NAME +"C WHERE C.id = ?";
+        String selectSQL = "SELECT * FROM"+ TABLE_NAME +" C WHERE C.id = ?";
 
         try {
             connection = ds.getConnection();

@@ -46,9 +46,9 @@ public class ComposizioneDao implements DAO<ComposizioneBean> {
             preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, product.getIdOrdine());
             preparedStatement.setInt(2, product.getIdProdotto());            
-            preparedStatement.setInt(3, product.getPrezzo());
+            preparedStatement.setFloat(3, product.getPrezzo());
             preparedStatement.setInt(4, product.getQuantita());
-            preparedStatement.setFloat(5, product.getIva());
+            preparedStatement.setInt(5, product.getIva());
 
             preparedStatement.executeUpdate();
 
@@ -66,62 +66,30 @@ public class ComposizioneDao implements DAO<ComposizioneBean> {
         }
     }
 
-    public synchronized Collection<ProductBean> doRetrieveByKey(String code) throws SQLException {
-        Connection connection = null;
+    @Override
+	public ComposizioneBean doRetrieveByKey(int code) throws SQLException {
+		Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Collection<ProductBean> products = new LinkedList<ProductBean>();
+        ComposizioneBean bean = new ComposizioneBean();
 
-        String selectSQL = "SELECT * FROM " + TABLE_NAME +
-                " AS P LEFT JOIN Appartenenza AS A ON P.id = A.idProdotto" +
-                " LEFT JOIN Categoria AS C ON A.idCategoria=C.nome WHERE P.titolo LIKE ?";
+        String selectSQL = "SELECT * FROM"+ TABLE_NAME +" C WHERE C.idOrdine = ?";
 
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setString(1,"%" + code + "%");
-
+            preparedStatement.setInt(1, code);
+            
             ResultSet rs = preparedStatement.executeQuery();
-
-            boolean currentnext = rs.next();
-
-            while (currentnext) {       //Finché esiste una riga corrente crea un nuovo prodotto
-
-
-                ProductBean bean = new ProductBean();
-
-                bean.setID(rs.getInt("id"));
-                bean.setQuantita(rs.getInt("quantita"));
-                bean.setIva(rs.getInt("iva"));
-                bean.setPrezzo(rs.getFloat("prezzo"));
-                bean.setTitolo(rs.getString("titolo"));
-                bean.setDescrizione(rs.getString("descrizione"));
-                bean.setAutore(rs.getString("autore"));
-                bean.setEditore(rs.getString("editore"));
-                bean.setIsbn(rs.getString("isbn"));
-                bean.setSconto(rs.getInt("sconto"));
-                bean.setImage(rs.getString("immagine"));
-                bean.setImage_alt(rs.getString("image_alt"));
-
-                products.add(bean);
-
-                if(rs.getString("C.nome") != null)
-                {
-                    do {  //Crea una nuova categoria
-                        CategoriaBean c = new CategoriaBean();
-                        c.setNome(rs.getString("C.nome"));
-                        c.setDescrizione(rs.getString("C.descrizione"));
-                        bean.addCategoria(c);
-                        currentnext = rs.next();
-                    } while(currentnext && rs.getInt("id")== bean.getID());
-                    //FinchÃ© la nuova riga corrente ha lo stesso prodotto
-                }
-                else {
-                    currentnext = rs.next();
-                }
-
+            
+            if (rs.next()) {
+            	bean.setIdOrdine(Integer.parseInt(rs.getString("idOrdine")));
+            	bean.setIdProdotto(Integer.parseInt(rs.getString("idProdotto")));
+            	bean.setPrezzo(Integer.parseInt(rs.getString("prezzo_vendita")));
+            	bean.setIva(Integer.parseInt(rs.getString("iva")));
+            	bean.setQuantita(Integer.parseInt(rs.getString("quantita")));
             }
-
+            
         } finally {
             try {
                 if (preparedStatement != null)
@@ -131,9 +99,26 @@ public class ComposizioneDao implements DAO<ComposizioneBean> {
                     connection.close();
             }
         }
-        
-        return products;
+        return bean;
     }
+
+	@Override
+	public boolean doDelete(int code) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ComposizioneBean doRetrieveByKey(String username, String password) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<ComposizioneBean> doRetrieveAll(String order) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
    
 
