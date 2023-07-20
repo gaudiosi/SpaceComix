@@ -18,8 +18,6 @@
     	<div class ="campi1">
     		<label for="text">Nome:	</label>
         	<input type="text" id="nome" name="nome" required>
-        </div>
-        <div class ="campi1">
         	<label for="text">Cognome:	</label>
         	<input type="text" id="cognome" name="cognome" required>
         </div>
@@ -27,8 +25,6 @@
         <div class ="campi2">
         	<label for="text">Username:	</label>
         	<input type="text" id="username" name="username" required>
-        </div>
-        <div class ="campi2">
         	<label for="email">Email:	</label>
         	<input type="email" id="email" name="email" required><br>
         </div>

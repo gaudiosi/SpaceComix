@@ -13,14 +13,12 @@ import javax.servlet.http.HttpSession;
 
 import it.SpaceComix.model.OrdineBean;
 import it.SpaceComix.model.OrdineDAO;
-import it.SpaceComix.model.UserBean;
 
-
-@WebServlet("/UtenteOrdiniServlet")
-public class UtenteOrdiniServlet extends HttpServlet {
+@WebServlet("/Ordini")
+public class Ordini extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public UtenteOrdiniServlet() {
+
+    public Ordini() {
         super();
     }
 
@@ -28,16 +26,14 @@ public class UtenteOrdiniServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-        
-        UserBean user = (UserBean) session.getAttribute("user");
-        int idUtente = user.getId();
 
         OrdineDAO ordineDAO = new OrdineDAO();
         Collection<OrdineBean> ordini = null;
         try {
-            ordini = ordineDAO.doRetrievebyUser(idUtente);
+            ordini = ordineDAO.doRetrieveAll("id DESC");
         } catch (SQLException e) {
         	response.sendError(500);
         }

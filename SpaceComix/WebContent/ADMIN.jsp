@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<title>ADMIN</title>
 	<%@include file="Header.jsp" %>
-	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="quadrato">
@@ -23,6 +23,10 @@
     <a href="AddProdotto.jsp" class="navbar-button">AGGIUNGI PRODOTTO</a>
 
 	<a href="Catalogo.jsp" class="navbar-button"> MODIFICA/RIMUOVI PRODOTTO</a>
+	
+	<form action="Ordini" method="post">
+    	<input type="submit" value="Vedi fattura">
+    </form>
 
     
 </div>
