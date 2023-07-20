@@ -2,25 +2,20 @@ package it.SpaceComix.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collection;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import it.SpaceComix.model.OrdineBean;
 import it.SpaceComix.model.OrdineDAO;
-import it.SpaceComix.model.UserBean;
 
-
-@WebServlet("/UtenteOrdiniServlet")
-public class UtenteOrdiniServlet extends HttpServlet {
+@WebServlet("/ComposizioneOrdine")
+public class ComposizioneOrdine extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public UtenteOrdiniServlet() {
+    public ComposizioneOrdine() {
         super();
     }
 
@@ -29,23 +24,21 @@ public class UtenteOrdiniServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
         
-        UserBean user = (UserBean) session.getAttribute("user");
-        int idUtente = user.getId();
+        int id = Integer.parseInt((request.getParameter("idOrdine")));
 
         OrdineDAO ordineDAO = new OrdineDAO();
-        Collection<OrdineBean> ordini = null;
+        OrdineBean ordine = null;
         try {
-            ordini = ordineDAO.doRetrievebyUser(idUtente);
+            ordine = ordineDAO.doRetrieveByKey(id);
         } catch (SQLException e) {
         	response.sendError(500);
         }
-        request.setAttribute("ordiniUtente", ordini);
-        
-        session.setAttribute("verificato", true);
-        
-        request.getRequestDispatcher("/ordini.jsp").forward(request, response);
+
+        request.getSession().setAttribute("ordine", ordine);
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/fattura.jsp");
+
+        dispatcher.forward(request, response);
 	}
 
 }

@@ -3,6 +3,7 @@ package it.SpaceComix.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.sql.Date;
+import it.SpaceComix.model.ProductOrdineBean;
 
 public class OrdineBean implements Serializable {
     private static final long serialVersionUID = 1L;
