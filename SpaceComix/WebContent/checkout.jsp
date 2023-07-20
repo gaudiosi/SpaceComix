@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.SpaceComix.model.ProdottoCarrello,it.SpaceComix.model.Carrello, it.SpaceComix.model.UserBean"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+    <%@ page import="it.SpaceComix.model.*" %>
+    <%@ page import="java.util.ArrayList" %>
     <meta charset="UTF-8">
     <title>Checkout</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -31,17 +33,36 @@
     <p>IVA: <%=String.format("%.2f",(totale+spedizione)*0.15)%>€</p>
 
     <h2>Metodi di pagamento</h2>
-    <form action="" method="post">
-        <input type="radio" name="metodoPagamento" value="cartaCredito" required> Carta di credito<br>
-        <input type="radio" name="metodoPagamento" value="paypal"> PayPal<br>
-        <input type="radio" name="metodoPagamento" value="bonificoBancario"> Bonifico bancario<br>
+    <form action="<%=request.getContextPath()%>/checkout" method="post">
+        <label for="ccn">Credit Card Number:</label>
+        <input id="ccn" type="text" inputmode="numeric" name="numcarta" pattern="[0-9]{13,16}" autocomplete="cc-number" placeholder="xxxx xxxx xxxx xxxx" required> Scadenza<br>
+        <input type="month" name="scadenza"  required>cvc<br>
+        <input type="text" name="cvc"  placeholder="XXX"  pattern="[0-9]{3}" required>Intestatario<br>
+        <input type="text" name="intestatario"  required><br>
+
+
         <!-- Aggiungi altri metodi di pagamento se necessario -->
+
+
+
+        <h2>Indirizzo di spedizione</h2>
+        <label for="ccap">Cap</label>
+        <% IndirizzoBean indirizzo = (IndirizzoBean) request.getSession().getAttribute("alreadyindirizzo"); %>
+        <input id="ccap" type="text" name="cap" pattern="[0-9]{1-5}" required <%if(indirizzo!=null){ %>value="<%=indirizzo.getCap()%>"<%}%>> <br>
+        <label for="cita">Citta</label><input id="cita" type="text" name="citta" required <%if(indirizzo!=null){ %>value="<%=indirizzo.getCitta()%>"<%}%>> <br>
+        <label for="via">Via</label><input id="via" type="text" name="via" required<%if(indirizzo!=null){ %>value="<%=indirizzo.getVia()%>"<%}%>> <br>
+        <label for="civico"> Civico</label><input id="civico" type="text" pattern="[0-9]{1-3}" name="civico" required<%if(indirizzo!=null){ %>value="<%=indirizzo.getCivico()%>"<%}%>><br>
+        <label for="tel">Recapito telefonico</label><input id="tel" type="text" name="telefono" required><br>
+
+
 
         <br>
         <div class="button-container">
-        	<a href="fattura.jsp" class="button-color">Procedi al pagamento</a>
+            <button type="submit" class="button-color">Procedi al pagamento</button>
         </div>
-        
+
+
+
     </form>
 	</div>
     </div>
