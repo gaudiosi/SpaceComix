@@ -26,6 +26,10 @@ public class Checkout extends HttpServlet {
     static DAO<OrdineBean> modelo = new OrdineDAO();
     static DAO<PagamentoBean> modelp = new PagamentoDAO();
 
+    static DAO<ProductBean> modelD = new ProductDAO();
+
+
+
 
     public Checkout()
     {
@@ -151,6 +155,18 @@ public class Checkout extends HttpServlet {
                     ProductOrdineBean newp = new ProductOrdineBean();
 
                     ProductBean temproudct = element.getProdotto();
+
+                    //Diminuisco la quantità rimanente del prodotto
+                    temproudct.setQuantita(temproudct.getQuantita()- element.getQuantita());
+                    if(temproudct.getQuantita()==0)
+                    {
+                        modelD.doDelete(temproudct.getID());
+                    }
+                    else {
+                        modelD.doUpdate(temproudct);
+                    }
+
+
                     newp.setTitolo(temproudct.getTitolo());
                     newp.setIva(temproudct.getIva());
                     newp.setIdProdotto(temproudct.getID());

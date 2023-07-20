@@ -185,6 +185,11 @@ public class IndirizzoDAO implements DAO<IndirizzoBean>{
     }
 
     @Override
+    public void doUpdate(IndirizzoBean temproudct) throws SQLException {
+
+    }
+
+    @Override
     public IndirizzoBean doRetrieveByKey(String username, String password) throws SQLException {
         // TODO Auto-generated method stub
         return null;

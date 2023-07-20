@@ -260,6 +260,11 @@ public class OrdineDAO implements DAO<OrdineBean> {
 		return products;
 	}
 
+	@Override
+	public void doUpdate(OrdineBean temproudct) throws SQLException {
+
+	}
+
 	public synchronized Collection<OrdineBean> doRetrievebyUser(int code) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

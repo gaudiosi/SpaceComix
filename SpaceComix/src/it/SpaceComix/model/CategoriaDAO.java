@@ -175,7 +175,12 @@ public class CategoriaDAO implements DAO<CategoriaBean>{
         return products;
     }
 
-	@Override
+    @Override
+    public void doUpdate(CategoriaBean temproudct) throws SQLException {
+
+    }
+
+    @Override
 	public CategoriaBean doRetrieveByKey(String username, String password) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;

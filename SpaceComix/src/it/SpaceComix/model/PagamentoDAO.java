@@ -65,21 +65,20 @@ public class PagamentoDAO implements DAO<PagamentoBean>{
         }
     }
 
-    @Override
-    //
-    public synchronized PagamentoBean doRetrieveByKey(int code) throws SQLException {
+
+    public synchronized PagamentoBean doRetrieveByKey(String code) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         PagamentoBean bean = new PagamentoBean();
 
         String selectSQL = "SELECT * FROM " + PagamentoDAO.TABLE_NAME +
-                "  WHERE nome = ?";
+                "  WHERE numCarta LIKE ?";
 
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, code);
+            preparedStatement.setString(1,"%" + code + "%");
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -135,6 +134,11 @@ public class PagamentoDAO implements DAO<PagamentoBean>{
     }
 
     @Override
+    public PagamentoBean doRetrieveByKey(int code) throws SQLException {
+        return null;
+    }
+
+    @Override
     public synchronized Collection<PagamentoBean> doRetrieveAll(String order) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -180,6 +184,11 @@ public class PagamentoDAO implements DAO<PagamentoBean>{
             }
         }
         return products;
+    }
+
+    @Override
+    public void doUpdate(PagamentoBean temproudct) throws SQLException {
+
     }
 
     @Override
