@@ -34,14 +34,20 @@
 <script>
 var urlParams;
 
-document.addEventListener("DOMContentLoaded", function() {
+function urlRecive() {
     var checkBoxes = document.getElementsByName('vehicle');
     urlParams = new URLSearchParams(window.location.search);
 
+    var generi = urlParams.get('genere');
+    var generiArray = generi ? generi.split(',') : [];
+
     checkBoxes.forEach(function(checkbox) {
-    	checkbox.checked = selectedValues.includes(checkbox.value);
+        checkbox.checked = generiArray.includes(checkbox.value);
     });
-  });
+    
+    submitForm();
+    
+  }
 
 function submitForm() {
     var checkBoxes = document.getElementsByName('vehicle');
@@ -82,13 +88,13 @@ $(document).ready(function() {
 	          formCategorie.append(div);
 	        }
 	      }
+	      urlRecive();
 	    },
 	    error: function(xhr, status, error) {
 	      response.sendError(500);
 	    }
 	  });
 	  
-	  TrovaProdotti("");
 	});
 
 function TrovaProdotti(SelectedValues) {

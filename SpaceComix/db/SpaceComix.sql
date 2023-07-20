@@ -110,7 +110,7 @@ on update cascade
 
 create table Composizione(
 idOrdine int,
-idProdotto int,
+prezzo decimal(6,2),
 prezzo_vendita int,
 iva int,
 quantita int,
