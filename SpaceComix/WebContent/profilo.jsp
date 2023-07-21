@@ -17,22 +17,22 @@
  	  <form action="UpdateProfile" method="post" class="profile" id="profile">
  	  		<div class = "ordine">
 				<div class = "campi1">
-					<label for="text">Nome:	</label>
-		        	<input type="text" id="nome" name="nome" value=" <%= user.getNome() %>"  required><br>
-		        	<label for="text">Cognome:	</label>
-		        	<input type="text" id="cognome" name="cognome" value=" <%= user.getCognome() %> " required>
+					<label for="nome">Nome:	</label>
+		        	<input type="text" id="nome" name="nome" value="<%= user.getNome() %>"  required><br>
+		        	<label for="cognome">Cognome:	</label>
+		        	<input type="text" id="cognome" name="cognome" value="<%= user.getCognome() %>" required>
 		        </div>
 		        <br>
 		        <div class = "campi2"> 
-		        	<label for="text">Username:	</label>
- 			 		<input type="text" id="username" name="username" value=" <%= user.getUsername() %>" required>
+		        	<label for="username">Username:	</label>
+ 			 		<input type="text" id="username" name="username" value="<%= user.getUsername() %>" required>
  		        	<label for="email">Email:	</label>
  		        	<input type="email" id="email" name="email" value= "<%= user.getEmail() %>" required><br>
  		        </div>
  		      	<br>
  		        <div class = "password-container" >
  		        	<label for="password">Password:	</label>
- 		        	<input type="password" id="password" name="password" value=" <%= user.getPassword()%>" required>
+ 		        	<input type="password" id="password" name="password" value="<%= user.getPassword()%>" required>
  		        	<button type="button" class = "toggle-password" onclick="togglePasswordVisibility('password')">V</button>
  		        </div>
  		  	</div>

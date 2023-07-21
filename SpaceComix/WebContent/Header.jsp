@@ -43,7 +43,10 @@
     </nav>
 
 <script>
-window.addEventListener("resize", function() {
+	document.getElementById('escludi').querySelector('title').innerText = "";
+
+
+	window.addEventListener("resize", function() {
 	  var screenWidth = window.innerWidth;
 	  var breakpoint = 984; // Sostituisci questo con il numero di pixel desiderato
 	  

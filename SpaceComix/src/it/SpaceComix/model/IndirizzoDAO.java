@@ -10,10 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 public class IndirizzoDAO implements DAO<IndirizzoBean>{
 
     private static DataSource ds;
+    private static final Logger logger = Logger.getLogger(IndirizzoDAO.class.getName());
+
 
     static {
         try {
@@ -23,7 +26,7 @@ public class IndirizzoDAO implements DAO<IndirizzoBean>{
             ds = (DataSource) envCtx.lookup("jdbc/SpaceComix");
 
         } catch (NamingException e) {
-            System.out.println("Error:" + e.getMessage());
+           logger.info("Error:" + e.getMessage());
         }
     }
 
@@ -191,7 +194,6 @@ public class IndirizzoDAO implements DAO<IndirizzoBean>{
 
     @Override
     public IndirizzoBean doRetrieveByKey(String username, String password) throws SQLException {
-        // TODO Auto-generated method stub
         return null;
     }
 

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -41,35 +42,42 @@ public class Checkout extends HttpServlet {
 
         UserBean user = (UserBean)  request.getSession().getAttribute("user");
 
-        if(user== null)
+
+        if(user == null || user.getId()==-1)
         {
+
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/Login.jsp");
 
             dispatcher.forward(request, response);
 
 
         }
-
-        try { //Se l'utente ha già un indirizzo, mostraglielo
-            IndirizzoBean indirizzo = new IndirizzoBean();
+        else {
+            try { //Se l'utente ha già un indirizzo, mostraglielo
+                IndirizzoBean indirizzo;
 
                 indirizzo = modeli.doRetrieveByKey(user.getId());
 
 
-            if (indirizzo.getIdUtente()==-1)
-            {
-                request.getSession().setAttribute("alreadyindirizzo", null);
+                if (indirizzo.getIdUtente()==-1)
+                {
+                    request.getSession().setAttribute("alreadyindirizzo", null);
+                }
+                else{
+                    request.getSession().setAttribute("alreadyindirizzo", indirizzo);
+                }
+            } catch (SQLException e) {
+                response.sendError(500, "Errore nell'elaborazione del server");
             }
-            else{
-                request.getSession().setAttribute("alreadyindirizzo", indirizzo);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/checkout.jsp");
-        dispatcher.forward(request, response);
+            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/checkout.jsp");
+            dispatcher.forward(request, response);
+
+
+
+
+    }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -98,6 +106,7 @@ public class Checkout extends HttpServlet {
                 OrdineBean newordine = new OrdineBean();
                 newordine.setIdUtente(user.getId());
                 newordine.setTelefono(request.getParameter("telefono"));
+                newordine.setDataOrdine(Date.valueOf(LocalDate.now()));
 
 
 
@@ -144,8 +153,6 @@ public class Checkout extends HttpServlet {
                 }
                 Collection<PagamentoBean> carte = modelp.doRetrieveAll(null);
                 if(!carte.contains(pagamento)) {
-                    for(PagamentoBean pa:carte){System.out.println(pa);}
-                    System.out.println(pagamento);
                     modelp.doSave(pagamento);
                 }
                 newordine.setNumCarta(pagamento.getNumCarta());
@@ -192,7 +199,7 @@ public class Checkout extends HttpServlet {
 
 
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                response.sendError(500, "Errore nell'elaborazione del server");
             }
 
 

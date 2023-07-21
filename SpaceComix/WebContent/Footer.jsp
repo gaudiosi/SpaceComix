@@ -11,5 +11,6 @@
 	<footer class="footer">
     	&copy; 2023 SpaceComix, by Primo Vinicio Calabrese, Gabriele Gaudiosi, Salvatore Basilicata
     </footer>
+
 </body>
 </html>

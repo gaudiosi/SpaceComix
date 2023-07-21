@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="barraRicerca.css">
+    <title> Barra</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous">
 
@@ -16,7 +17,12 @@
   <input type="submit">
 </form>
 
+<%-- Questo serve per fare l'autocompletamento, cioè in base a quello che scrivi nella search bar --%>
+<%-- --%>
 <script>
+
+    <%--la funzione prende come parametri l'input dell'utente e l'array delle ricerche --%>
+    <%-- quando l'utente scrive--%>
 function autocomplete(inp, arr) {
   var currentFocus;
   inp.addEventListener("input", function(e) {
@@ -83,6 +89,7 @@ function autocomplete(inp, arr) {
   });
 }
 
+<%-- La funzione che comunica col database per ottenere i risultati corrispondenti alla ricerca --%>
 $(document).ready(function() {
 	 $.ajax({
 		    url: 'GetProdotti',

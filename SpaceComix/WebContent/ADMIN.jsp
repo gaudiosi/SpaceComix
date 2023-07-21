@@ -23,6 +23,8 @@
     <a href="AddProdotto.jsp" class="navbar-button">AGGIUNGI PRODOTTO</a>
 
 	<a href="Catalogo.jsp" class="navbar-button"> MODIFICA/RIMUOVI PRODOTTO</a>
+
+
 	
 	<form action="Ordini" method="post">
     	<input type="submit" value="Vedi fattura">

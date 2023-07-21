@@ -26,6 +26,9 @@
 
 <div class="quadrato">
 <div class="container">
+
+    <%--Se il carrello non è vuoto e non  è stato svuotato mostra il carrello--%>
+
     <%
         Carrello cart = (Carrello) request.getSession().getAttribute("cart");
         double totale=0;
@@ -130,7 +133,7 @@
 
     <%
         }
-        //SE IL CARRELLO E VUOTO
+        //SE IL CARRELLO E VUOTO mostra un'immagine per mostrare il carrello vuoto
         else {
 
             %>

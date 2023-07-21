@@ -10,10 +10,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 public class PagamentoDAO implements DAO<PagamentoBean>{
 
     private static DataSource ds;
+
+    private static final Logger logger = Logger.getLogger(PagamentoDAO.class.getName());
+
 
     static {
         try {
@@ -23,7 +27,7 @@ public class PagamentoDAO implements DAO<PagamentoBean>{
             ds = (DataSource) envCtx.lookup("jdbc/SpaceComix");
 
         } catch (NamingException e) {
-            System.out.println("Error:" + e.getMessage());
+            logger.info("Error:" + e.getMessage());
         }
     }
 
@@ -193,7 +197,6 @@ public class PagamentoDAO implements DAO<PagamentoBean>{
 
     @Override
     public PagamentoBean doRetrieveByKey(String username, String password) throws SQLException {
-        // TODO Auto-generated method stub
         return null;
     }
 

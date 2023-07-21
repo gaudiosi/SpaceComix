@@ -48,7 +48,7 @@ public class SigninController extends HttpServlet {
 			} catch (SQLException e) {
 				errore = true;
 			}
-			if(!errore && user.getId() != 0) {
+			if(!errore && user.getId() != -1) {
             	session.setAttribute("user", user);
             	RequestDispatcher dispatcher = request.getRequestDispatcher("index");
             	dispatcher.forward(request, response);

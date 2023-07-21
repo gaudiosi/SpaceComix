@@ -33,14 +33,14 @@ public class LoginController extends HttpServlet {
 	        boolean errore = false;
 	        UserDAO userDao = new UserDAO();
 	        UserBean user = new UserBean();
-	        
+
 			try {
 				user = userDao.doRetrieveByKey(email, password);
 			} catch (SQLException e){errore = true;}
 			
 			HttpSession session = request.getSession();
 			
-	        if (!errore && user.getId() != 0) {
+	        if (!errore && user.getId() != -1) {
 	            session.setAttribute("user", user);
 	        } else {
 	        	response.sendError(800);

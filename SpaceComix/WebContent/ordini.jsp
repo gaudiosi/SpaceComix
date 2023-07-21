@@ -29,11 +29,33 @@
 	<div id="Ordini">
 	<% if (ordini != null) {%>
     <h1>Ordini dell'utente</h1>
+        <%if(((UserBean)request.getSession().getAttribute("user")).getRuolo().equals("admin"))
+        {
+    %>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate">
+
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate">
+
+        <button onclick="filterDates()">Filter</button>
+
+        <label for="inputid">Id utente:</label>
+        <input type="text" id="inputid">
+        <button onclick="filteruser()">Filter</button>
+
+
+
+        <%
+        }%>
     <table>
         <caption style="display: none;">Fattura</caption>
 
+
+
         <thead>
             <tr>
+                <th>ID Utente</th>
                 <th>ID Ordine</th>
                 <th>Data Ordine</th>
                 <th>Telefono</th>
@@ -42,8 +64,11 @@
         <tbody>
             <% for (OrdineBean ordine : ordini) { %>
                 <tr>
-                    <td><%= ordine.getId() %></td>
-                    <td><%= ordine.getDataOrdine() %></td>
+
+                    <td class="id"><%= ordine.getIdUtente() %></td>
+
+                    <td ><%= ordine.getId() %></td>
+                    <td class="date-column"><%= ordine.getDataOrdine() %></td>
                     <td><%= ordine.getTelefono() %></td>
                     <td>
                     	<form action="ComposizioneOrdine" method="post">
@@ -139,6 +164,57 @@ $(document).ready(function() {
 		  });
 	  
 });
+</script>
+<script>
+    function filterDates() {
+        //ottieni la data dall'input
+        const startDateValue = document.getElementById("startDate").value;
+        const endDateValue = document.getElementById("endDate").value;
+
+        // convertili correttamente
+        const startDate = new Date(startDateValue);
+        const endDate = new Date(endDateValue);
+
+        //ottieni tutte le date
+        const dateCells = document.querySelectorAll(".date-column"); // Use the unique class here
+
+        dateCells.forEach(cell => {
+            const rowDate = new Date(cell.textContent);
+
+            // elimina tutta la riga
+            const row = cell.parentNode;
+
+            // nascondi tutte le righe che non soddisfano
+            if (rowDate < startDate || rowDate > endDate) {
+                row.style.display = "none";
+            } else {
+                row.style.display = "";
+            }
+        });
+    }
+    function filteruser() {
+        //ottieni la data dall'input
+        const idd = document.getElementById("inputid").value;
+
+        // convertili correttamente
+
+        //ottieni tutte le date
+        const dateCells = document.querySelectorAll(".id"); // Use the unique class here
+
+        dateCells.forEach(cell => {
+            const rowDate =(cell.textContent);
+
+            // elimina tutta la riga
+            const row = cell.parentNode;
+
+            // nascondi tutte le righe che non soddisfano
+            if (!rowDate.includes(idd)) {
+                row.style.display = "none";
+            } else {
+                row.style.display = "";
+            }
+        });
+    }
 </script>
     
     

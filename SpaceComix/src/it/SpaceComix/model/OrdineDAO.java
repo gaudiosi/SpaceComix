@@ -3,6 +3,7 @@ package it.SpaceComix.model;
 import java.sql.*;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -13,8 +14,10 @@ public class OrdineDAO implements DAO<OrdineBean> {
 	
 
     private static DataSource ds;
+	private static final Logger logger = Logger.getLogger(OrdineDAO.class.getName());
 
-    static {
+
+	static {
         try {
             Context initCtx = new InitialContext();
             Context envCtx = (Context) initCtx.lookup("java:comp/env");
@@ -22,14 +25,11 @@ public class OrdineDAO implements DAO<OrdineBean> {
             ds = (DataSource) envCtx.lookup("jdbc/SpaceComix");
 
         } catch (NamingException e) {
-            System.out.println("Error:" + e.getMessage());
+            logger.info("Error:" + e.getMessage());
         }
     }
     
     private static final String TABLE_NAME = "ordine";
-    private static final String UTENTE = "idUtente";
-    private static final String DATA = "dataOrdine";
-    private static final String TELEFONO = "telefono";
 
 	@Override
 	public synchronized void doSave(OrdineBean product) throws SQLException,NullPointerException {
