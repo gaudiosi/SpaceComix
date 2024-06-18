@@ -26,3 +26,6 @@ Dal punto di vista dell'amministratore, il sito permetterà:
 - L'aggiunta, la modifica e l'eliminazione degli articoli presenti sul sito. Questo significa che l'admin del sito non necessiterà di conoscenze di programmazione informatica, in quanto potrà avvalersi di questa interfaccia (naturalmente non accessibile agli utenti comuni) per gestire l'e-commerce.
 - Gestione ordini (obbligatorio: l'amministratore visualizza gli ordini per data, per cliente)
 - Possibilità di moderare i feedback (cancellarli/nasconderli).
+
+### Team Member
+> [gaudiosi](https://github.com/gaudiosi), [NewJoker1999](https://github.com/NewJoker1999), [sasibasi](https://github.com/sasibasi)
